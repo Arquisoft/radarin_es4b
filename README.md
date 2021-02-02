@@ -39,9 +39,9 @@ npm start
 You should be able to access the application in [http://localhost:3000](http://localhost:3000) and the documentation in [http://localhost:3000/docs](http://localhost:3000/docs)
 
 # Members
-David Álvarez Fidalgo
-Jonathan Barbón García
-Moises Garcia Lopez
-Moisés Sanjurjo Sánchez
-Alberto Fernández Gutiérrez
-Miguel Díaz-Pache Alonso
+* David Álvarez Fidalgo
+* Jonathan Barbón García
+* Moises Garcia Lopez
+* Moisés Sanjurjo Sánchez
+* Alberto Fernández Gutiérrez
+* Miguel Díaz-Pache Alonso
