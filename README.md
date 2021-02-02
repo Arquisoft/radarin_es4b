@@ -38,4 +38,11 @@ npm start
 ```
 You should be able to access the application in [http://localhost:3000](http://localhost:3000) and the documentation in [http://localhost:3000/docs](http://localhost:3000/docs)
 
+<<<<<<< HEAD
 Moises Garcia Lopez
+=======
+# Members
+David Álvarez Fidalgo
+Jonathan Barbón García
+Moises Garcia Lopez
+>>>>>>> 37f15eb34c74cd5101bb9751f75b058e5aa68c5b
