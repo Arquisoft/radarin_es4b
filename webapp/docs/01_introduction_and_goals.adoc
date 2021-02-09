@@ -10,24 +10,21 @@ Describes the relevant requirements and the driving forces that software archite
 * relevant stakeholders and their expectations
 ****
 
-=== Requirements Overview
+=== Vista de requisitos
 
 [role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
-
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
-
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
-
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
+* Funcionales
+  ** Los usuarios deben de poder ver las rutas en un mapa
+  ** Los usuarios deben de poder guardar rutas
+  ** Un usuario debe poder compartir rutas con otros usuarios los cuales seran notificados si reciben una ruta
+  ** Los datos de un usuario seran guardados de manera descentralizada
+  ** Los usuarios podran crear grupos entre ellos y podran compartir diferentes tipos de archivos entre si
+* No Funcionales
+  ** Se mantendrán descentralizados los datos para mantener mas segura la informacion del usuario
+  ** El sistema debe de poder comunicarse con otros sistemas de gestion de rutas
+  ** El sistema sera utilizable por cualquier tipo de usuario
+  ** El sitema debe de poder tratar con multiples usuarios al mismo tiempo
 ****
 
 === Quality Goals
@@ -69,8 +66,7 @@ Table with role names, person names, and their expectations with respect to the 
 
 [options="header",cols="1,2,2"]
 |===
-|Rol/Nombre|Contacto|Expectativas
-| _<Usuarios>_ | _<Usuarios potenciales>_ | _<Usuarios finales interesados en utilizar la aplicación>_
-| _<Equipo de desarrollo>_ | _<Equipo que crea la aplicación>_ | _<Creación de una aplicación estable, segura y estética>_
-| _<Profesores>_ | _<Profesores de la asignatura ASW>_ | _<Supervisan el proyecto y se aseguran de que se cumplan los requisitos.>_
+|Role/Name|Contact|Expectations
+| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
+| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
 |===
