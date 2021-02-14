@@ -36,11 +36,11 @@ Los objetivos de calidad ordenados de mayor a menor prioridad, son los siguiente
 [options="header",cols=2*]
 |===
 |Objetivo|Descripción
-| _1.Software mantenible y extensible_ | _Debemos poder mantener y extender nuestro software facilmente en todo momento._ 
-| _2.Privacidad_ | _Se almacenará la información mínima necesaria para cada ususario de la aplicación. En el caso de que se necesite información adicional de un ususario en concreto, se le pedirá permiso para obtener dicha información a través de su pod._ 
-| _3.Usabilidad_ | _La aplicación debe de ser fácil de usar e intuitiva para todo tipo de ususarios._
-| _4.Testeable_ | _Nuestra aplicación debe poder probarse tanto manual como automaticamente. Esto nos permitirá comprobar facilmente el correcto funcionamiento del sistema._
-| _5.Rendimiento_ | _La aplicación debe mantener una capacidad de respuesta lo más rápida posible en todo momento._
+| 1.Software mantenible y extensible | Debemos poder mantener y extender nuestro software facilmente en todo momento. 
+| 2.Privacidad | Se almacenará la información mínima necesaria para cada ususario de la aplicación. En el caso de que se necesite información adicional de un ususario en concreto, se le pedirá permiso para obtener dicha información a través de su pod. 
+| 3.Usabilidad | La aplicación debe de ser fácil de usar e intuitiva para todo tipo de ususarios.
+| 4.Testeable | Nuestra aplicación debe poder probarse tanto manual como automaticamente. Esto nos permitirá comprobar facilmente el correcto funcionamiento del sistema.
+| 5.Rendimiento | La aplicación debe mantener una capacidad de respuesta lo más rápida posible en todo momento.
 |===
 ****
 
