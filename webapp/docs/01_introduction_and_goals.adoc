@@ -32,12 +32,16 @@ Describes the relevant requirements and the driving forces that software archite
 [role="arc42help"]
 ****
 Los objetivos de calidad ordenados de mayor a menor prioridad, son los siguientes: 
+
+[options="header",cols="1,2,2"]
+|===
 |Objetivo|Descripción
 | _<1.Software mantenible y extensible>_ | _<Debemos poder mantener y extender nuestro software facilmente en todo momento.>_ 
 | _<2.Privacidad>_ | _<Se almacenará la información mínima necesaria para cada ususario de la aplicación. En el caso de que se necesite información adicional de un ususario en concreto, se le pedirá permiso para obtener dicha información a través de su pod.>_ 
 | _<3.Usabilidad>_ | _<La aplicación debe de ser fácil de usar e intuitiva para todo tipo de ususarios.>_
 | _<4.Testeable>_ | _<Nuestra aplicación debe poder probarse tanto manual como automaticamente. Esto, nos permitirá comprobar facilmente el correcto funcionamiento del sistema.>_
 | _<5.Rendimiento>_ | _<La aplicación debe mantener una capacidad de respuesta lo más rápida posible en todo momento.>_
+|===
 ****
 
 === Stakeholders
