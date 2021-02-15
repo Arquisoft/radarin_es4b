@@ -5,10 +5,10 @@
 [role="arc42help"]
 ****
 .Contents
-System scope and context - as the name suggests - delimits your system (i.e. your scope) from all its communication partners
-(neighboring systems and users, i.e. the context of your system). It thereby specifies the external interfaces.
-
-If necessary, differentiate the business context (domain specific inputs and outputs) from the technical context (channels, protocols, hardware).
+El objetivo principal de este proyecto es crear un sistema para facilitar encuentros entre amigos, 
+este sistema estará descentralizado y basado en SOLID, lo que significa que cada usuario tendrá su propio Pod, 
+que es su propio espacio de almacenamiento personal, donde se almacena toda su información. 
+Los principales socios de comunicación de las aplicaciones serán los propios usuarios, radarin será el intermediario entre Solid y el usuario.
 
 .Motivation
 The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
