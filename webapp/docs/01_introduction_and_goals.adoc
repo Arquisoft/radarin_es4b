@@ -1,13 +1,11 @@
 [[section-introduction-and-goals]]
-== Introduction and Goals
+== Introducción y objetivos
 
 [role="arc42help"]
 ****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+Vamos a desarrollar Radarin, un sistema para facilitar encuentros entre amigos. Mediante una aplicación móvil podrá conocer cuando otro usuario amigo suyo esté cerca.
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
+Radarin sigue las características SOLID, por lo que se servirá de PODS para garantizar la descentralización y la privacidad de nuestros usuarios.
 ****
 
 === Vista de requisitos
