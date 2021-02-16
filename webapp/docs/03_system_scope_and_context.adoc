@@ -3,13 +3,13 @@
 
 
 [role="arc42help"]
-****
+
 .Contents
 El objetivo principal de este proyecto es crear un sistema para facilitar encuentros entre amigos, 
 este sistema estará descentralizado y basado en SOLID, lo que significa que cada usuario tendrá su propio Pod, 
 que es su propio espacio de almacenamiento personal, donde se almacena toda su información. 
 Los principales socios de comunicación de las aplicaciones serán los propios usuarios, radarin será el intermediario entre Solid y el usuario.
-
+****
 .Motivation
 The domain interfaces and technical interfaces to communication partners are among your system's most critical aspects. Make sure that you completely understand them.
 

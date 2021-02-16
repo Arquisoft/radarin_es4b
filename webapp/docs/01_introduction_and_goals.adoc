@@ -2,16 +2,16 @@
 == Introducción y objetivos
 
 [role="arc42help"]
-****
+
 Vamos a desarrollar Radarin, un sistema para facilitar encuentros entre amigos. Mediante una aplicación móvil podrá conocer cuando otro usuario amigo suyo esté cerca.
 
 Radarin sigue las características SOLID, por lo que se servirá de PODS para garantizar la descentralización y la privacidad de nuestros usuarios.
-****
+
 
 === Vista de requisitos
 
 [role="arc42help"]
-****
+
 * Funcionales
   ** Los usuarios deben de poder ver las rutas en un mapa
   ** Los usuarios deben de poder guardar rutas
@@ -23,12 +23,12 @@ Radarin sigue las características SOLID, por lo que se servirá de PODS para ga
   ** El sistema debe de poder comunicarse con otros sistemas de gestion de rutas
   ** El sistema sera utilizable por cualquier tipo de usuario
   ** El sitema debe de poder tratar con multiples usuarios al mismo tiempo
-****
+
 
 === Objetivos de calidad
 
 [role="arc42help"]
-****
+
 Los objetivos de calidad ordenados de mayor a menor prioridad, son los siguientes: 
 
 [options="header",cols=2*]
@@ -40,12 +40,12 @@ Los objetivos de calidad ordenados de mayor a menor prioridad, son los siguiente
 | 4.Testeable | Nuestra aplicación debe poder probarse tanto manual como automaticamente. Esto nos permitirá comprobar facilmente el correcto funcionamiento del sistema.
 | 5.Rendimiento | La aplicación debe mantener una capacidad de respuesta lo más rápida posible en todo momento.
 |===
-****
+
 
 === Stakeholders
 
 [role="arc42help"]
-****
+
 .Contenido
 Descripción general explícita de las partes interesadas del sistema, es decir, todas las personas, roles u organizaciones que
 
@@ -62,7 +62,7 @@ Estos interesados determinan el alcance y el nivel de detalle de su trabajo y su
 
 .Forma
 Tabla con nombres de roles, nombres de personas y sus expectativas con respecto a la arquitectura y su documentación.
-****
+
 
 [options="header",cols="1,2,2"]
 |===
