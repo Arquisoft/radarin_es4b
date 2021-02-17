@@ -30,28 +30,41 @@ There are many notations for describing scenarios, e.g.
 
 ****
 
-=== <Runtime Scenario 1>
+=== <Enviar Posicion>
 
 
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
+* Permitir a la aplicacion saber tu posicion
 
-It is possible to use a sequence diagram:
+[plantuml,"Sequence diagram",png]
+----
+actor Alice
+participant  Radarin
+particiopant Pod
+entity Location
+Alice -> Radarin: Da permiso usar la localizacion
+Radarin -> Pod: Busca la localizacion
+Pod -> Alice: Pide la localizacion
+Alice -> Location: Genera la localizacion
+Location -> Pod: La localizacion se envia al pod
+Pod -> Radarin: El pod envia la localizacion a la app
+Radarin -> Alice: Aviso de envio correcto
+----
+=== <Dar localizacion a un amigo>
+* Permitir a la aplicacion saber tu posicion y enviarla a otro usuario
 
 [plantuml,"Sequence diagram",png]
 ----
 actor Alice
 actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+participant  Radarin
+particiopant Pod
+entity Location
+Alice -> Radarin: Da permiso usar la localizacion
+Radarin -> Pod: Busca la localizacion
+Pod -> Alice: Pide la localizacion
+Alice -> Location: Genera la localizacion
+Location -> Pod: La localizacion se envia al pod
+Pod -> Radarin: El pod envia la localizacion a la app
+Radarin-> Bob: La aplicacion le envia la posicion de Alice a Bob
+Radarin -> Alice: Aviso de envio correcto
 ----
-=== <Runtime Scenario 2>
-
-=== ...
-
-=== <Runtime Scenario n>
