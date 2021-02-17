@@ -82,7 +82,7 @@ Tabla con nombres de roles, nombres de personas y sus expectativas con respecto 
 [options="header",cols="1,2,2"]
 |===
 |Rol/Nombre|Contacto|Expectativas
-| _<Usuarios>_ | _<Usuarios potenciales>_ | _<Usuarios finales interesados en utilizar la aplicación>_
-| _<Equipo de desarrollo>_ | _<Equipo que crea la aplicación>_ | _<Creación de una aplicación estable, segura y estética>_
-| _<Profesores>_ | _<Profesores de la asignatura ASW>_ | _<Supervisan el proyecto y se aseguran de que se cumplan los requisitos.>_
+| Usuarios | Usuarios potenciales | Usuarios finales interesados en utilizar la aplicación.
+| Equipo de desarrollo | Equipo que crea la aplicación | Creación de una aplicación estable, segura y estética.
+| Profesores | Profesores de la asignatura ASW | Supervisan el proyecto y se aseguran de que se cumplan los requisitos.
 |===
