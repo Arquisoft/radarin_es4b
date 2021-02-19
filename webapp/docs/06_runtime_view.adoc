@@ -39,7 +39,7 @@ There are many notations for describing scenarios, e.g.
 ----
 actor Alice
 participant  Radarin
-particiopant Pod
+participant Pod
 entity Location
 Alice -> Radarin: Da permiso usar la localizacion
 Radarin -> Pod: Busca la localizacion
@@ -57,7 +57,7 @@ Radarin -> Alice: Aviso de envio correcto
 actor Alice
 actor Bob
 participant  Radarin
-particiopant Pod
+participant Pod
 entity Location
 Alice -> Radarin: Da permiso usar la localizacion
 Radarin -> Pod: Busca la localizacion

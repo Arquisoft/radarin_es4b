@@ -1,5 +1,5 @@
 [[section-design-decisions]]
-== Design Decisions
+== Decisiones de diseño
 
 
 [role="arc42help"]
@@ -24,3 +24,40 @@ Various options:
 * more detailed in form of separate sections per decision
 * ADR (architecture decision record) for every important decision
 ****
+
+=== ADR 1: Usar JavaScript con Node.js como lenguaje de programación
+==== Contexto
+Tenemos que elegir un lenguaje de programación para desarrollar la aplicación web y la API REST. Debe ser un lenguaje que
+permita computación del lado del servidor.
+
+==== Decisión
+Hemos decidido usar JavaScript con Node.js para desarrollar la aplicación web y la API. Hemos tomado esta decisión porque es uno
+de los lenguajes más populares en la actualidad y tenemos un poco de experiencia trabajando con JavaScript del lado del cliente.
+Además también vamos a usar este lenguaje en la asignatura SDI, por lo que podemos aprovechar los conocimientos obtenidos en ambas asignaturas.
+
+==== Estado
+Aprobada.
+
+==== Consecuencias
+Usaremos JavaScript con Node.js como lenguaje de programación. Tendremos que aprender a usar Node.js y podremos usar uno de los muchos
+frameworks JavaScript que existen actualmente.
+
+=== ADR 2: Usar React como framework para la interfaz gráfica
+==== Contexto
+Debemos elegir un framework JavaScript para diseñar la interfaz gráfica tanto de la aplicación web como de la aplicación móvil. 
+No tenemos conocimiento previo sobre ningún framework, así que la experiencia no influirá en la decisión. Algunos de los frameworks JavaScript
+más populares en la actualidad son React, Angular y Vue.
+
+==== Decisión
+Hemos decidido usar React como framework para la interfaz gráfica porque es uno de los más populares actualmente y es el
+que nos proponen desde la asignatura. Además, permite diseñar tanto aplicaciones web como aplicaciones móviles y existen librerías con componenetes para
+trabajar con Solid.
+
+==== Estado
+Aprobada.
+
+==== Consecuencias
+Usaremos React para diseñar la aplicación web y la aplicación móvil. No tenemos experiencia previa con React, así que
+tendremos que documentarnos y aprender a usar este framework.
+
+
