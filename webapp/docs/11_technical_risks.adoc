@@ -1,5 +1,5 @@
 [[section-technical-risks]]
-== Risks and Technical Debts
+== Riesgos y deuda técnica
 
 
 [role="arc42help"]
@@ -15,3 +15,7 @@ This should be your motto for systematic detection and evaluation of risks and t
 .Form
 List of risks and/or technical debts, probably including suggested measures to minimize, mitigate or avoid risks or reduce technical debts.
 ****
+
+* Falta de experiencia con el framework React. Deberíamos documentarnos correctamente antes de empezar a usarlo.
+* Escasa madurez de Solid, será más difícil encontrar soluciones a los problemas que se nos planteen.
+* Poca experiencia trabajando con JavaScript, y ninguna trabajando con Node.js. También deberíamos documentarnos antes de empezar.
