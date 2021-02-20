@@ -1,67 +1,20 @@
 [[section-concepts]]
-== Cross-cutting Concepts
+== Conceptos transversales
 
+A continuación se describen los principales elementos, regulaciones y soluciones que son relevantes en Radarin.
 
-[role="arc42help"]
-****
-.Content
-This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
+.Modelo de dominio
+* Usuario: Individuo físico que posee y utiliza la aplicación móvil en su dispositivo.
+* POD: Sistema para almacenar la información del usuario. Es el usuario el que tiene el control sobre su información.
+* Aplicación: Sirve al usuario de la funcionalidad del sistema comunicándose con los PODs de sus amigos.
+* Amigos: Son todos los usuarios que permiten a otro usuario acceder a su información.
 
-* domain models
-* architecture patterns or design patterns
-* rules for using specific technology
-* principal, often technical decisions of overall decisions
-* implementation rules
+.Arquitectura y diseño
+Hemos desarrollado una aplicación haciendo uso de Android SDK. La aplicación aparte de implementar las funcionalidades necesarias, sirve de puente entre el usuario y los PODs de sus amigos. 
+Para ello nos hemos servido de la arquitectura REACT, la API de Google Maps y los PODs de SOLID.
 
-.Motivation
-Concepts form the basis for _conceptual integrity_ (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.
+.Experiencia de usuario
+La interfaz de usuario la provee nuestra aplicación y está fundamentada en la sencillez y la claridad. Está disponible en distintos idiomas para lograr un ámbito internacional.
 
-Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.
-
-.Form
-The form can be varied:
-
-* concept papers with any kind of structure
-* cross-cutting model excerpts or scenarios using notations of the architecture views
-* sample implementations, especially for technical concepts
-* reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)
-
-.Structure
-A potential (but not mandatory) structure for this section could be:
-
-* Domain concepts
-* User Experience concepts (UX)
-* Safety and security concepts
-* Architecture and design patterns
-* "Under-the-hood"
-* development concepts
-* operational concepts
-
-Note: it might be difficult to assign individual concepts to one specific topic
-on this list.
-
-image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-****
-
-
-=== Domain model
-
-image:UmlDiagram.png["Example UML Diagram"]
-
-
-
-=== _<Concept 2>_
-
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_
+.Seguridad e información
+La información de nuestros usuarios está descentralizada gracias a los PODs. De esta manera garantizamos su independencia y seguridad.
