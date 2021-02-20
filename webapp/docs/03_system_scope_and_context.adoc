@@ -17,7 +17,6 @@ Los principales socios de comunicación de las aplicaciones serán los propios u
 	  (Radarin) -- userB
 	}
 @enduml
-=======
 
 === 3.1 Contexto empresarial
 
