@@ -29,7 +29,6 @@ endif::basebackend-html[]
 // horizontal line
 ***
 
-[role="arc42help"]
 ****
 [NOTE]
 ====
