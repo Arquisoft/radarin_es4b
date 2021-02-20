@@ -49,7 +49,7 @@ No tenemos conocimiento previo sobre ningún framework, así que la experiencia 
 más populares en la actualidad son React, Angular y Vue.
 
 ==== Decisión
-Hemos decidido usar React como framework para la interfaz gráfica porque es uno de los más populares actualmente y es el
+Como ya comentamos en el apartado 4, hemos decidido usar React como framework para la interfaz gráfica porque es uno de los más populares actualmente y es el
 que nos proponen desde la asignatura. Además, permite diseñar tanto aplicaciones web como aplicaciones móviles y existen librerías con componenetes para
 trabajar con Solid.
 
