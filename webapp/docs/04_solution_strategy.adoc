@@ -1,24 +1,34 @@
 [[section-solution-strategy]]
-== Solution Strategy
+== Estrategia de la solución
+
+=== Decisiones tecnológicas 
+
+En el desarrollo del proyecto se usarán las siguientes tecnologías: 
+
+[options="header",cols=2*]
+|===
+|Nombre de la tecnología|Objetivo al aplicarla
+|React | Es una librería de JavaScript. Se utilizará para el desarrarrollo de la aplicación movil y de las interfaces de ususario de esta.  
+|SOLID | Teconlogía que será usada para acceder / almacenar los datos de los ususarios de forma descentralizada. El ususario decidirá si podremos o no acceder a sus datos. 
+|Docker | Herramienta de virtualización que será utilizada para sera utilzado para el despliegue de los componentes de nuestro sistema.   
+| GitHub | Es un sistema de control de versiones. Será utilizado para llevar un registro del estado del desarrollo del proyecto y para tener una buena coordinación entre todos los miembros del equipo. 
+|===
+
+=== ¿ Cómo llegaremos a los objetivos de calidad ?
+
+Para alcanzar nuestros objetivos de calidad:
+
+[options="header",cols=2*]
+|===
+|Objetivo de calidad|Forma de obtenerlo
+|Mantenibilidad | Para que nuestro software sea mantenible y extensible, se usarán una serie de patrones de diseño, gracias a los cuales, podremos obtener un software de calidad.
+|Privacidad | Solo almacenaremos la información mínima de cada usuario. Si en algún momento necesitamos información de alguno de los ususarios de nuestro sistema, siempre se le pedirá explícitamente su permiso para obtenerla.
+|Usabilidad | Se desarrollarán interfaces de ususario fáciles de usar, fluidas y que no añadan complicaciones al uso de la aplicación.   
+| Testeabilidad | El hecho de mantener un software de calidad, también nos permitirá y facilitará la realización de pruebas tanto manuales como automáticas. 
+| Rendimiento | Se buscará siempre la forma más óptima de realizar las tareas que debe poder hacer nuestro sistema. Siempre buscando la mayor simplicidad y la menor compledidad.  
+|===
 
 
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
+=== Organización 
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
-
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
-
-.Form
-Keep the explanation of these key decisions short.
-
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
-****
+Se realizarán reuniones en los laboratorios de la asignatura. Además, se podrán hacer reuniones privadas adicionales (acordadas entre los miembros del equipo). En todas estas reuniones se realizará un acta a modo de registro del estado del desarrollo en ese momento y de los acuerdos que se alcanzaron.  

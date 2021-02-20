@@ -1,19 +1,13 @@
 [[section-introduction-and-goals]]
-== Introduction and Goals
+== Introducción y objetivos
 
-[role="arc42help"]
-****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
+Vamos a desarrollar Radarin, un sistema para facilitar encuentros entre amigos. Mediante una aplicación móvil podrá conocer cuando otro usuario amigo suyo esté cerca.
 
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
-****
+Radarin sigue las características SOLID, por lo que se servirá de PODS para garantizar la descentralización y la privacidad de nuestros usuarios.
+
 
 === Vista de requisitos
 
-[role="arc42help"]
-****
 * Funcionales
   ** Los usuarios deben de poder ver las rutas en un mapa
   ** Los usuarios deben de poder guardar rutas
@@ -25,29 +19,48 @@ Describes the relevant requirements and the driving forces that software archite
   ** El sistema debe de poder comunicarse con otros sistemas de gestion de rutas
   ** El sistema sera utilizable por cualquier tipo de usuario
   ** El sitema debe de poder tratar con multiples usuarios al mismo tiempo
-****
+
+* Requisitos funcionales:
+
+**  Un usuario podrá añadir a otros usuarios a su lista de amigos.
+
+** Un usuario será capaz de ver otros usuarios agregados a su lista cercanos.
+
+**  El sistema ofrecerá al usuario notificaciones si tiene amigos cerca.
+
+**  Cada usuario podrá modificar sus localizaciones.
+
+** El administrador del servicio tendrá opción de modificar usuarios y revisar el estado del servidor.
+
+* Requisitos no funcionales:
+**  Soporte completo con el proyecto SOLID.
+
+**  La aplicación estará alojada en un servidor web que únicamente almacenará localizaciones del usuario, solicitando al mismo para acceder a la suya. 
+
+**  Toda información que no sea una localización será almacenada en el pod de SOLID del usuario.
+
+**  El servicio debe ser soportado por los dispositivos móviles de los usuarios, tomando los datos de geolocalización provenientes del mismo.
+
+**  El sistema se desplegará desde contenedores docker y utlizará el servicio en la nube heroku.
 
 === Objetivos de calidad
 
-[role="arc42help"]
-****
 Los objetivos de calidad ordenados de mayor a menor prioridad, son los siguientes: 
 
 [options="header",cols=2*]
 |===
 |Objetivo|Descripción
-| 1.Software mantenible y extensible | Debemos poder mantener y extender nuestro software facilmente en todo momento. 
+| 1.Mantenibilidad | Debemos poder mantener y extender nuestro software facilmente en todo momento. 
 | 2.Privacidad | Se almacenará la información mínima necesaria para cada ususario de la aplicación. En el caso de que se necesite información adicional de un ususario en concreto, se le pedirá permiso para obtener dicha información a través de su pod. 
 | 3.Usabilidad | La aplicación debe de ser fácil de usar e intuitiva para todo tipo de ususarios.
-| 4.Testeable | Nuestra aplicación debe poder probarse tanto manual como automaticamente. Esto nos permitirá comprobar facilmente el correcto funcionamiento del sistema.
+| 4.Testeabilidad | Nuestra aplicación debe poder probarse tanto manual como automaticamente. Esto nos permitirá comprobar facilmente el correcto funcionamiento del sistema.
 | 5.Rendimiento | La aplicación debe mantener una capacidad de respuesta lo más rápida posible en todo momento.
 |===
-****
+
 
 === Stakeholders
 
-[role="arc42help"]
-****
+
 .Contenido
 Descripción general explícita de las partes interesadas del sistema, es decir, todas las personas, roles u organizaciones que
 
@@ -64,12 +77,12 @@ Estos interesados determinan el alcance y el nivel de detalle de su trabajo y su
 
 .Forma
 Tabla con nombres de roles, nombres de personas y sus expectativas con respecto a la arquitectura y su documentación.
-****
+
 
 [options="header",cols="1,2,2"]
 |===
 |Rol/Nombre|Contacto|Expectativas
-| _<Usuarios>_ | _<Usuarios potenciales>_ | _<Usuarios finales interesados en utilizar la aplicación>_
-| _<Equipo de desarrollo>_ | _<Equipo que crea la aplicación>_ | _<Creación de una aplicación estable, segura y estética>_
-| _<Profesores>_ | _<Profesores de la asignatura ASW>_ | _<Supervisan el proyecto y se aseguran de que se cumplan los requisitos.>_
+| Usuarios | Usuarios potenciales | Usuarios finales interesados en utilizar la aplicación.
+| Equipo de desarrollo | Equipo que crea la aplicación | Creación de una aplicación estable, segura y estética.
+| Profesores | Profesores de la asignatura ASW | Supervisan el proyecto y se aseguran de que se cumplan los requisitos.
 |===
