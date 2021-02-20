@@ -1,15 +1,11 @@
 [[section-system-scope-and-context]]
 == Alcance y contexto del sistema
 
-
-[role="arc42help"]
-
 .Contents
 El objetivo principal de este proyecto es crear un sistema para facilitar encuentros entre amigos, 
 este sistema estará descentralizado y basado en SOLID, lo que significa que cada usuario tendrá su propio Pod, 
 que es su propio espacio de almacenamiento personal, donde se almacenará toda su información. 
 Los principales socios de comunicación de las aplicaciones serán los propios usuarios, radarin será el intermediario entre Solid y el usuario.
-<<<<<<< HEAD
 
 @startuml
 	left to right direction
@@ -23,34 +19,29 @@ Los principales socios de comunicación de las aplicaciones serán los propios u
 @enduml
 =======
 
-=== Contexto empresarial
+=== 3.1 Contexto empresarial
 
-[role="arc42help"]
-****
-.Contents
 .Radarin
 |=========================================================
 | Socio de comunicación |Entradas |Salidas
 
 | Usuario
-| Registrar ubicación. Ver las ubicaciones de los amigos
+| Registrar ubicación. 
+| Ver las ubicaciones de los amigos
 
 | POD
-| Can store routes in a interoperable route format
-| Allow viade to read the routes stored inside
+| Guardar información de usuario
+| Permite que Radarin lea la ubicación del usuario
 
 | Radarin
-| Routes and multimedia 
-| Routes and push notifications
+| Ubicacion del POD de usuario 
+| Notificación de amigos 
 
 | Otros usuarios
 | 
-| Receives push notifications when a route is shared
+| Recibe notificación cuando estás cerca
 
 |=========================================================
-
-.Motivation
-All stakeholders should understand which data are exchanged with the environment of the system.
 
 .Form
 All kinds of diagrams that show the system as a black box and specify the domain interfaces to communication partners.
@@ -59,28 +50,46 @@ Alternatively (or additionally) you can use a table.
 The title of the table is the name of your system, the three columns contain the name of the communication partner, the inputs, and the outputs.
 ****
 
-**<Diagram or Table>**
-
-**<optionally: Explanation of external domain interfaces>**
-
 === Contexto técnico
 
-[role="arc42help"]
-****
-.Contents
-Technical interfaces (channels and transmission media) linking your system to its environment. In addition a mapping of domain specific input/output to the channels, i.e. an explanation with I/O uses which channel.
+Se espera que Radarin tenga al menos 2 componentes software:
 
-.Motivation
-Many stakeholders make architectural decision based on the technical interfaces between the system and its context. Especially infrastructure or hardware designers decide these technical interfaces.
+** Una aplicación web que funcionará en un servidor en el que se almacenará información sobre las localizaciones. La aplicación permtirá gestionar localizaciones y usarios. También servirá para monitorizar el estado del servidor.
 
-.Form
-E.g. UML deployment diagram describing channels to neighboring systems,
-together with a mapping table showing the relationships between channels and input/output.
+** Una aplicacion móvil que envie localizaciones al servidor y reciba las notificaciones de los amigos. 
 
-****
 
-**<Diagram or Table>**
+Interfaces técnicas:
 
-**<optionally: Explanation of technical interfaces>**
+.Technical Context Table
+|=========================================================
+| Objeto | Descripción 
 
-**<Mapping Input/Output to Channels>**
+| Usuario
+| Usuarios de la aplicación
+
+| App
+| App para conectar con los amigos
+
+| Servidor web
+| Server que contiene nuestra aplicacion web
+
+| Cliente web
+| El usuario gestiona las localizaciones y los usuarios desde el cliente web
+
+| Https
+| Comunicación a través del protocolo Https entre el usuario y la aplicación. Hay solicitudes y respuestas https.
+
+| Solid-auth-client
+| Libreria para leer y escirbir en el POD
+
+| Solid Server
+| Servidor Solid donde se almacenarán los PODs
+
+| POD
+| Unidad de almacenamiento personal
+
+| Google Maps API
+| API para ver las localizaciones en el mapa
+
+|=========================================================
