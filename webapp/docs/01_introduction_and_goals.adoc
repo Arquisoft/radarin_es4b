@@ -8,18 +8,6 @@ Radarin sigue las características SOLID, por lo que se servirá de PODS para ga
 
 === Vista de requisitos
 
-* Funcionales
-  ** Los usuarios deben de poder ver las rutas en un mapa
-  ** Los usuarios deben de poder guardar rutas
-  ** Un usuario debe poder compartir rutas con otros usuarios los cuales seran notificados si reciben una ruta
-  ** Los datos de un usuario seran guardados de manera descentralizada
-  ** Los usuarios podran crear grupos entre ellos y podran compartir diferentes tipos de archivos entre si
-* No Funcionales
-  ** Se mantendrán descentralizados los datos para mantener mas segura la informacion del usuario
-  ** El sistema debe de poder comunicarse con otros sistemas de gestion de rutas
-  ** El sistema sera utilizable por cualquier tipo de usuario
-  ** El sitema debe de poder tratar con multiples usuarios al mismo tiempo
-
 * Requisitos funcionales:
 
 **  Un usuario podrá añadir a otros usuarios a su lista de amigos.
