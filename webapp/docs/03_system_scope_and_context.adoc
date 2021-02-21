@@ -84,4 +84,4 @@ Interfaces técnicas:
 | Google Maps API
 | API para ver las localizaciones en el mapa
 
-|=========================================================
+| =========================================================
