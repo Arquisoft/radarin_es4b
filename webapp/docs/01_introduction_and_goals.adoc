@@ -8,18 +8,6 @@ Radarin sigue las características SOLID, por lo que se servirá de PODS para ga
 
 === Vista de requisitos
 
-* Funcionales
-  ** Los usuarios deben de poder ver las rutas en un mapa
-  ** Los usuarios deben de poder guardar rutas
-  ** Un usuario debe poder compartir rutas con otros usuarios los cuales seran notificados si reciben una ruta
-  ** Los datos de un usuario seran guardados de manera descentralizada
-  ** Los usuarios podran crear grupos entre ellos y podran compartir diferentes tipos de archivos entre si
-* No Funcionales
-  ** Se mantendrán descentralizados los datos para mantener mas segura la informacion del usuario
-  ** El sistema debe de poder comunicarse con otros sistemas de gestion de rutas
-  ** El sistema sera utilizable por cualquier tipo de usuario
-  ** El sitema debe de poder tratar con multiples usuarios al mismo tiempo
-
 * Requisitos funcionales:
 
 **  Un usuario podrá añadir a otros usuarios a su lista de amigos.
@@ -59,25 +47,6 @@ Los objetivos de calidad ordenados de mayor a menor prioridad, son los siguiente
 
 
 === Stakeholders
-
-
-.Contenido
-Descripción general explícita de las partes interesadas del sistema, es decir, todas las personas, roles u organizaciones que
-
-* deben conocer la arquitectura
-* tienen que estar convencidos de la arquitectura
-* tienen que trabajar con la arquitectura o con el código
-* necesitan la documentación de la arquitectura para su trabajo
-* tienen que tomar decisiones sobre el sistema o su desarrollo
-
-.Motivación
-Se debe conocer a todas las partes involucradas en el desarrollo del sistema o afectadas por el sistema.
-De lo contrario, puede recibir sorpresas desagradables más adelante en el proceso de desarrollo.
-Estos interesados determinan el alcance y el nivel de detalle de su trabajo y sus resultados.
-
-.Forma
-Tabla con nombres de roles, nombres de personas y sus expectativas con respecto a la arquitectura y su documentación.
-
 
 [options="header",cols="1,2,2"]
 |===

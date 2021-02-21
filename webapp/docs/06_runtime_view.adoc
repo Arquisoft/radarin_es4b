@@ -30,7 +30,7 @@ There are many notations for describing scenarios, e.g.
 
 ****
 
-=== <Enviar Posicion>
+=== Enviar Posicion
 
 
 * Permitir a la aplicacion saber tu posicion
@@ -49,7 +49,7 @@ Location -> Pod: La localizacion se envia al pod
 Pod -> Radarin: El pod envia la localizacion a la app
 Radarin -> Alice: Aviso de envio correcto
 ----
-=== <Dar localizacion a un amigo>
+=== Dar localizacion a un amigo
 * Permitir a la aplicacion saber tu posicion y enviarla a otro usuario
 
 [plantuml,"Sequence diagram",png]
