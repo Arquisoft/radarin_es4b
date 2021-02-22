@@ -53,8 +53,8 @@ Se espera que Radarin tenga al menos 2 componentes software:
 
 Interfaces técnicas:
 
-.Tabla de contexto técnico
-|=========================================================
+[options="header",cols="1,2"]
+|===
 | Objeto | Descripción 
 
 | Usuario
@@ -84,4 +84,4 @@ Interfaces técnicas:
 | Google Maps API
 | API para ver las localizaciones en el mapa
 
-| =========================================================
+|===
