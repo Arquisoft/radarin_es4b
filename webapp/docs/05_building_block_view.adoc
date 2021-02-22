@@ -7,7 +7,7 @@
 Esta es una descomposición de la aplicación en diferentes niveles, desde lo más general a lo más específico:
 
 ** *Level 1* 
-[plantuml,"diagrama uso",png] 
+[plantuml,"Component Diagram",png]
 ----
 skinparam backgroundcolor transparent
 
@@ -25,12 +25,12 @@ Radarin -up-> (Pod_B)
 
 ** *Level 2* 
 
-[plantuml,"diagrama uso",png]
+[plantuml,"Component Diagram",png]
 ----
 ----
 
 ** *Level 3* 
 
-[plantuml,"diagrama uso",png]
+[plantuml,"Component Diagram",png]
 ----
 ----
