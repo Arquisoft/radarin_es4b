@@ -8,8 +8,8 @@ En el desarrollo del proyecto se usarán las siguientes tecnologías:
 [options="header",cols=2*]
 |===
 |Nombre de la tecnología|Objetivo al aplicarla
-|React | Es una librería de JavaScript. Se utilizará para el desarrarrollo de la aplicación movil y de las interfaces de ususario de esta.  
-|SOLID | Teconlogía que será usada para acceder / almacenar los datos de los ususarios de forma descentralizada. El ususario decidirá si podremos o no acceder a sus datos. 
+|React | Es una librería de JavaScript. Se utilizará para el desarrarrollo de la aplicación movil y de las interfaces de usuario de esta.  
+|SOLID | Teconlogía que será usada para acceder / almacenar los datos de los usuarios de forma descentralizada. El usuario decidirá si podremos o no acceder a sus datos. 
 |Docker | Herramienta de virtualización que será utilizada para sera utilzado para el despliegue de los componentes de nuestro sistema.   
 | GitHub | Es un sistema de control de versiones. Será utilizado para llevar un registro del estado del desarrollo del proyecto y para tener una buena coordinación entre todos los miembros del equipo. 
 |===
@@ -22,8 +22,8 @@ Para alcanzar nuestros objetivos de calidad:
 |===
 |Objetivo de calidad|Forma de obtenerlo
 |Mantenibilidad | Para que nuestro software sea mantenible y extensible, se usarán una serie de patrones de diseño, gracias a los cuales, podremos obtener un software de calidad.
-|Privacidad | Solo almacenaremos la información mínima de cada usuario. Si en algún momento necesitamos información de alguno de los ususarios de nuestro sistema, siempre se le pedirá explícitamente su permiso para obtenerla.
-|Usabilidad | Se desarrollarán interfaces de ususario fáciles de usar, fluidas y que no añadan complicaciones al uso de la aplicación.   
+|Privacidad | Solo almacenaremos la información mínima de cada usuario. Si en algún momento necesitamos información de alguno de los usuarios de nuestro sistema, siempre se le pedirá explícitamente su permiso para obtenerla.
+|Usabilidad | Se desarrollarán interfaces de usuario fáciles de usar, fluidas y que no añadan complicaciones al uso de la aplicación.   
 | Testeabilidad | El hecho de mantener un software de calidad, también nos permitirá y facilitará la realización de pruebas tanto manuales como automáticas. 
 | Rendimiento | Se buscará siempre la forma más óptima de realizar las tareas que debe poder hacer nuestro sistema. Siempre buscando la mayor simplicidad y la menor compledidad.  
 |===
