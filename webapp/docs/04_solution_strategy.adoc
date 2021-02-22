@@ -10,7 +10,7 @@ En el desarrollo del proyecto se usarán las siguientes tecnologías:
 |Nombre de la tecnología|Objetivo al aplicarla
 |React | Es una librería de JavaScript. Se utilizará para el desarrarrollo de la aplicación movil y de las interfaces de usuario de esta.  
 |SOLID | Teconlogía que será usada para acceder / almacenar los datos de los usuarios de forma descentralizada. El usuario decidirá si podremos o no acceder a sus datos. 
-|Docker | Herramienta de virtualización que será utilizada para sera utilzado para el despliegue de los componentes de nuestro sistema.   
+|Docker | Herramienta de virtualización que será utilizada para el despliegue de los componentes de nuestro sistema.   
 | GitHub | Es un sistema de control de versiones. Será utilizado para llevar un registro del estado del desarrollo del proyecto y para tener una buena coordinación entre todos los miembros del equipo. 
 |===
 
