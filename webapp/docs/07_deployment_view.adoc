@@ -1,13 +1,13 @@
 [[section-deployment-view]]
 
 
-== Vista en tiempo de ejecución
+== Vista de despliegue
 
-La infrastuctura del sistema se basa en tres elementos.
+La infrastuctura del sistema se basa en tres elementos:
 
 * Usuario: hace uso de la aplicación.
-* Aplicación: sirve de puente con el servidor y provee la interfaz de usuario.
-* Servidor: gestiona la información de los PODs para notificar a la aplicación.
-* PODs: almacenan la información de los usuarios.
 
-El servidor recibe la localización de los amigos y del propio usuario a través de sus PODs. Al recibirla comprueba si el usuario se encuentra cerca de alguno de sus amigos. Si es así notifica tanto al usuario como a su amigo mediante sus respectivas aplicaciones.
+* Aplicación: sirve de puente con el servidor y provee la interfaz de usuario.
+
+* Servidor: gestiona la información de los PODs y las localizaciones para notificar a la aplicación. 
+

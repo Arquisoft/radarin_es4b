@@ -6,7 +6,7 @@ Términos más importantes del ambito de nuestro sistema:
 |===
 | Término         | Definición
 | SOLID (Social Linked Data)    | Proyecto de descentralización de datos cuyo objetivo es que el sea usuario quien decide dónde almacenar sus datos
-| React     | Biblioteca Javascript de código abierto diseñada para crear interfaces de usuario
-| Node.js     | Entorno en tiempo de ejecución de código abierto, para la capa del servidor basado en JavaScript con una arquitectura orientada a eventos
-| POD     | Almacenamiento personales de datos alojado en un servidor elegido por el usuario
+| Sistema     | Conjunto total de elementos que se desarrollaran bajo el nombre de Radarin. 
+| Lista de amigos     | Conjunto de ususarios que facilitan su ubicación a un usario en concreto. 
+| POD     | Almacenamiento personal de datos alojado en un servidor elegido por el usuario
 |===

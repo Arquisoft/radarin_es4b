@@ -5,13 +5,15 @@
 
 En el desarrollo del proyecto se usarán las siguientes tecnologías: 
 
-[options="header",cols=2*]
+[options="header",cols=3*]
 |===
-|Nombre de la tecnología|Objetivo al aplicarla
-|React | Es una librería de JavaScript. Se utilizará para el desarrarrollo de la aplicación movil y de las interfaces de usuario de esta.  
-|SOLID | Teconlogía que será usada para acceder / almacenar los datos de los usuarios de forma descentralizada. El usuario decidirá si podremos o no acceder a sus datos. 
-|Docker | Herramienta de virtualización que será utilizada para el despliegue de los componentes de nuestro sistema.   
-| GitHub | Es un sistema de control de versiones. Será utilizado para llevar un registro del estado del desarrollo del proyecto y para tener una buena coordinación entre todos los miembros del equipo. 
+|Nombre de la tecnología|Objetivo al aplicarla|Justificación
+|React | Es una librería de JavaScript. Se utilizará para el desarrarrollo de la aplicación movil y de las interfaces de usuario de esta. | Es la propuesta y la más usada actualmente, por lo que podremos encontrar más documentación. 
+| Node.js | Entorno en tiempo de ejecución de código abierto, para la capa del servidor basado en JavaScript con una arquitectura orientada a eventos. | Es muy usado y será usada usada en otras asignaturas, por lo que podemos aprovechar conocimientos. 
+| Solid-auth-client | Libreria para autenticar al ususario del pod. | Única librería disponible para JavaScript. 
+| Solid-client | Libreria para leer y escribir en los pods. | Única librería disponible para JavaScript. 
+| Google Maps API | API para ver las localizaciones en el mapa | Se tiene expriencia de otras asignaturas. 
+| MongoDB | Base de datos NoSQL para almacenar las localizaciones de los usuarios. | Tiene buen rendimiento en el ámbito actual y contamos con ejemplos. 
 |===
 
 === ¿ Cómo llegaremos a los objetivos de calidad ?
@@ -21,14 +23,16 @@ Para alcanzar nuestros objetivos de calidad:
 [options="header",cols=2*]
 |===
 |Objetivo de calidad|Forma de obtenerlo
-|Mantenibilidad | Para que nuestro software sea mantenible y extensible, se usarán una serie de patrones de diseño, gracias a los cuales, podremos obtener un software de calidad.
-|Privacidad | Solo almacenaremos la información mínima de cada usuario. Si en algún momento necesitamos información de alguno de los usuarios de nuestro sistema, siempre se le pedirá explícitamente su permiso para obtenerla.
+|Mantenibilidad | Se usarán una serie de patrones de diseño.
+|Privacidad | Solo almacenaremos la ubicación de los ususarios y si necesitaos información adicional, se solicitará explicitamente acceso al pod de este.
 |Usabilidad | Se desarrollarán interfaces de usuario fáciles de usar, fluidas y que no añadan complicaciones al uso de la aplicación.   
-| Testeabilidad | El hecho de mantener un software de calidad, también nos permitirá y facilitará la realización de pruebas tanto manuales como automáticas. 
-| Rendimiento | Se buscará siempre la forma más óptima de realizar las tareas que debe poder hacer nuestro sistema. Siempre buscando la mayor simplicidad y la menor compledidad.  
+| Testeabilidad | Realizaremos pruebas tanto manuales como automáticas. 
+| Rendimiento | Se usaran tecnologías que favorezcan al rendimiento, como por ejemplo, la combinación de Node.js y MongoDB. 
 |===
 
 
 === Organización 
 
-Se realizarán reuniones en los laboratorios de la asignatura. Además, se podrán hacer reuniones privadas adicionales (acordadas entre los miembros del equipo). En todas estas reuniones se realizará un acta a modo de registro del estado del desarrollo en ese momento y de los acuerdos que se alcanzaron.  
+Se realizarán reuniones en los laboratorios de la asignatura. Además, se realizarán reuniones privadas adicionales (acordadas entre los miembros del equipo). En todas estas reuniones se realizará un acta a modo de registro del estado del desarrollo en ese momento y de los acuerdos que se alcanzaron. 
+
+Haremos uso de un repositorio GitHub para tener un control de versiones de nuestro sistema. Usarmos issues para registrar las tareas a realizar y su estado. También se usarán para documentar los problemas que surjan durante el desarrollo.

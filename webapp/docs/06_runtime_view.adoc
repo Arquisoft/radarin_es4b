@@ -2,69 +2,58 @@
 == Runtime View
 
 
-[role="arc42help"]
-****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
-
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
-
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
-
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
-
-.Form
-There are many notations for describing scenarios, e.g.
-
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
-
-****
-
-=== Enviar Posicion
-
+=== Subir posición
 
 * Permitir a la aplicacion saber tu posicion
 
-[plantuml,"Sequence diagram",png]
+[plantuml,"Subir posición",png]
 ----
 actor Alice
-participant  Radarin
-participant Pod
-entity Location
-Alice -> Radarin: Da permiso usar la localizacion
-Radarin -> Pod: Busca la localizacion
-Pod -> Alice: Pide la localizacion
-Alice -> Location: Genera la localizacion
-Location -> Pod: La localizacion se envia al pod
-Pod -> Radarin: El pod envia la localizacion a la app
-Radarin -> Alice: Aviso de envio correcto
+participant  "Aplicación movil"
+participant "Servidor web"
+participant "Base de datos"
+"Aplicación movil" -> Alice: Pedir permiso para usar su localizacion
+Alice -> "Aplicación movil": Dar acceso a su localización
+"Aplicación movil" -> "Servidor web": envia la localización
+"Servidor web" -> "Base de datos": almacena la localización
 ----
-=== Dar localizacion a un amigo
-* Permitir a la aplicacion saber tu posicion y enviarla a otro usuario
 
-[plantuml,"Sequence diagram",png]
+=== Ver localización de amigos cercanos
+* Se recibirán notificaciones de los amigos cercanos cada cierto tiempo.
+
+[plantuml,"Ver localización de amigos cercanos",png]
 ----
 actor Alice
-actor Bob
-participant  Radarin
-participant Pod
-entity Location
-Alice -> Radarin: Da permiso usar la localizacion
-Radarin -> Pod: Busca la localizacion
-Pod -> Alice: Pide la localizacion
-Alice -> Location: Genera la localizacion
-Location -> Pod: La localizacion se envia al pod
-Pod -> Radarin: El pod envia la localizacion a la app
-Radarin-> Bob: La aplicacion le envia la posicion de Alice a Bob
-Radarin -> Alice: Aviso de envio correcto
+participant  "Aplicación movil"
+participant "Servidor web"
+participant "Pod"
+participant "Base de datos"
+"Aplicación movil" -> "Servidor web": pide las ubicaciones de los amigos cercanos
+"Servidor web" -> "Pod": solicita la lista de amigos
+"Pod" -> "Servidor web": devuelve la lista de amigos
+"Servidor web" -> "Base de datos": pide las localizaciones
+"Base de datos" -> "Servidor web": devuelve las localizaciones
+"Servidor web" -> "Servidor web": filtra los más cercanos
+"Servidor web" -> "Aplicación movil": envía la lista de localizaciones de amigos cercanos
+"Aplicación movil" -> "Alice": notifica si tiene algún amigo cerca
+----
+
+=== Ver amigos en el mapa
+* Se mostrará un mapa en el que se podrán visualizar los amigos del usuario. 
+
+[plantuml,"Ver amigos en el mapa",png]
+----
+actor Alice
+participant  "Aplicación web"
+participant "Servidor web"
+participant "Pod"
+participant "Base de datos"
+"Alice" -> "Aplicación web": solicita ver el mapa
+"Aplicación web" -> "Servidor web": solicita las localizaciones de los amigos
+"Servidor web" -> "Pod": solicita la lista de amigos
+"Pod" -> "Servidor web": devuelve la lista de amigos
+"Servidor web" -> "Base de datos": pide las localizaciones
+"Base de datos" -> "Servidor web": devuelve las localizaciones
+"Servidor web" -> "Aplicación web": envía la lista de localizaciones de amigos
+"Aplicación web" -> "Alice": muestra el mapa con las localizaciones
 ----

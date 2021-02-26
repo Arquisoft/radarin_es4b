@@ -6,7 +6,7 @@
 === Diagrama general del sistema
 Esta es una descomposición de la aplicación en diferentes niveles, desde lo más general a lo más específico:
 
-** *Level 1* 
+** Nivel 1 
 [plantuml,"Sequence diagram",png]
 ----
 skinparam backgroundcolor transparent
@@ -23,13 +23,13 @@ Radarin -up-> (Pod_A)
 Radarin -up-> (Pod_B)
 ----
 
-** *Level 2* 
+** Nivel 2 
 
 [plantuml,"Sequence diagram",png]
 ----
 ----
 
-** *Level 3* 
+** Nivel 3 
 
 [plantuml,"Component Diagram",png]
 ----

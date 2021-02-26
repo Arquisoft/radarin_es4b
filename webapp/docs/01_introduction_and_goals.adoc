@@ -1,33 +1,35 @@
 [[section-introduction-and-goals]]
 == Introducción y objetivos
 
-Vamos a desarrollar Radarin, un sistema para facilitar encuentros entre amigos. Mediante una aplicación móvil podrá conocer cuando otro usuario amigo suyo esté cerca.
+Vamos a desarrollar Radarin, un sistema para facilitar encuentros entre amigos. Estará compuesta de: 
 
-Radarin sigue las características SOLID, por lo que se servirá de PODS para garantizar la descentralización y la privacidad de nuestros usuarios.
+* Aplicacion movil: enviará una notificación a los usuarios cuando un amigo suyo este cerca y también permitirá compartir su ubicación. Incluirá un sistema de monitorización. 
+
+* Aplicación web: permitirá a los ususarios visualizar y gestionar sus localizaciones. También incluirá opciones de administración de usuarios y monitorización del estado del servidor. Esta aplicación estará alojada en un servidor que almacenará las locaclizaciones de los usuarios. 
 
 
 === Vista de requisitos
 
 * Requisitos funcionales:
 
-**  Un usuario podrá añadir a otros usuarios a su lista de amigos.
+**  Un usuario podrá añadir a otros usuarios a su lista de amigos. 
 
-** Un usuario será capaz de ver otros usuarios agregados a su lista cercanos.
+**  Un usuario será capaz de ver la localización de sus amigos cercanos.
 
-**  El sistema ofrecerá al usuario notificaciones si tiene amigos cerca.
+**  La aplicación movil notificará al usuario si tiene amigos cerca.
 
-**  Cada usuario podrá modificar sus localizaciones.
+**  Cada usuario podrá gestionar sus localizaciones.
 
-** El administrador del servicio tendrá opción de modificar usuarios y revisar el estado del servidor.
+** El administrador del sistema tendrá opción de gestionar usuarios y revisar el estado del servidor.
 
 * Requisitos no funcionales:
-**  Soporte completo con el proyecto SOLID.
+**  El sistema debde de ser compatible con el proyecto SOLID.
 
-**  La aplicación estará alojada en un servidor web que únicamente almacenará localizaciones del usuario, solicitando al mismo para acceder a la suya. 
+**  La aplicación web estará alojada en un servidor que únicamente almacenará localizaciones del usuario. 
 
 **  Toda información que no sea una localización será almacenada en el pod de SOLID del usuario.
 
-**  El servicio debe ser soportado por los dispositivos móviles de los usuarios, tomando los datos de geolocalización provenientes del mismo.
+**  Se toman los datos de geolocalización provenientes del dispositivo movil de los ususarios.
 
 **  El sistema se desplegará desde contenedores docker y utlizará el servicio en la nube heroku.
 
@@ -38,10 +40,10 @@ Los objetivos de calidad ordenados de mayor a menor prioridad, son los siguiente
 [options="header",cols=2*]
 |===
 |Objetivo|Descripción
-| 1.Mantenibilidad | Debemos poder mantener y extender nuestro software facilmente en todo momento. 
-| 2.Privacidad | Se almacenará la información mínima necesaria para cada ususario de la aplicación. En el caso de que se necesite información adicional de un ususario en concreto, se le pedirá permiso para obtener dicha información a través de su pod. 
-| 3.Usabilidad | La aplicación debe de ser fácil de usar e intuitiva para todo tipo de ususarios.
-| 4.Testeabilidad | Nuestra aplicación debe poder probarse tanto manual como automaticamente. Esto nos permitirá comprobar facilmente el correcto funcionamiento del sistema.
+| 1.Privacidad | Se almacenará la información mínima necesaria para cada ususario de la aplicación.
+| 2.Usabilidad | La aplicación debe de ser fácil de usar e intuitiva para todo tipo de ususarios. 
+| 3.Mantenibilidad | Debemos poder mantener y extender nuestro software facilmente en todo momento. 
+| 4.Testeabilidad | Esto nos permitirá comprobar facilmente el correcto funcionamiento del sistema.
 | 5.Rendimiento | La aplicación debe mantener una capacidad de respuesta lo más rápida posible en todo momento.
 |===
 
@@ -52,6 +54,6 @@ Los objetivos de calidad ordenados de mayor a menor prioridad, son los siguiente
 |===
 |Rol/Nombre|Contacto|Expectativas
 | Usuarios | Usuarios potenciales | Usuarios finales interesados en utilizar la aplicación.
-| Equipo de desarrollo | Equipo que crea la aplicación | Creación de una aplicación estable, segura y estética.
-| Profesores | Profesores de la asignatura ASW | Supervisan el proyecto y se aseguran de que se cumplan los requisitos.
+| Equipo de desarrollo | Equipo que crea la aplicación (ES4-B) | Creación de una aplicación estable, segura y estética.
+| Clientes | Profesores de la asignatura ASW | Supervisan el proyecto y se aseguran de que se cumplan los requisitos.
 |===

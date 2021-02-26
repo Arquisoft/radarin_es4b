@@ -2,14 +2,28 @@
 == Restricciones de la arquitectura
 
 [options="header",cols="1,2"]
+
+== Restricciones técnicas 
+
+|===
+|Restricción|Explicación
+| SOLID | El sistema debe ser compatible con el proyecto SOLID para evitar almacenar información personal de los usuarios.
+| Docker | El sistema debe ser desplegable desde contenedores Docker.
+| Heroku | El sistema debe estar desplegado en un servidor de integración continua Heroku, debido a que es gratuito.  
+|===
+
+== Restricciones organizativas 
+
 |===
 |Restricción|Explicación
 | Tiempo | El sistema debe estar listo para su presentación antes de la última sesión de laboratorio. 
+|===
+
+== Convenios
+
+|===
+|Convenio|Explicación
 | Presupuesto | Todas las herramientas y tecnologías usadas deberán ser gratuitas.
-| Aplicación web | Se debe desarrollar una aplicación que funcionará en un servidor donde se almacenarán las localizaciones de los usuarios. Esta aplicación web deberá permita a los usuarios gestionar y visualizar sus localizaciones, además de incluir opciones de administración para gestionar los usuarios y monitorizar el servidor. 
-| Aplicación móvil | Se debe desarrollar una aplicación móvil que enviará localizaciones de los usuarios y recibirá notificaciones de amigos cercanos. Esta aplicación también incluirá un sistema de monitorización. 
-| SOLID | El sistema debe ser compatible con el proyecto SOLID para evitar almacenar información personal de los usuarios.
-| Docker | El sistema debe ser desplegable desde contenedores Docker.
-| Heroku | El sistema debe estar desplegado en un servidor de integración continua Heroku. 
+| Idioma | Se utilizará el castellano para desarrollar el sistema y su documentación.
 | arc42 | La documentación debe seguir la plantilla arc42. 
 |===

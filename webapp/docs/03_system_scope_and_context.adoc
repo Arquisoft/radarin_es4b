@@ -1,12 +1,12 @@
 [[section-system-scope-and-context]]
 == Alcance y contexto del sistema
 
-El objetivo principal de este proyecto es crear un sistema para facilitar encuentros entre amigos, 
-este sistema estará descentralizado y basado en SOLID, lo que significa que cada usuario tendrá su propio Pod, 
-que es su propio espacio de almacenamiento personal, donde se almacenará toda su información. 
-Los principales socios de comunicación de las aplicaciones serán los propios usuarios, radarin será el intermediario entre Solid y el usuario.
+El objetivo principal de este proyecto es crear un sistema para facilitar encuentros entre amigos.  
+Este sistema estará descentralizado y basado en SOLID, lo que significa que cada usuario tendrá su propio pod. 
+El pod es el  espacio de almacenamiento propio donde cada ususario almacenará toda su información. 
+Los principales socios de comunicación del sistema serán los propios usuarios. Radarin será el intermediario entre Solid y el usuario.
 
-[plantuml,"diagrama uso",png]
+[plantuml,"Sequence diagram",png]
 ----
 	left to right direction
 	skinparam packageStyle rect
@@ -20,36 +20,20 @@ Los principales socios de comunicación de las aplicaciones serán los propios u
 
 === Contexto empresarial
 
-.Radarin
 |=========================================================
 | Socio de comunicación |Entradas |Salidas
 
 | Usuario
-| Registrar ubicación. 
-| Ver las ubicaciones de los amigos
+| Su ubicación geográfica y la URL de su pod. 
+| Las ubicaciones de los amigos
 
-| POD
-| Guardar información de usuario
-| Permite que Radarin lea la ubicación del usuario
-
-| Radarin
-| Ubicacion del POD de usuario 
-| Notificación de amigos 
-
-| Otros usuarios
+| Pod
 | 
-| Recibe notificación cuando estás cerca
+| Información propia del usuario
 
 |=========================================================
 
 === Contexto técnico
-
-Se espera que Radarin tenga al menos 2 componentes software:
-
-* Una aplicación web que funcionará en un servidor en el que se almacenará información sobre las localizaciones. La aplicación permtirá gestionar localizaciones y usarios. También servirá para monitorizar el estado del servidor.
-
-* Una aplicacion móvil que envie localizaciones al servidor y reciba las notificaciones de los amigos. 
-
 
 Interfaces técnicas:
 
@@ -57,31 +41,9 @@ Interfaces técnicas:
 |===
 | Objeto | Descripción 
 
-| Usuario
-| Usuarios de la aplicación
-
-| App
-| App para conectar con los amigos
-
-| Servidor web
-| Server que contiene nuestra aplicacion web
-
-| Cliente web
-| El usuario gestiona las localizaciones y los usuarios desde el cliente web
+| Aplicación web y movil
+| Canal de comunicación entre los ususarios y el sistema. 
 
 | Https
-| Comunicación a través del protocolo Https entre el usuario y la aplicación. Hay solicitudes y respuestas https.
-
-| Solid-auth-client
-| Libreria para leer y escirbir en el POD
-
-| Solid Server
-| Servidor Solid donde se almacenarán los PODs
-
-| POD
-| Unidad de almacenamiento personal
-
-| Google Maps API
-| API para ver las localizaciones en el mapa
-
+| Comunicación a través del protocolo Https entre el usuario y la aplicación web.También permite la comunicación entre el pod y el sistema. 
 |===
