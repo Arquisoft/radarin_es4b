@@ -20,7 +20,20 @@ Los principales socios de comunicación del sistema serán los propios usuarios.
 | Información propia del usuario
 |=========================================================
 
-image:contextoEmpresarial.png["Diagrama contexto empresarial"]
+[plantuml,"Diagrama contexto empresarial",png]
+----
+@startuml
+actor Usuario
+package "Radarin" {
+}
+package "Pod" {
+}
+Usuario -left-> Radarin: Ubicación y URL de su Pod
+Radarin -right-> Usuario: Ubicaciones de los amigos
+Pod -> Radarin: Información del usuario
+@enduml
+----
+
 
 === Contexto técnico
 
@@ -37,4 +50,19 @@ Interfaces técnicas:
 | Comunicación a través del protocolo Https entre el usuario y la aplicación web.También permite la comunicación entre el pod y el sistema. 
 |===
 
-image:contextoTecnico.png["Diagrama contexto técnico"]
+[plantuml,"Diagrama contexto tecnico",png]
+----
+@startuml
+node Pod
+actor Usuario
+package "Radarin" {
+    node Aplicación_movil
+    package Servidor_web {
+        node Aplicación_web
+    }
+}
+Usuario -right- Aplicación_movil
+Servidor_web -down- Pod: HTTPS
+Usuario -up- Aplicación_web: HTTPS
+@enduml
+----
