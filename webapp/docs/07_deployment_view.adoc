@@ -3,11 +3,16 @@
 
 == Vista de despliegue
 
-La infrastuctura del sistema se basa en tres elementos:
+[plantuml,"Diagrama de despliegue",png]
+----
+node "Heroku" {
+    node "API REST"
+    node "BD"
+    node "Aplicación web" 
+}
+node "Aplicación movil"
+----
 
-* Usuario: hace uso de la aplicación.
+La API REST, la base de datos y la aplicación web se desplegaran como contenedores docker independientes en un servidor de integración continua Heroku. La aplicación movil se desplegará usando React native. 
 
-* Aplicación: sirve de puente con el servidor y provee la interfaz de usuario.
-
-* Servidor: gestiona la información de los PODs y las localizaciones para notificar a la aplicación. 
-
+Usamos Heroku debido a que dispone de un plan gratuito. 

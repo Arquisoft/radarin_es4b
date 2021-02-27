@@ -6,31 +6,48 @@
 === Diagrama general del sistema
 Esta es una descomposición de la aplicación en diferentes niveles, desde lo más general a lo más específico:
 
-** Nivel 1 
-[plantuml,"Sequence diagram",png]
+[plantuml,"Nivel 1",png]
 ----
-skinparam backgroundcolor transparent
-
-database Pod_A
-actor usuario_A
-database Pod_B
-actor usuario_B
-agent Radarin #black;text:white
-
-usuario_A -- (Pod_A)
-usuario_B -- (Pod_B)
-Radarin -up-> (Pod_A)
-Radarin -up-> (Pod_B)
+actor Usuario
+package Radarin {
+    node Aplicación_movil
+    node Servidor_web #grey;text:white
+}
+agent "Pod"
+Usuario <-right-> Servidor_web
+Usuario <-right-> Aplicación_movil
+Aplicación_movil <-right->  Servidor_web
+Pod <-down-> Servidor_web
 ----
 
-** Nivel 2 
+El sistema (Radarin) se descompone en una aplicación movil y un servidor web. El usuario se comunica con la aplicación movil y el servidor web. El servidor se comunica con los pods. La aplicación movil se comunicará con parte del servidor web. 
 
-[plantuml,"Sequence diagram",png]
+[options="header",cols="1,2"]
+|===
+|Caja negra|Descripción
+| Servidor web | almacena las ubicaciones de los usuarios, aloja una aplicación web y se comunica con los pods. 
+|===
+
+=== Nivel 2 
+
+==== Servidor web
+
+[plantuml,"Nivel 2",png]
 ----
+actor Usuario
+node Aplicación_movil
+package Servidor_web {
+   node Aplicación_web
+   database BD
+   node API_REST
+}
+agent "Pod"
+Usuario <-right-> Aplicación_web
+Usuario <-right-> Aplicación_movil
+Aplicación_movil <-right->  API_REST
+Pod <-down-> API_REST
+Aplicación_web <-down-> API_REST
+API_REST <-down-> BD
 ----
 
-** Nivel 3 
-
-[plantuml,"Component Diagram",png]
-----
-----
+El servidor web aloja una aplicación web, una API Rest y una base de datos. La aplicación web y la aplicación movil realizan peticiones a la API Rest. La API Rest consulta a la base de datos y a los pods y envía las respuestas a las aplicaciones. 

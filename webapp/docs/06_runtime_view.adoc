@@ -10,12 +10,12 @@
 ----
 actor Alice
 participant  "Aplicación movil"
-participant "Servidor web"
+participant "API Rest"
 participant "Base de datos"
 "Aplicación movil" -> Alice: Pedir permiso para usar su localizacion
 Alice -> "Aplicación movil": Dar acceso a su localización
-"Aplicación movil" -> "Servidor web": envia la localización
-"Servidor web" -> "Base de datos": almacena la localización
+"Aplicación movil" -> "API Rest": envia la localización
+"API REST" -> "Base de datos": almacena la localización
 ----
 
 === Ver localización de amigos cercanos
@@ -25,16 +25,16 @@ Alice -> "Aplicación movil": Dar acceso a su localización
 ----
 actor Alice
 participant  "Aplicación movil"
-participant "Servidor web"
+participant "API REST"
 participant "Pod"
 participant "Base de datos"
-"Aplicación movil" -> "Servidor web": pide las ubicaciones de los amigos cercanos
-"Servidor web" -> "Pod": solicita la lista de amigos
-"Pod" -> "Servidor web": devuelve la lista de amigos
-"Servidor web" -> "Base de datos": pide las localizaciones
-"Base de datos" -> "Servidor web": devuelve las localizaciones
-"Servidor web" -> "Servidor web": filtra los más cercanos
-"Servidor web" -> "Aplicación movil": envía la lista de localizaciones de amigos cercanos
+"Aplicación movil" -> "API REST": pide las ubicaciones de los amigos cercanos
+"API REST" -> "Pod": solicita la lista de amigos
+"Pod" -> "API REST": devuelve la lista de amigos
+"API REST" -> "Base de datos": pide las localizaciones
+"Base de datos" -> "API REST": devuelve las localizaciones
+"API REST" -> "API REST": filtra los más cercanos
+"API REST" -> "Aplicación movil": envía la lista de localizaciones de amigos cercanos
 "Aplicación movil" -> "Alice": notifica si tiene algún amigo cerca
 ----
 
@@ -45,15 +45,15 @@ participant "Base de datos"
 ----
 actor Alice
 participant  "Aplicación web"
-participant "Servidor web"
+participant "API REST"
 participant "Pod"
 participant "Base de datos"
 "Alice" -> "Aplicación web": solicita ver el mapa
-"Aplicación web" -> "Servidor web": solicita las localizaciones de los amigos
-"Servidor web" -> "Pod": solicita la lista de amigos
-"Pod" -> "Servidor web": devuelve la lista de amigos
-"Servidor web" -> "Base de datos": pide las localizaciones
-"Base de datos" -> "Servidor web": devuelve las localizaciones
-"Servidor web" -> "Aplicación web": envía la lista de localizaciones de amigos
+"Aplicación web" -> "API REST": solicita las localizaciones de los amigos
+"API REST" -> "Pod": solicita la lista de amigos
+"Pod" -> "API REST": devuelve la lista de amigos
+"API REST" -> "Base de datos": pide las localizaciones
+"Base de datos" -> "API REST": devuelve las localizaciones
+"API REST" -> "Aplicación web": envía la lista de localizaciones de amigos
 "Aplicación web" -> "Alice": muestra el mapa con las localizaciones
 ----

@@ -4,18 +4,44 @@
 
 
 === Árbol de calidad
-image:10_tree.png["Árbol de calidad"]
+[plantuml,"Arbol de calidad",png]
+----
+@startmindmap
+* Calidad
+left side
+** Privacidad
+*** Cuando un usuario se registre, el sitema no guardará datos personales. 
+
+left side
+** Usabiliadad
+*** Cuando un usuario utilice el sitema por primera vez, este se tiene comprender su funcionamiento facilmente.
+
+right side
+** Mantenibilidad
+*** Cuando se localice un error, será fácil arreglarlo. 
+*** Cuando se necesite extender la funcionalidad, será fácil hacerlo. 
+
+right side
+** Testeabilidad
+*** Cuando se neceite probar nuestro software, será fácil y rápido implementar otras pruebas. 
+
+right side
+** Rendimiento
+*** Cuando un usuario soloicite que se le muestren las localizaciones de sus amigos, el sistema responderá en un tiempo razonable.
+@endmindmap
+----
 
 
 === Escenarios de calidad
 
-* Privacidad: No ponemos en riesgo los datos personales de los usuarios limitandos a los minimos necesarios para el correcto funcionamienta de la aplicación.
-
-* Usabilidad: Fácil y entendible, con una curva de aprendizaje muy asequible. 
-
-* Eficiencia: interfaz fluida, sin tiempos de espera innecesarios, y notificados cuando estos sean imprescindibles.
-
-* Portabilidad: Aplicación multiplataforma, puede usarse en diferentes sistemas operativos.
-
-* Accesibilidad: No se usan colores que puedan ser confusos para un daltónico.
+[options="header",cols="1,2,3,4"]
+|===
+|Atributo de calidad | Escenario | Prioridad | Dificultad
+| Privacidad | Cuando un usuario se registre, el sitema no guardará datos personales. | Alta | Media
+| Usabilidad | Cuando un usuario utilice el sitema por primera vez, este se tiene comprender su funcionamiento facilmente. | Alta | Alta
+| Mantenibilidad | Cuando se localice un error, será fácil arreglarlo. | Alta | Alta
+| Mantenibilidad | Cuando se necesite extender la funcionalidad, será fácil hacerlo. | Media | Alta
+| Testeabilidad | Cuando se neceite probar nuestro software, será fácil y rápido implementar otras pruebas. | Baja | Media
+| Rendimiento | Cuando un usuario soloicite que se le muestren las localizaciones de sus amigos, el sistema responderá en un tiempo razonable. | Baja | Media
+|===
 

@@ -1,10 +1,9 @@
 [[section-architecture-constraints]]
 == Restricciones de la arquitectura
 
+=== Restricciones técnicas 
+
 [options="header",cols="1,2"]
-
-== Restricciones técnicas 
-
 |===
 |Restricción|Explicación
 | SOLID | El sistema debe ser compatible con el proyecto SOLID para evitar almacenar información personal de los usuarios.
@@ -12,15 +11,17 @@
 | Heroku | El sistema debe estar desplegado en un servidor de integración continua Heroku, debido a que es gratuito.  
 |===
 
-== Restricciones organizativas 
+=== Restricciones organizativas 
 
+[options="header",cols="1,2"]
 |===
 |Restricción|Explicación
 | Tiempo | El sistema debe estar listo para su presentación antes de la última sesión de laboratorio. 
 |===
 
-== Convenios
+=== Convenios
 
+[options="header",cols="1,2"]
 |===
 |Convenio|Explicación
 | Presupuesto | Todas las herramientas y tecnologías usadas deberán ser gratuitas.

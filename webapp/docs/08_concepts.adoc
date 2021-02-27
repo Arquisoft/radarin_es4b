@@ -6,15 +6,11 @@ A continuación se describen los principales elementos, regulaciones y solucione
 .Modelo de dominio
 * Usuario: Individuo físico que posee y utiliza la aplicación móvil en su dispositivo.
 * POD: Sistema para almacenar la información del usuario. Es el usuario el que tiene el control sobre su información.
-* Aplicación: Sirve al usuario de la funcionalidad del sistema comunicándose con los PODs de sus amigos.
+* Servidor web: alojará la aplicación web, la API REST y la base de datos.
 * Amigos: Son todos los usuarios que permiten a otro usuario acceder a su información.
 
-.Arquitectura y diseño
-Hemos desarrollado una aplicación haciendo uso de Android SDK. La aplicación aparte de implementar las funcionalidades necesarias, sirve de puente entre el usuario y los PODs de sus amigos. 
-Para ello nos hemos servido de la arquitectura REACT, la API de Google Maps y los PODs de SOLID.
-
-.Experiencia de usuario
-La interfaz de usuario la provee nuestra aplicación y está fundamentada en la sencillez y la claridad. Está disponible en distintos idiomas para lograr un ámbito internacional.
+.Conceptros de desarrollo
+A través de GitHub, usaremos herramientas automáticas para verificar la calidad del código, para realizar pruebas y para comprobar la cobertura de las pruebas.
 
 .Seguridad e información
 La información de nuestros usuarios está descentralizada gracias a los PODs. De esta manera garantizamos su independencia y seguridad.

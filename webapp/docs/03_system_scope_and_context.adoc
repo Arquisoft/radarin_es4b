@@ -6,18 +6,6 @@ Este sistema estará descentralizado y basado en SOLID, lo que significa que cad
 El pod es el  espacio de almacenamiento propio donde cada ususario almacenará toda su información. 
 Los principales socios de comunicación del sistema serán los propios usuarios. Radarin será el intermediario entre Solid y el usuario.
 
-[plantuml,"Sequence diagram",png]
-----
-	left to right direction
-	skinparam packageStyle rect
-	actor userA
-	actor userB
-	rectangle Solid {
-	  userA -- (Radarin)
-	  (Radarin) -- userB
-	}
-----
-
 === Contexto empresarial
 
 |=========================================================
@@ -30,6 +18,19 @@ Los principales socios de comunicación del sistema serán los propios usuarios.
 | Pod
 | 
 | Información propia del usuario
+
+
+[plantuml,"Diagrama contexto empresarial",png]
+----
+actor Usuario
+package "Radarin" {
+}
+package "Pod" {
+}
+Usuario -left-> Radarin: Ubicación y URL de su Pod
+Radarin -right-> Usuario: Ubicaciones de los amigos
+Pod -> Radarin: Información del usuario
+----
 
 |=========================================================
 
@@ -47,3 +48,18 @@ Interfaces técnicas:
 | Https
 | Comunicación a través del protocolo Https entre el usuario y la aplicación web.También permite la comunicación entre el pod y el sistema. 
 |===
+
+[plantuml,"Diagrama contexto tecnico",png]
+----
+node Pod
+actor Usuario
+package "Radarin" {
+    node Aplicación_movil
+    package Servidor_web {
+        node Aplicación_web
+    }
+}
+Usuario -right- Aplicación_movil
+Servidor_web -down- Pod: HTTPS
+Usuario -up- Aplicación_web: HTTPS
+----
