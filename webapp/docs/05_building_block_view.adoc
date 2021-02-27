@@ -6,21 +6,7 @@
 === Diagrama general del sistema
 Esta es una descomposición de la aplicación en diferentes niveles, desde lo más general a lo más específico:
 
-[plantuml,"Nivel 1",png]
-----
-@startuml
-actor Usuario
-package Radarin {
-    node Aplicación_movil
-    node Servidor_web #grey;text:white
-}
-agent "Pod"
-Usuario <-right-> Servidor_web
-Usuario <-right-> Aplicación_movil
-Aplicación_movil <-right->  Servidor_web
-Pod <-down-> Servidor_web
-@enduml
-----
+image:generalSistema.png["Diagrama general del sistema"]
 
 El sistema (Radarin) se descompone en una aplicación movil y un servidor web. El usuario se comunica con la aplicación movil y el servidor web. El servidor se comunica con los pods. La aplicación movil se comunicará con parte del servidor web. 
 
@@ -34,24 +20,6 @@ El sistema (Radarin) se descompone en una aplicación movil y un servidor web. E
 
 ==== Servidor web
 
-[plantuml,"Nivel 2",png]
-----
-@startuml
-actor Usuario
-node Aplicación_movil
-package Servidor_web {
-   node Aplicación_web
-   database BD
-   node API_REST
-}
-agent "Pod"
-Usuario <-right-> Aplicación_web
-Usuario <-right-> Aplicación_movil
-Aplicación_movil <-right->  API_REST
-Pod <-down-> API_REST
-Aplicación_web <-down-> API_REST
-API_REST <-down-> BD
-@enduml
-----
+image:servidorWeb.png["Diagrama del servidor web"]
 
 El servidor web aloja una aplicación web, una API Rest y una base de datos. La aplicación web y la aplicación movil realizan peticiones a la API Rest. La API Rest consulta a la base de datos y a los pods y envía las respuestas a las aplicaciones. 

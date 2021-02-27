@@ -4,32 +4,7 @@
 
 
 === Árbol de calidad
-[plantuml,"Arbol de calidad",png]
-----
-@startmindmap
-* Calidad
-left side
-** Privacidad
-*** Cuando un usuario se registre, el sitema no guardará datos personales. 
-
-left side
-** Usabiliadad
-*** Cuando un usuario utilice el sitema por primera vez, este se tiene comprender su funcionamiento facilmente.
-
-right side
-** Mantenibilidad
-*** Cuando se localice un error, será fácil arreglarlo. 
-*** Cuando se necesite extender la funcionalidad, será fácil hacerlo. 
-
-right side
-** Testeabilidad
-*** Cuando se neceite probar nuestro software, será fácil y rápido implementar otras pruebas. 
-
-right side
-** Rendimiento
-*** Cuando un usuario soloicite que se le muestren las localizaciones de sus amigos, el sistema responderá en un tiempo razonable.
-@endmindmap
-----
+image:arbolCalidad.png["Árbol de calidad"]
 
 
 === Escenarios de calidad

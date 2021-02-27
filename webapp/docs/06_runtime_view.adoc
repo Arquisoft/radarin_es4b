@@ -6,54 +6,14 @@
 
 * Permitir a la aplicacion saber tu posicion
 
-[plantuml,"Subir posición",png]
-----
-actor Alice
-participant  "Aplicación movil"
-participant "API Rest"
-participant "Base de datos"
-"Aplicación movil" -> Alice: Pedir permiso para usar su localizacion
-Alice -> "Aplicación movil": Dar acceso a su localización
-"Aplicación movil" -> "API Rest": envia la localización
-"API REST" -> "Base de datos": almacena la localización
-----
+image:subirPosicion.png["Diagrama subir posición"]
 
 === Ver localización de amigos cercanos
 * Se recibirán notificaciones de los amigos cercanos cada cierto tiempo.
 
-[plantuml,"Ver localización de amigos cercanos",png]
-----
-actor Alice
-participant  "Aplicación movil"
-participant "API REST"
-participant "Pod"
-participant "Base de datos"
-"Aplicación movil" -> "API REST": pide las ubicaciones de los amigos cercanos
-"API REST" -> "Pod": solicita la lista de amigos
-"Pod" -> "API REST": devuelve la lista de amigos
-"API REST" -> "Base de datos": pide las localizaciones
-"Base de datos" -> "API REST": devuelve las localizaciones
-"API REST" -> "API REST": filtra los más cercanos
-"API REST" -> "Aplicación movil": envía la lista de localizaciones de amigos cercanos
-"Aplicación movil" -> "Alice": notifica si tiene algún amigo cerca
-----
+image:localizacionAmigosCercanos.png["Diagrama ver localizaciones de amigos cercanos"]
 
 === Ver amigos en el mapa
 * Se mostrará un mapa en el que se podrán visualizar los amigos del usuario. 
 
-[plantuml,"Ver amigos en el mapa",png]
-----
-actor Alice
-participant  "Aplicación web"
-participant "API REST"
-participant "Pod"
-participant "Base de datos"
-"Alice" -> "Aplicación web": solicita ver el mapa
-"Aplicación web" -> "API REST": solicita las localizaciones de los amigos
-"API REST" -> "Pod": solicita la lista de amigos
-"Pod" -> "API REST": devuelve la lista de amigos
-"API REST" -> "Base de datos": pide las localizaciones
-"Base de datos" -> "API REST": devuelve las localizaciones
-"API REST" -> "Aplicación web": envía la lista de localizaciones de amigos
-"Aplicación web" -> "Alice": muestra el mapa con las localizaciones
-----
+image:verMapaAmigos.png["Diagrama ver amigos en el mapa"]
