@@ -5,12 +5,14 @@
 
 [plantuml,"Diagrama de despliegue",png]
 ----
+@startuml
 node "Heroku" {
     node "API REST"
     node "BD"
     node "Aplicación web" 
 }
 node "Aplicación movil"
+@enduml
 ----
 
 La API REST, la base de datos y la aplicación web se desplegaran como contenedores docker independientes en un servidor de integración continua Heroku. La aplicación movil se desplegará usando React native. 
