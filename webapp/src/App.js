@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import logo from './logo.svg';
 import Welcome from './components/Welcome';
-import EmailForm from "./components/EmailForm";
+import URLForm from "./components/URLForm";
 import UserList from "./components/UserList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,9 +12,6 @@ class App extends React.Component{
     this.state = {users:[]}
   }
 
-  refreshUsers(users){
-    this.setState({users:users})
-  }
 
   render(){
     return(
@@ -24,7 +21,7 @@ class App extends React.Component{
           <Welcome name="ASW students"/>
         </header>
         <div className="App-content">
-          <EmailForm refreshUsers={this.refreshUsers.bind(this)}/>
+          <URLForm/>
           <UserList users={this.state.users}/>
           <a className="App-link"
             href="https://github.com/pglez82/radarin_0"

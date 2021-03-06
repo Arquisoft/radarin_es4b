@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@solid/query-ldflex": "^2.11.3"
+  }
+}
