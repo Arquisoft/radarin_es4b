@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {addUser,getUsers} from '../api/api'
+import {getFriends} from '../api/api'
 
 class URLForm extends React.Component{
   constructor(props) {
@@ -25,7 +25,7 @@ class URLForm extends React.Component{
 
   async fetchUsers(URL){
     try{
-      let users = await getUsers(URL)
+      let users = await getFriends(URL)
       console.log(users)
     }
     catch(error)

@@ -7,6 +7,9 @@ WORKDIR /usr/src/app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./
 
+# Copy sample data
+COPY sampleUsers.json ./
+
 #In this case, the mongodb in memory dependency is quite heavy so we avoid it for the docker image
 RUN npm install --production
 
