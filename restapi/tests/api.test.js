@@ -25,24 +25,42 @@ afterAll(async () => {
 /**
  * Product test suite.
  */
-describe('user ', () => {
+describe('friends ', () => {
     /**
-     * Test that we can list users without any error.
+     * Test that we can list friends without any error.
      */
     it('can be listed',async () => {
-        const response = await request(app).get("/api/users/list");
+        await request(app).get("/api/user/sample"); // add sample data
+        let URL = "https://davidaf.solidcommunity.net/profile/card#me";
+        const response = await request(app).post('/api/user/friends').send({URL: URL}).set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
+        expect(response.body[0].nombre).toBe("Timothy Berners-Lee");
+        expect(response.body[0].latitud).toBe(43.3656691);
+        expect(response.body[0].altitud).toBe(-5.8546573);
+        expect(response.body[0].longitud).toBe(100.0);
+        expect(response.body[1].nombre).toBe("Ruben Verborgh");
+        expect(response.body[1].latitud).toBe(43.5405559);
+        expect(response.body[1].altitud).toBe(-5.7009505);
+        expect(response.body[1].longitud).toBe(50.0);
     });
 
     /**
-     * Tests that a user can be created through the productService without throwing any errors.
+     * Tests that a user with his location can be created through the productService without throwing any errors.
      */
     it('can be created correctly', async () => {
         username = 'Pablo'
         email = 'pablo@uniovi.es'
-        const response = await request(app).post('/api/users/add').send({name: username,email: email}).set('Accept', 'application/json')
+        const response = await request(app).post('/api/user/add')
+            .send({
+                URL: "https://davidaf.solidcommunity.net/profile/card#me",
+                latitud: 43.3656691,
+                longitud: -5.8546573,
+                altitud: 100.0})
+            .set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
-        expect(response.body.name).toBe(username);
-        expect(response.body.email).toBe(email);
+        expect(response.body.URL).toBe("https://davidaf.solidcommunity.net/profile/card#me");
+        expect(response.body.latitud).toBe(43.3656691);
+        expect(response.body.altitud).toBe(-5.8546573);
+        expect(response.body.longitud).toBe(100.0);
     });
 });
