@@ -34,14 +34,15 @@ describe('friends ', () => {
         let URL = "https://davidaf.solidcommunity.net/profile/card#me";
         const response = await request(app).post('/api/user/friends').send({URL: URL}).set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
-        expect(response.body[0].nombre).toBe("Timothy Berners-Lee");
-        expect(response.body[0].latitud).toBe(43.3656691);
-        expect(response.body[0].altitud).toBe(-5.8546573);
-        expect(response.body[0].longitud).toBe(100.0);
-        expect(response.body[1].nombre).toBe("Ruben Verborgh");
-        expect(response.body[1].latitud).toBe(43.5405559);
-        expect(response.body[1].altitud).toBe(-5.7009505);
-        expect(response.body[1].longitud).toBe(50.0);
+        const results = response.body.sort(result => result.nombre);
+        expect(results[0].nombre).toBe("Timothy Berners-Lee");
+        expect(results[0].latitud).toBe(43.3656691);
+        expect(results[0].longitud).toBe(-5.8546573);
+        expect(results[0].altitud).toBe(100.0);
+        expect(results[1].nombre).toBe("Ruben Verborgh");
+        expect(results[1].latitud).toBe(43.5405559);
+        expect(results[1].longitud).toBe(-5.7009505);
+        expect(results[1].altitud).toBe(50.0);
     });
 
     /**
@@ -60,7 +61,7 @@ describe('friends ', () => {
         expect(response.statusCode).toBe(200);
         expect(response.body.URL).toBe("https://davidaf.solidcommunity.net/profile/card#me");
         expect(response.body.latitud).toBe(43.3656691);
-        expect(response.body.altitud).toBe(-5.8546573);
-        expect(response.body.longitud).toBe(100.0);
+        expect(response.body.longitud).toBe(-5.8546573);
+        expect(response.body.altitud).toBe(100.0);
     });
 });
