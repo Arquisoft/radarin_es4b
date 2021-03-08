@@ -3,7 +3,6 @@ import './App.css';
 import logo from './logo.svg';
 import Welcome from './components/Welcome';
 import URLForm from "./components/URLForm";
-import UserList from "./components/UserList";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component{
@@ -22,7 +21,6 @@ class App extends React.Component{
         </header>
         <div className="App-content">
           <URLForm/>
-          <UserList users={this.state.users}/>
           <a className="App-link"
             href="https://github.com/pglez82/radarin_0"
             target="_blank"

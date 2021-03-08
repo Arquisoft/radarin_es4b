@@ -2,11 +2,12 @@ import React from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import {getFriends} from '../api/api'
+import UsersList from "./UsersList";
 
 class URLForm extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {url: '', enabled: false}
+    this.state = {url: '', users:[]}
   }
 
   componentDidMount(){
@@ -25,8 +26,9 @@ class URLForm extends React.Component{
 
   async fetchUsers(URL){
     try{
-      let users = await getFriends(URL)
-      console.log(users)
+      let listOfFriends = await getFriends(URL)
+      this.setState({users: listOfFriends});
+      console.log(listOfFriends)
     }
     catch(error)
     {
@@ -44,6 +46,7 @@ class URLForm extends React.Component{
 
   render(){
     return(
+        <div className="URLForm">
           <Form name="register" onSubmit={this.handleSubmit.bind(this)}>
             <Form.Group>
               <Form.Label>URL del POD</Form.Label>
@@ -53,6 +56,9 @@ class URLForm extends React.Component{
               Submit
             </Button>
           </Form>
+          <br/>
+          <UsersList users={this.state.users}/>
+        </div>           
     )
   }
 }
