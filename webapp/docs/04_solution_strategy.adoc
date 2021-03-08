@@ -12,9 +12,10 @@ En el desarrollo del proyecto se usarán las siguientes tecnologías:
 |React | Es una librería de JavaScript. Se utilizará para el desarrarrollo de la aplicación movil y de las interfaces de usuario de esta. | Es la propuesta y la más usada actualmente, por lo que podremos encontrar más documentación. 
 | Node.js | Entorno en tiempo de ejecución de código abierto, para la capa del servidor basado en JavaScript con una arquitectura orientada a eventos. | Es muy usado y será usada usada en otras asignaturas, por lo que podemos aprovechar conocimientos. 
 | Solid-auth-client | Libreria para autenticar al ususario del pod. | Única librería disponible para JavaScript. 
-| Solid-client | Libreria para leer y escribir en los pods. | Única librería disponible para JavaScript. 
+| rdflib | Libreria para leer y escribir en los pods. | Permite leer y escribir en pods fácilmente. Hay otras librerías más sencillas pero esta es la que hemos encontrado más flexible. 
 | Google Maps API | API para ver las localizaciones en el mapa | Se tiene expriencia de otras asignaturas. 
-| MongoDB | Base de datos NoSQL para almacenar las localizaciones de los usuarios. | Tiene buen rendimiento en el ámbito actual y contamos con ejemplos. 
+| MongoDB | Base de datos NoSQL para almacenar las localizaciones de los usuarios. | Tiene buen rendimiento en el ámbito actual y contamos con ejemplos.
+| mongoose | Librería JavaScript que permite crear esquemas para trabajar con MongoDB. | Facilita el trabajo con MongoDB ya que el uso de esquemas evita realizar conversiones y validaciones. 
 |===
 
 === ¿ Cómo llegaremos a los objetivos de calidad ?

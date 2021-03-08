@@ -1,6 +1,8 @@
 [[section-design-decisions]]
 == Decisiones de diseño
 
+:numbered!:
+
 === ADR 1: Almacenar localizaciones en una base de datos centralizada
 ==== Contexto
 Tenemos que almacenar de alguna forma las localizaciones de los usuarios. Podríamos almacenarlas en los pods de los usuarios o en una base de datos centralizada. 
@@ -14,4 +16,17 @@ Aprobada.
 ==== Consecuencias
 Sacrificaremos un poco de privacidad por rendimiento. Tendremos que escoger un sistema de gestión de bases de datos para guardar las localizaciones. 
 
+=== ADR 2: Usar el WebID de los usuarios para asociarlos con sus localizaciones
+==== Contexto
+Necesitamos asociar de alguna forma las localizaciones que guardaremos en la base de datos con los usuarios. Podemos generar un identificador para cada usuario, usar algún dato personal de su Pod o utilizar directamente su WebID.
 
+==== Decisión
+Hemos decidido usar el WebID para identificar las localizaciones de los usuarios porque identifica unequivocamente a cada usuario del sistema y no viola su privacidad. Además siempre lo tenemos disponible ya que se obtiene cuando el usuario inicia sesión.
+
+==== Estado
+Aprobada.
+
+==== Consecuencias
+Cuando un usuario envie una ubicación tendremos que almacenarla en la base de datos junto con su WebID.
+
+:numbered:
