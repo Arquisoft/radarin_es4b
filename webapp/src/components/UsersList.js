@@ -3,11 +3,6 @@ import React from 'react';
 
 class UsersList extends React.Component{
 
-    //Constructor
-    constructor(){
-        super()
-    }
-
     //Formamos una tabla con la informacion de los usuarios contenidos en la lista que se pasó como parámetro ("users")
     render() {
         return (
