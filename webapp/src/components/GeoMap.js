@@ -6,7 +6,7 @@ const mapStyles = {
   height: '100%',
 };
 
-export class MapContainer extends Component {
+export class GeoMap extends Component {
 
   constructor(props) {
     super(props);
@@ -16,11 +16,27 @@ export class MapContainer extends Component {
         { lat: 40, lng: -4 },
         { lat: 6.11499, lng: 50.76891 }
 
-      ]
+      ],
+      latGeo: "",
+      lonGeo: ""
     }
   }
 
 
+  getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+      this.setState({
+        latGeo: position.coords.latitude,
+        lonGeo: position.coords.longitude
+      });
+    }.bind(this))
+  }
+
+  componentDidMount() {
+    this.getCurrentLocation();
+  }
   showMarkers = () => {
     return this.state.marks.map((store, index) => {
       return <Marker key={index} id={index} position={{
@@ -38,8 +54,8 @@ export class MapContainer extends Component {
         zoom={8}
         style={mapStyles}
         initialCenter={{
-          lat: this.props.lat,
-          lng: this.props.lon
+          lat: this.state.latGeo,
+          lng: this.state.lonGeo
         }}>
         {this.showMarkers()}
       </Map>
@@ -48,4 +64,4 @@ export class MapContainer extends Component {
 }
 export default GoogleApiWrapper({
   apiKey: "AIzaSyC6j4mF6blrc4kZ54S6vYZ2_FpMY9VzyRU"
-})(MapContainer);
+})(GeoMap);

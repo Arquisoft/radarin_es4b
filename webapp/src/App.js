@@ -4,12 +4,17 @@ import logo from './logo.svg';
 import Welcome from './components/Welcome';
 import URLForm from "./components/URLForm";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import GeoMap from './components/GeoMap';
+
 import SimpleMap from './components/SimpleMap';
 
 class App extends React.Component {
   constructor() {
     super()
-    this.state = { users: [] }
+    this.state = {
+      users: []
+
+    }
   }
 
 
@@ -28,7 +33,7 @@ class App extends React.Component {
             rel="noopener noreferrer">Source code</a>
         </div>
 
-        {/* <SimpleMap lat="40" lon="-4" /> */}
+        <SimpleMap lat="40" lon="-4" /> 
 
       </div>
     )
