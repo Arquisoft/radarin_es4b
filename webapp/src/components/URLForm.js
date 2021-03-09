@@ -1,17 +1,11 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {getFriends} from '../api/api'
-import UsersList from "./UsersList";
 
 class URLForm extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {url: '', users:[]}
-  }
-
-  componentDidMount(){
-    this.fetchUsers()
+    this.state = {url: ''}
   }
 
   changeUrl(e) {
@@ -24,23 +18,11 @@ class URLForm extends React.Component{
     this.setState({username: username});
   }
 
-  async fetchUsers(URL){
-    try{
-      let listOfFriends = await getFriends(URL)
-      this.setState({users: listOfFriends});
-      console.log(listOfFriends)
-    }
-    catch(error)
-    {
-      console.log("Error fetching user list from restapi. Is it on?")
-    }
-  }
-
   async handleSubmit(e) {
     e.preventDefault()
     //Add the user to the database
     if (this.state.url){
-      this.fetchUsers(this.state.url)
+      this.props.fetchUsers(this.state.url)
     }
   }
 
@@ -56,8 +38,6 @@ class URLForm extends React.Component{
               Submit
             </Button>
           </Form>
-          <br/>
-          <UsersList users={this.state.users}/>
         </div>           
     )
   }

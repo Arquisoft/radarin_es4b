@@ -8,21 +8,8 @@ const mapStyles = {
 
 export class MapContainer extends Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      marks: [
-        { lat: 40, lng: -4 },
-        { lat: 6.11499, lng: 50.76891 }
-
-      ]
-    }
-  }
-
-
   showMarkers = () => {
-    return this.state.marks.map((store, index) => {
+    return this.props.marks.map((store, index) => {
       return <Marker key={index} id={index} position={{
         lat: store.lat,
         lng: store.lng
