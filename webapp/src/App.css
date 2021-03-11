@@ -40,6 +40,19 @@
   padding-top:5vh;
 }
 
+.LogInMessage{
+  text-align: center;
+  align-items: center;
+  padding-bottom: 5px;
+}
+
+.LogInForm {
+  padding: 20px;
+  border: 5px solid  #282c34;
+  text-align: left;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
