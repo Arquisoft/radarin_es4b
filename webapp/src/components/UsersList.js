@@ -1,3 +1,4 @@
+import Button from "react-bootstrap/Button";
 import React from 'react';
 
 
@@ -20,12 +21,14 @@ class UsersList extends React.Component{
 				<tbody>
                     {this.props.users.map(function(user, i){
                         return (<tr key={i}>
-                        <td id={"nombre" + i}>{user.nombre}</td>
+                        <td id={"nombre" + i}>
+                            <Button onClick={() => this.props.onUserClick(user)} variant="link">{user.nombre}</Button>
+                        </td>
                         <td id={"latitud" + i}>{user.latitud}</td>
                         <td id={"longitud" + i}>{user.longitud}</td>
                         <td id={"altitud" + i}>{user.altitud}</td>
                         </tr>)
-                    })}
+                    }.bind(this))}
 				</tbody>
 			</table>
            </div>

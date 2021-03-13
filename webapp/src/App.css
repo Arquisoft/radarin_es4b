@@ -36,8 +36,9 @@
   justify-content: center; 
 }
 
-.UserList{
-  padding-top:5vh;
+.UsersList{
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .LogInMessage{

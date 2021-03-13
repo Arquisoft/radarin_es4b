@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import LoadingButton from './LoadingButton';
 
 class URLForm extends React.Component{
   constructor(props) {
@@ -18,25 +18,23 @@ class URLForm extends React.Component{
     this.setState({username: username});
   }
 
-  async handleSubmit(e) {
-    e.preventDefault()
-    //Add the user to the database
+  async handleSubmit() {
     if (this.state.url){
-      this.props.fetchUsers(this.state.url)
+      await this.props.fetchUsers(this.state.url)
     }
   }
 
   render(){
     return(
         <div className="URLForm">
-          <Form name="register" onSubmit={this.handleSubmit.bind(this)}>
+          <Form name="friends">
             <Form.Group>
-              <Form.Label>URL del POD</Form.Label>
-              <Form.Control name="url" type="text" placeholder="Url del POD" onChange={this.changeUrl.bind(this)} value={this.state.url}/>
+              <Form.Label>Introduce tu WebID:</Form.Label>
+              <Form.Control name="url" type="text" placeholder="WebID" onChange={this.changeUrl.bind(this)} value={this.state.url}/>
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
+            <LoadingButton variant="primary" type="submit" action={this.handleSubmit.bind(this)}>
+              Enviar
+            </LoadingButton>
           </Form>
         </div>           
     )
