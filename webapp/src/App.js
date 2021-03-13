@@ -43,7 +43,7 @@ class App extends React.Component {
           <UsersList users={this.state.users}/>
           <br/>
         </div>
-        <SimpleMap lat="43" lon="-5" marks={this.state.users.map(user => {return { lat: user.latitud, lng: user.longitud }})}/> 
+        <SimpleMap lat="43" lon="-5" marks={this.state.users.map(user => {return { nombre: user.nombre, lat: user.latitud, lng: user.longitud }})}/> 
       </div>
     )
   }

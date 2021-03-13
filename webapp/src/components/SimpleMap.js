@@ -14,6 +14,7 @@ export class MapContainer extends Component {
         lat: store.lat,
         lng: store.lng
       }}
+        title={store.nombre}
         onClick={() => console.log("Clicked")} />
     })
   }
