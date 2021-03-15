@@ -7,7 +7,7 @@ class UsersList extends React.Component{
     //Formamos una tabla con la informacion de los usuarios contenidos en la lista que se pasó como parámetro ("users")
     render() {
         return (
-            <div className="UsersList table-responsive">
+            <div className="table-responsive">
                 <h2>Lista de amigos:</h2>
                 <table className="table table-bordered" id="tableUsers">
 				<thead>

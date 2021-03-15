@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 20vh;
+  min-height: 3em;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -36,9 +36,24 @@
   justify-content: center; 
 }
 
-.UsersList{
-  padding-left: 2em;
-  padding-right: 2em;
+.Friends {
+  display: flex;
+  flex-direction: row;
+}
+
+.UsersList {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 .LogInMessage{

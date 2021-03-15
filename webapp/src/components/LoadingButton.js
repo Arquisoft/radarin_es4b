@@ -23,7 +23,7 @@ function LoadingButton(props) {
       disabled={isLoading}
       onClick={!isLoading ? handleClick : null}
     >
-      {isLoading ? "Cargando..." : "Enviar"}
+      {isLoading ? "Cargando..." : props.text}
     </Button>
   );
 }

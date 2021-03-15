@@ -2,9 +2,6 @@ import React from 'react';
 import Button from "react-bootstrap/Button";
 
 class LogInMessage extends React.Component{
-  constructor(props) {
-    super(props);
-  }
 
   async handleButton(e) {
     e.preventDefault()
