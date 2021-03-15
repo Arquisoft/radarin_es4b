@@ -6,18 +6,24 @@ class LogInMessage extends React.Component{
     super(props);
   }
 
-
-
-  async goToRegisterUser() {
-    console.log("enviar usuario a register");
+  async handleButton(e) {
+    e.preventDefault()
+    await this.props.showLogInPopUp();
   }
-
 
   render(){
     return(
         <div className="LogInMessage">
          <h2>Bienvenido</h2>
-         Identíficate  o<Button variant="link" onClick={this.goToRegisterUser()}>crea una cuenta</Button>
+         <br/>
+         <h4>
+         <Button variant="primary" onClick={this.handleButton.bind(this)}>
+         Accede con tu POD
+         </Button>
+         </h4>
+         <br/>
+         <br/>
+         <p>¿No tienes un POD? <a href="https://solidproject.org/users/get-a-pod">Hazte uno</a></p>
         </div>           
     )
   }

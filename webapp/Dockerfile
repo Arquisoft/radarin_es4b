@@ -3,6 +3,7 @@ COPY . /app
 WORKDIR /app
 #Install the dependencies
 RUN npm install --production
+RUN npm install solid-auth-client
 #Create an enviroment variable to set where the api is (check src/api/api.js). 
 #When we deploy to heroku this will take a different value. Check .github/workflows/radarin.yml
 ARG API_URI="http://localhost:5000/api"
