@@ -20,3 +20,5 @@ restapi/data
 
 .eslintcache
 node_modules
+
+.vs

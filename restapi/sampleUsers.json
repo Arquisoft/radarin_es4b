@@ -1,13 +1,19 @@
 [{
-    "URL": "https://www.w3.org/People/Berners-Lee/card#i",
+    "URL": "https://bertofer.solidcommunity.net/profile/card#me",
     "latitud": 43.3656691,
     "longitud": -5.8546573,
     "altitud": 100.0
     
 }, 
 {
-    "URL": "https://ruben.verborgh.org/profile/#me",
+    "URL": "https://moises.solidweb.org/profile/card#me",
     "latitud": 43.5405559,
     "longitud": -5.7009505,
     "altitud": 50.0
+},
+{
+    "URL": "https://davidaf.solidcommunity.net/profile/card#me",
+    "latitud": 43.5602847,
+    "longitud": -6.0338846,
+    "altitud": 75.0
 }]
