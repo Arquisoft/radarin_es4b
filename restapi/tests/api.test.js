@@ -35,7 +35,7 @@ describe('friends ', () => {
         const response = await request(app).post('/api/user/friends').send({URL: URL}).set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
         const results = response.body.sort(result => result.nombre);
-        expect(results[0].nombre).toBe("Moises");
+        expect(results[0].nombre).toBe("Moises ");
         expect(results[0].latitud).toBe(43.5405559);
         expect(results[0].longitud).toBe(-5.7009505);
         expect(results[0].altitud).toBe(50.0);
