@@ -35,11 +35,11 @@ describe('friends ', () => {
         const response = await request(app).post('/api/user/friends').send({URL: URL}).set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
         const results = response.body.sort(result => result.nombre);
-        expect(results[0].nombre).toBe("Ruben Verborgh");
+        expect(results[0].nombre).toBe("Moises");
         expect(results[0].latitud).toBe(43.5405559);
         expect(results[0].longitud).toBe(-5.7009505);
         expect(results[0].altitud).toBe(50.0);
-        expect(results[1].nombre).toBe("Timothy Berners-Lee");
+        expect(results[1].nombre).toBe("Alberto");
         expect(results[1].latitud).toBe(43.3656691);
         expect(results[1].longitud).toBe(-5.8546573);
         expect(results[1].altitud).toBe(100.0);
