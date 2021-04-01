@@ -59,6 +59,6 @@ describe('friends ', () => {
                 altitud: 100.0})
             .set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
-        expect(response.body).toBe("Update successful");
+        expect(response.text).toBe("Update successful");
     });
 });
