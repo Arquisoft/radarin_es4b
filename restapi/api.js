@@ -81,7 +81,7 @@ router.post("/user/add", async (req, res) => {
         await user.save()
     }
         
-    res.send(user)
+    res.send("Update successful");
 })
 
 //Add samples to the database

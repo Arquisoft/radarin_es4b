@@ -12,9 +12,14 @@ target 'mobileapp' do
     :hermes_enabled => false
   )
 
+  permissions_path = '../node_modules/react-native-permissions/ios'
+  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways"
+
   pod 'react-native-geolocation-service', :path => '../node_modules/react-native-geolocation-service'
 
   pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
+
+  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
 
   target 'mobileappTests' do
     inherit! :complete
