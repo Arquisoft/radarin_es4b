@@ -10,9 +10,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^2.0.2",
     "react": "17.0.1",
     "react-native": "0.64.0",
-    "react-native-location": "^2.5.0"
+    "react-native-geolocation-service": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -2,18 +2,20 @@
     "URL": "https://bertofer.solidcommunity.net/profile/card#me",
     "latitud": 43.3656691,
     "longitud": -5.8546573,
-    "altitud": 100.0
-    
+    "altitud": 100.0,
+    "fecha": 1000
 }, 
 {
     "URL": "https://moises.solidweb.org/profile/card#me",
     "latitud": 43.5405559,
     "longitud": -5.7009505,
-    "altitud": 50.0
+    "altitud": 50.0,
+    "fecha": 1000
 },
 {
     "URL": "https://davidaf.solidcommunity.net/profile/card#me",
     "latitud": 43.5602847,
     "longitud": -6.0338846,
-    "altitud": 75.0
+    "altitud": 70.0,
+    "fecha": 1000
 }]

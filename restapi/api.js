@@ -61,21 +61,26 @@ router.post("/user/friends", async (req, res) => {
 //register a new user location
 router.post("/user/add", async (req, res) => {
     let URL = req.body.URL;
-    let altitud = req.body.altitud;
-    let longitud = req.body.longitud;
-    let latitud = req.body.latitud;
-
-    user = new User({
-        URL: URL,
-        altitud: altitud,
-        longitud: longitud,
-        latitud: latitud
-    })
     
-    if (await User.findOne({'URL': URL})) 
-        await User.updateOne({'URL': URL}, user)
-    else 
+    if (await User.findOne({'URL': URL}))
+        await User.updateOne({'URL': URL}, { $set: {
+            latitud: req.body.latitud,
+            longitud: req.body.longitud,
+            altitud: req.body.altitud,
+            fecha: req.body.fecha
+           } 
+         });
+    else {
+        user = new User({
+            URL,
+            latitud: req.body.latitud,
+            longitud: req.body.longitud,
+            altitud: req.body.altitud,
+            fecha: req.body.fecha
+        })
         await user.save()
+    }
+        
     res.send(user)
 })
 

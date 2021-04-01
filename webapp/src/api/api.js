@@ -6,6 +6,7 @@
 // - latitud
 // - longitud
 // - altitud
+// - fecha
 // - URL
 export async function getFriends(URL){
     const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'

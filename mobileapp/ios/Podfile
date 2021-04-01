@@ -12,7 +12,9 @@ target 'mobileapp' do
     :hermes_enabled => false
   )
 
-  pod 'react-native-location', :path => '../node_modules/react-native-location'
+  pod 'react-native-geolocation-service', :path => '../node_modules/react-native-geolocation-service'
+
+  pod 'react-native-geolocation', :path => '../node_modules/@react-native-community/geolocation'
 
   target 'mobileappTests' do
     inherit! :complete
