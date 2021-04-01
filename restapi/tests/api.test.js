@@ -59,9 +59,6 @@ describe('friends ', () => {
                 altitud: 100.0})
             .set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
-        expect(response.body.URL).toBe("https://davidaf.solidcommunity.net/profile/card#me");
-        expect(response.body.latitud).toBe(43.3656691);
-        expect(response.body.longitud).toBe(-5.8546573);
-        expect(response.body.altitud).toBe(100.0);
+        expect(response.body).toBe("Update successful");
     });
 });
