@@ -2,13 +2,16 @@ import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getFriends } from "./api/api";
-import UsersList from "./components/UsersList";
 import Button from "react-bootstrap/Button";
+import solidauth from "solid-auth-client";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+//Imports componentes
 import SimpleMap from "./components/SimpleMap";
 import LogInMessage from "./components/LogInMessage";
-
-import solidauth from "solid-auth-client";
+import UsersList from "./components/UsersList";
+import Welcome from "./components/Welcome";
+import Navigation from "./components/Navigation";
 
 class App extends React.Component {
   constructor() {
