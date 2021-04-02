@@ -93,5 +93,5 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: app-release.apk
-          path: mobileapp/android/app/build/outputs/apk/release/
+          path: mobileapp/android/app/build/outputs/apk/release/app-release.apk
 
