@@ -12,5 +12,5 @@ export async function sendLocation(URL, location){
           altitud: location.coords.altitude,
           fecha: location.timestamp
         })
-      }).then((response) => console.log(response)).catch((error) => console.log(error));
+      }).then((response) => console.log(response.status)).catch((error) => console.log(error));
 }
