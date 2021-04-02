@@ -6,19 +6,19 @@ class Navigation extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav mr-auto">
                         
-                        <li class="nav-item">
-                            <Link to="/">Home</Link>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/">Home</Link>
                         </li>
 
-                        <li class="nav-item">
-                            <Link to="/amigos">Listar amigos</Link>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/amigos">Listar amigos</Link>
                         </li>
 
-                        <li class="nav-item">
-                            <Link to="/mapa">Ver mapa</Link>
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/mapa">Ver mapa</Link>
                         </li>
 
                     </ul>
