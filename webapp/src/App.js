@@ -76,9 +76,51 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1>Radarin</h1>
-        </header>
+
+        {!this.state.logged && (
+          <header className="App-header">
+            <h1>Radarin</h1>
+          </header>
+        )}
+        {this.state.logged && (
+          <Router>
+            <Navigation></Navigation>
+            <Switch>
+
+              <Route exact path="/"><Welcome /></Route>
+
+              <Route path="/amigos"><UsersList users={this.state.users} onUserClick={this.zoomInUser.bind(this)} /></Route>
+
+              <Route path="/mapa">
+                <div className="Friends">
+                  <div className="UsersList">
+                    <UsersList
+                      users={this.state.users}
+                      onUserClick={this.zoomInUser.bind(this)}
+                    />
+                    <Button variant="secondary" onClick={this.logOut.bind(this)}>
+                      Desvincular Pod{" "}
+                    </Button>
+                  </div>
+
+                  <SimpleMap
+                    lat={this.state.mapOptions.lat}
+                    lon={this.state.mapOptions.lon}
+                    zoom={this.state.mapOptions.zoom}
+                    marks={this.state.users.map((user) => {
+                      return {
+                        nombre: user.nombre,
+                        lat: user.latitud,
+                        lng: user.longitud,
+                      };
+                    })}
+                  />
+                </div>
+              </Route>
+
+            </Switch>
+          </Router>
+        )}
 
         {!this.state.logged && (
           <div className="App-content">
@@ -89,32 +131,6 @@ class App extends React.Component {
           </div>
         )}
 
-        {this.state.logged && (
-          <div className="Friends">
-            <div className="UsersList">
-              <UsersList
-                users={this.state.users}
-                onUserClick={this.zoomInUser.bind(this)}
-              />
-              <Button variant="secondary" onClick={this.logOut.bind(this)}>
-                Desvincular Pod{" "}
-              </Button>
-            </div>
-
-            <SimpleMap
-              lat={this.state.mapOptions.lat}
-              lon={this.state.mapOptions.lon}
-              zoom={this.state.mapOptions.zoom}
-              marks={this.state.users.map((user) => {
-                return {
-                  nombre: user.nombre,
-                  lat: user.latitud,
-                  lng: user.longitud,
-                };
-              })}
-            />
-          </div>
-        )}
       </div>
     );
   }
