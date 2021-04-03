@@ -1,9 +1,15 @@
 import React from 'react';
 
 
-class Welcome extends React.Component{
+class Welcome extends React.Component {
   render() {
-      return (<h1>¡ Bienvenido a Radarin !</h1>);
+    return (
+      <section className="header-wrap">
+        <div className="logo-block">
+          <img src="/img/radarinLogo.png" alt="inrupt" />
+        </div>
+        <h1>¡ Bienvenido a Radarin !</h1>
+      </section>);
   }
 }
 

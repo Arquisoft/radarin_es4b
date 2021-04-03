@@ -8,6 +8,8 @@ class Navigation extends React.Component {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
+        
+                        <Link className="navbar-brand" to="/">Radarin</Link>
                         
                         <li className="nav-item">
                             <Link className="nav-link" to="/">Home</Link>
