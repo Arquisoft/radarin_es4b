@@ -86,9 +86,9 @@ jobs:
           npm install
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
-      - name: Build Android App Bundle
+      - name: Build Android APK
         run: |
-          cd android && ./gradlew bundleRelease --no-daemon
+          cd android && ./gradlew assembleRelease --no-daemon
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
