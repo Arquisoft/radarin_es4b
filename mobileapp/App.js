@@ -1,60 +1,58 @@
 import React, {useEffect, useState} from 'react';
 import {Text, ScrollView, View, Platform} from 'react-native';
-import Geolocation from 'react-native-geolocation-service';
 import {sendLocation} from './api/api.js';
-import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {PERMISSIONS} from 'react-native-permissions';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Divider} from 'react-native-elements';
-import Header from './components/Header';
-import WebIDForm from './components/WebIDForm';
+import Header from './src/components/Header';
+import WebIDForm from './src/components/WebIDForm';
+import {checkAndRequestPermissions} from './src/permissions';
+import * as Location from 'expo-location';
+import * as TaskManager from 'expo-task-manager';
 
 const App = () => {
   const [webId, setWebId] = useState();
   const [location, setLocation] = useState();
 
-  const permission =
+  const LOCATION_TASK_NAME = "background_location_task";
+  const permissions =
     Platform.OS === 'ios'
-      ? PERMISSIONS.IOS.LOCATION_ALWAYS
-      : PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION;
+      ? [PERMISSIONS.IOS.LOCATION_ALWAYS]
+      : [
+          PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+          PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+        ];
 
   useEffect(() => {
     console.log('Checking permissions');
-    check(permission)
-      .then(resultCheck => {
-        if (resultCheck === RESULTS.DENIED) {
-          const rationale = {
-            title: 'Necesitamos acceder a tu localización',
-            message:
-              'Necesitamos conocer tu localización para que tus amigos puedan encontrarte',
-          };
-          request(permission, rationale).then(resultRequest => {
-            if (resultRequest === RESULTS.GRANTED) subscribe();
-          });
-        } else if (resultCheck === RESULTS.GRANTED) {
-          subscribe();
-        }
-      })
-      .catch(errorHandler);
+    checkAndRequestPermissions(permissions, subscribe, errorHandler);
   }, []);
 
   useEffect(() => {
     if (webId) {
       console.log('Getting current location');
-      Geolocation.getCurrentPosition(locationChangeListener, errorHandler, {
-        interval: 3000,
-      });
+      Location.getCurrentPositionAsync().then(handleLocation).catch(errorHandler);
     }
   }, [webId]);
 
   const subscribe = () => {
     console.log('Subscribed');
-    Geolocation.watchPosition(locationChangeListener, errorHandler, {
-      interval: 3000,
+    Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {foregroundService: {
+      notificationTitle: "Radarin",
+      notificationBody: "Radarin está usando tu localización"
+    }}).then(() => console.log("Background task created"));
+    TaskManager.defineTask(LOCATION_TASK_NAME, ({ data: { locations }, error }) => {
+      if (error) {
+        errorHandler(error);
+      } else {
+        handleLocation(locations.sort(location => location.timestamp)[0]);
+      }
     });
   };
 
-  const locationChangeListener = location => {
+  const handleLocation = location => {
     console.log(location);
+    console.log(webId);
     setLocation(location);
     if (webId) sendLocation(webId, location);
   };
