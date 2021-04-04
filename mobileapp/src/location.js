@@ -7,15 +7,11 @@ let selectedWebId = undefined;
 
 TaskManager.defineTask(LOCATION_TASK_NAME, ({data: {locations}, error}) => {
   if (error) {
-    errorHandler(error);
+    locationErrorHandler(error);
   } else {
     handleLocation(locations.sort(location => location.timestamp)[0]);
   }
 });
-
-export function setSelectedWebId(webId) {
-    selectedWebId = webId;
-}
 
 function handleLocation(location) {
   console.log(location);
@@ -23,16 +19,30 @@ function handleLocation(location) {
   if (selectedWebId) sendLocation(selectedWebId, location);
 }
 
-export function locationErrorHandler(error) {
+function locationErrorHandler(error) {
   console.log(error);
 }
 
-export function subscribe() {
-  console.log('Subscribed');
-  Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
-    foregroundService: {
-      notificationTitle: 'Radarin',
-      notificationBody: 'Radarin está usando tu localización',
-    },
-  }).then(() => console.log('Background task created'));
+export function subscribe(webId) {
+  selectedWebId = webId;
+  Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME).then(started => {
+    if (!started) {
+      Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
+        foregroundService: {
+          notificationTitle: 'Radarin',
+          notificationBody: 'Radarin está usando tu localización',
+        },
+      }).then(() => console.log('Subscribed'));
+    }
+  });
+}
+
+export function unsubscribe() {
+  Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME).then(started => {
+    if (started) {
+      Location.stopLocationUpdatesAsync(LOCATION_TASK_NAME).then(() =>
+        console.log('Unsubscribed'),
+      );
+    }
+  });
 }

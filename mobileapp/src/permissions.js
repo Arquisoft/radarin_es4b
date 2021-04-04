@@ -1,11 +1,20 @@
+import {Platform} from 'react-native';
 import {
   checkMultiple,
   requestMultiple,
+  PERMISSIONS,
   RESULTS,
 } from 'react-native-permissions';
 
+const permissions =
+  Platform.OS === 'ios'
+    ? [PERMISSIONS.IOS.LOCATION_ALWAYS]
+    : [
+        PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
+        PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
+      ];
+
 export async function checkAndRequestPermissions(
-  permissions,
   successCallback,
   errorCallback,
 ) {
@@ -36,7 +45,7 @@ export async function checkAndRequestPermissions(
     .catch(error => errorCallback(error));
 }
 
-const getPermissionsByStatus = (permissions, permissionsChecked, status) => {
+const getPermissionsByStatus = (permissionsChecked, status) => {
   const permissionsByStatus = [];
   for (const permission of permissions) {
     if (permissionsChecked[permission] === status)
