@@ -8,10 +8,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //Imports componentes
 import SimpleMap from "./components/SimpleMap";
-import LogInMessage from "./components/LogInMessage";
 import UsersList from "./components/UsersList";
 import Welcome from "./components/Welcome";
 import Navigation from "./components/Navigation";
+import LogIn from "./components/LogIn";
 
 class App extends React.Component {
   constructor() {
@@ -49,11 +49,10 @@ class App extends React.Component {
       logged: !oldState.logged,
     }));
     this.fetchUsers();
-    alert(`Has accedido como ${session.webId}`); //Si ya has iniciado sesión muestra el webID
   }
 
   logOut() {
-    solidauth.logout().then(() => alert("Has desvinculado tu Pod"));
+    solidauth.logout(); 
     this.setState((oldState) => ({
       ...oldState,
       webId: "",
@@ -76,15 +75,17 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
+        <Router >
+          <Navigation logged = {this.state.logged}></Navigation>
 
-        {!this.state.logged && (
-          <header className="App-header">
-            <h1>Radarin</h1>
-          </header>
-        )}
-        {this.state.logged && (
-          <Router>
-            <Navigation></Navigation>
+          {!this.state.logged && (
+            <Switch>
+              <Route exact path="/"><Welcome /></Route>
+              <Route path="/logIn"><LogIn logIn={this.logIn.bind(this)}></LogIn></Route>
+            </Switch>
+          )}
+
+          {this.state.logged && (
             <Switch>
 
               <Route exact path="/"><Welcome /></Route>
@@ -119,18 +120,8 @@ class App extends React.Component {
               </Route>
 
             </Switch>
-          </Router>
-        )}
-
-        {!this.state.logged && (
-          <div className="App-content">
-            <div className="NotLogged-content">
-              <LogInMessage showLogInPopUp={this.logIn.bind(this)} />
-              <br />
-            </div>
-          </div>
-        )}
-
+          )}
+        </Router>
       </div>
     );
   }
