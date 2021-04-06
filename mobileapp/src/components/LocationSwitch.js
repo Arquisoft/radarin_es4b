@@ -7,6 +7,20 @@ import Toast from 'react-native-simple-toast';
 import I18n from 'react-native-i18n';
 
 const LocationSwitch = props => {
+  I18n.fallbacks = true;
+
+  I18n.translations = {
+    es: {
+      location: 'Enviar mi ubicación',
+      toast: 'Por favor, activa la localización'
+    },
+    en: {
+      location: 'Send my location',
+      toast: 'Please, enable the location service'
+    }
+  };
+
+  const toastText = I18n.t('toast');
   const [enabled, setEnabled] = useState(false);
   const toggleSwitch = () =>
     checkAndRequestPermissions(
@@ -15,7 +29,7 @@ const LocationSwitch = props => {
           () => {
             setEnabled(previousState => !previousState);
           },
-          () => Toast.show(I18n.t('toast')),
+          () => Toast.show(toastText),
         ),
       err => console.log(err),
     );
@@ -26,19 +40,6 @@ const LocationSwitch = props => {
     if (didMount.current) enabled ? subscribe(props.webId) : unsubscribe();
     else didMount.current = true;
   }, [enabled]);
-
-  I18n.fallbacks = true;
-
-  I18n.translations = {
-    es: {
-      location: 'Enviar mi ubicación',
-      toast: 'Por favor, activa la localización',
-    },
-    en: {
-      location: 'Send my location',
-      toast: 'Please, enable the location service',
-    },
-  };
 
   return (
     <View style={styles.container}>
