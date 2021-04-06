@@ -63,13 +63,7 @@ router.post("/user/add", async (req, res) => {
     let URL = req.body.URL;
     
     if (await User.findOne({'URL': URL}))
-        await User.updateOne({'URL': URL}, { $set: {
-            latitud: req.body.latitud,
-            longitud: req.body.longitud,
-            altitud: req.body.altitud,
-            fecha: req.body.fecha
-           } 
-         });
+        await User.updateOne({'URL': URL}, { $set: req.body });
     else {
         user = new User({
             URL,

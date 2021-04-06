@@ -46,17 +46,34 @@ describe('friends ', () => {
     });
 
     /**
-     * Tests that a user with his location can be created through the productService without throwing any errors.
+     * Tests that a user with his location can be created without throwing any errors.
      */
     it('can be created correctly', async () => {
         username = 'Pablo'
         email = 'pablo@uniovi.es'
         const response = await request(app).post('/api/user/add')
             .send({
-                URL: "https://davidaf.solidcommunity.net/profile/card#me",
+                URL: "https://prueba.solidcommunity.net/profile/card#me",
                 latitud: 43.3656691,
                 longitud: -5.8546573,
                 altitud: 100.0})
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(200);
+        expect(response.text).toBe("Update successful");
+    });
+
+    /**
+     * Tests that an existing user with his location can be updated.
+     */
+     it('can be updated correctly', async () => {
+        username = 'Pablo'
+        email = 'pablo@uniovi.es'
+        const response = await request(app).post('/api/user/add')
+            .send({
+                URL: "https://prueba.solidcommunity.net/profile/card#me",
+                latitud: 43.00,
+                longitud: -5.00,
+                altitud: 120.0})
             .set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
         expect(response.text).toBe("Update successful");

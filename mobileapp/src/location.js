@@ -1,30 +1,33 @@
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
-import { sendLocation } from './api/api.js';
+import {sendLocation} from './api/api.js';
 import I18n from 'react-native-i18n';
-
 
 I18n.fallbacks = true;
 
 I18n.translations = {
   es: {
-    "webid": "'Radarin está usando tu localización"
+    webid: 'Radarin está usando tu localización',
   },
   en: {
-    "webid": "Radarin is using your location"
+    webid: 'Radarin is using your location',
   },
 };
 
 const LOCATION_TASK_NAME = 'background_location_task';
 let selectedWebId = undefined;
 
-TaskManager.defineTask(LOCATION_TASK_NAME, ({ data: { locations }, error }) => {
-  if (error) {
-    locationErrorHandler(error);
-  } else {
-    handleLocation(locations.sort(location => location.timestamp)[0]);
+function defineTaskIfNotDefined() {
+  if (!TaskManager.isTaskDefined(LOCATION_TASK_NAME)) {
+    TaskManager.defineTask(LOCATION_TASK_NAME, ({data: {locations}, error}) => {
+      if (error) {
+        locationErrorHandler(error);
+      } else {
+        handleLocation(locations.sort(location => location.timestamp)[0]);
+      }
+    });
   }
-});
+}
 
 function handleLocation(location) {
   console.log(location);
@@ -38,12 +41,13 @@ function locationErrorHandler(error) {
 
 export function subscribe(webId) {
   selectedWebId = webId;
+  defineTaskIfNotDefined();
   Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME).then(started => {
     if (!started) {
       Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
         foregroundService: {
           notificationTitle: 'Radarin',
-          notificationBody:  I18n.t('webid') ,
+          notificationBody: I18n.t('webid'),
         },
       }).then(() => console.log('Subscribed'));
     }
@@ -57,5 +61,11 @@ export function unsubscribe() {
         console.log('Unsubscribed'),
       );
     }
+  });
+}
+
+export function checkLocationEnabled(enabledCallback, disabledCallback) {
+  Location.hasServicesEnabledAsync().then(enabled => {
+    enabled ? enabledCallback() : disabledCallback();
   });
 }

@@ -21,19 +21,17 @@ export async function checkAndRequestPermissions(
   checkMultiple(permissions)
     .then(resultsCheck => {
       const permissionsDenied = getPermissionsByStatus(
-        permissions,
         resultsCheck,
         RESULTS.DENIED,
       );
       const permissionsGranted = getPermissionsByStatus(
-        permissions,
         resultsCheck,
         RESULTS.GRANTED,
       );
       if (permissionsDenied.length > 0) {
         requestMultiple(permissionsDenied).then(resultsRequest => {
           if (
-            getPermissionsByStatus(permissions, resultsRequest, RESULTS.GRANTED)
+            getPermissionsByStatus(resultsRequest, RESULTS.GRANTED)
               .length === permissions.length
           )
             successCallback();
@@ -45,10 +43,10 @@ export async function checkAndRequestPermissions(
     .catch(error => errorCallback(error));
 }
 
-const getPermissionsByStatus = (permissionsChecked, status) => {
+const getPermissionsByStatus = (permissionsToFilter, status) => {
   const permissionsByStatus = [];
   for (const permission of permissions) {
-    if (permissionsChecked[permission] === status)
+    if (permissionsToFilter[permission] === status)
       permissionsByStatus.push(permission);
   }
   return permissionsByStatus;

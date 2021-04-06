@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, Pressable } from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, View, Text, TextInput, Pressable} from 'react-native';
 import I18n from 'react-native-i18n';
 
-const WebIDForm = ({ changeWebId }) => {
+const WebIDForm = ({changeWebId}) => {
   const [formText, setFormText] = useState();
   const [pressed, setPressed] = useState(false);
 
@@ -10,18 +10,16 @@ const WebIDForm = ({ changeWebId }) => {
 
   I18n.translations = {
     es: {
-      "webid": "Escribe tu WebID:",
-      "enviar": "Enviar"
+      webid: 'Escribe tu WebID:',
+      enviar: 'Enviar',
     },
     en: {
-      "webid": "Write your WebID:",
-      "enviar": "Send"
+      webid: 'Write your WebID:',
+      enviar: 'Send',
     },
   };
 
   return (
-
-
     <View style={styles.container}>
       <Text style={styles.label}>{I18n.t('webid')}</Text>
       <TextInput
@@ -33,7 +31,13 @@ const WebIDForm = ({ changeWebId }) => {
         onPress={() => changeWebId(formText)}
         onPressIn={() => setPressed(true)}
         onPressOut={() => setPressed(false)}>
-        <Text style={{ ...styles.button, backgroundColor: pressed ? "#085fbd" : "#007bff" }}>{I18n.t('enviar')}</Text>
+        <Text
+          style={{
+            ...styles.button,
+            backgroundColor: pressed ? '#085fbd' : '#007bff',
+          }}>
+          {I18n.t('enviar')}
+        </Text>
       </Pressable>
     </View>
   );
@@ -42,7 +46,7 @@ const WebIDForm = ({ changeWebId }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   label: {
     fontSize: 16,
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     width: 250,
-    borderColor: "gray",
+    borderColor: 'gray',
     borderWidth: 1,
     borderRadius: 4,
     marginBottom: 10,
@@ -60,9 +64,9 @@ const styles = StyleSheet.create({
     height: 40,
     width: 100,
     borderRadius: 4,
-    color: "white",
-    textAlignVertical: "center",
-    textAlign: "center",
+    color: 'white',
+    textAlignVertical: 'center',
+    textAlign: 'center',
     fontSize: 16,
   },
 });
