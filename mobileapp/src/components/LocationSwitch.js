@@ -4,6 +4,21 @@ import {subscribe, unsubscribe} from '../location';
 import {checkAndRequestPermissions} from '../permissions';
 import {Icon} from 'react-native-elements';
 
+import I18n from 'react-native-i18n';
+
+
+I18n.fallbacks = true;
+
+I18n.translations = {
+  es: {
+    "te": "Enviar mi ubicación"
+  },
+  en: {
+    "te": "Send my location"
+  },
+};
+
+
 const LocationSwitch = props => {
   const [enabled, setEnabled] = useState(false);
   const toggleSwitch = () => setEnabled(previousState => !previousState);
@@ -19,7 +34,7 @@ const LocationSwitch = props => {
   return (
     <View style={styles.container}>
       <Icon name="location-on" size={20}/>
-      <Text style={styles.text}>Enviar mi ubicación</Text>
+      <Text style={styles.text}>{I18n.t('te')}</Text>
       <Switch
         trackColor={{false: '#d6d6d6', true: '#9ec2ff'}}
         thumbColor={enabled ? '#007bff' : '#f4f3f4'}
