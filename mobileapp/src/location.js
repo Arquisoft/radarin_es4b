@@ -43,7 +43,7 @@ export function subscribe(webId) {
       Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
         foregroundService: {
           notificationTitle: 'Radarin',
-          notificationBody: { I18n.t('webid') },
+          notificationBody:  I18n.t('webid') ,
         },
       }).then(() => console.log('Subscribed'));
     }
