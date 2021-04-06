@@ -2,7 +2,6 @@ import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getFriends } from "./api/api";
-import Button from "react-bootstrap/Button";
 import solidauth from "solid-auth-client";
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -12,8 +11,10 @@ import UsersList from "./components/UsersList";
 import Welcome from "./components/Welcome";
 import Navigation from "./components/Navigation";
 import LogIn from "./components/LogIn";
+import LogOut from "./components/LogOut";
 
 class App extends React.Component {
+
   constructor() {
     super();
     this.state = {
@@ -97,9 +98,6 @@ class App extends React.Component {
                       users={this.state.users}
                       onUserClick={this.zoomInUser.bind(this)}
                     />
-                    <Button variant="secondary" onClick={this.logOut.bind(this)}>
-                      Desvincular Pod{" "}
-                    </Button>
                   </div>
 
                   <SimpleMap
@@ -118,6 +116,8 @@ class App extends React.Component {
               </Route>
 
               <Route path="/logIn"><Welcome/></Route>
+
+              <Route path="/logOut"><LogOut logOut={this.logOut.bind(this)}/></Route>
 
               <Route path="/"><Welcome /></Route>
 

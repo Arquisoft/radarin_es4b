@@ -34,6 +34,12 @@ class Navigation extends React.Component {
                             </li>
                         )}
 
+                        {this.props.logged && (
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/logOut">Cerrar sesión</NavLink>
+                            </li>
+                        )}
+
                     </ul>
                 </div>
             </nav>

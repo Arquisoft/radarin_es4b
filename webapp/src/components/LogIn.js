@@ -3,9 +3,6 @@ import Button from "react-bootstrap/Button";
 
 class LogIn extends React.Component {
 
-    //Revisar https://stackoverflow.com/questions/43230194/how-to-use-redirect-in-the-new-react-router-dom-of-reactjs
-    // Usando sesionStorage
-
     async handleButton(e) {
         e.preventDefault()
         await this.props.logIn();
