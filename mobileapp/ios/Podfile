@@ -27,6 +27,8 @@ target 'mobileapp' do
 
   pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
 
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
+
   target 'mobileappTests' do
     inherit! :complete
     # Pods for testing

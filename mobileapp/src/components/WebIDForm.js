@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, TextInput, Pressable} from 'react-native';
+import I18n from 'mobileapp/src/i18n/i18n.js'
 
 const WebIDForm = ({changeWebId}) => {
   const [formText, setFormText] = useState();
   const [pressed, setPressed] = useState(false);
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Escribe tu WebID:</Text>
+      <Text style={styles.label}>{I18n.t('webid')}</Text>
       <TextInput
         style={styles.input}
         onChangeText={text => setFormText(text)}
