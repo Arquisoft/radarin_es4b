@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getFriends } from "./api/api";
 import Button from "react-bootstrap/Button";
 import solidauth from "solid-auth-client";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 //Imports componentes
 import SimpleMap from "./components/SimpleMap";
