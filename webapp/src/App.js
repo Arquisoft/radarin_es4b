@@ -80,15 +80,13 @@ class App extends React.Component {
 
           {!this.state.logged && (
             <Switch>
-              <Route exact path="/"><Welcome /></Route>
-              <Route path="/logIn"><LogIn logIn={this.logIn.bind(this)}></LogIn></Route>
+              <Route path="/logIn"><LogIn logIn={this.logIn.bind(this)}/></Route>
+              <Route path="/"><Welcome /></Route>
             </Switch>
           )}
 
           {this.state.logged && (
             <Switch>
-
-              <Route exact path="/"><Welcome /></Route>
 
               <Route path="/amigos"><UsersList users={this.state.users} onUserClick={this.zoomInUser.bind(this)} /></Route>
 
@@ -118,6 +116,10 @@ class App extends React.Component {
                   />
                 </div>
               </Route>
+
+              <Route path="/logIn"><Welcome/></Route>
+
+              <Route path="/"><Welcome /></Route>
 
             </Switch>
           )}
