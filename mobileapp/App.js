@@ -19,8 +19,8 @@ const App = () => {
             marginTop: 40,
             flex: 1,
           }}>
-          {!webId && <LoginForm changeUser={setUser}></LoginForm>}
-          {webId && (
+          {!user && <LoginForm changeUser={setUser}></LoginForm>}
+          {user && (
             <View
               style={{
                 marginTop: 20,
