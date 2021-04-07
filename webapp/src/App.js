@@ -3,7 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getFriends } from "./api/api";
 import solidauth from "solid-auth-client";
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 //Imports componentes
 import SimpleMap from "./components/SimpleMap";
