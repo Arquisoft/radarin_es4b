@@ -4,23 +4,9 @@ import {subscribe, unsubscribe, checkLocationEnabled} from '../location';
 import {checkAndRequestPermissions} from '../permissions';
 import {Icon} from 'react-native-elements';
 import Toast from 'react-native-simple-toast';
-import I18n from 'react-native-i18n';
+import getText from '../i18n.js';
 
 const LocationSwitch = props => {
-  I18n.fallbacks = true;
-
-  I18n.translations = {
-    es: {
-      location: 'Enviar mi ubicación',
-      toast: 'Por favor, activa la localización'
-    },
-    en: {
-      location: 'Send my location',
-      toast: 'Please, enable the location service'
-    }
-  };
-
-  const toastText = I18n.t('toast');
   const [enabled, setEnabled] = useState(false);
   const toggleSwitch = () =>
     checkAndRequestPermissions(
@@ -29,7 +15,7 @@ const LocationSwitch = props => {
           () => {
             setEnabled(previousState => !previousState);
           },
-          () => Toast.show(toastText),
+          () => Toast.show(getText('toast')),
         ),
       err => console.log(err),
     );
@@ -44,7 +30,7 @@ const LocationSwitch = props => {
   return (
     <View style={styles.container}>
       <Icon name="location-on" size={20} />
-      <Text style={styles.text}>{I18n.t('location')}</Text>
+      <Text style={styles.text}>{getText('location')}</Text>
       <Switch
         trackColor={{false: '#d6d6d6', true: '#9ec2ff'}}
         thumbColor={enabled ? '#007bff' : '#f4f3f4'}

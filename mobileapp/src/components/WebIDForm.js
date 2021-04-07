@@ -1,27 +1,14 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, TextInput, Pressable} from 'react-native';
-import I18n from 'react-native-i18n';
+import getText from '../i18n.js';
 
 const WebIDForm = ({changeWebId}) => {
   const [formText, setFormText] = useState();
   const [pressed, setPressed] = useState(false);
 
-  I18n.fallbacks = true;
-
-  I18n.translations = {
-    es: {
-      webid: 'Escribe tu WebID:',
-      enviar: 'Enviar',
-    },
-    en: {
-      webid: 'Write your WebID:',
-      enviar: 'Send',
-    },
-  };
-
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>{I18n.t('webid')}</Text>
+      <Text style={styles.label}>{getText('webid')}</Text>
       <TextInput
         style={styles.input}
         onChangeText={text => setFormText(text)}
@@ -36,7 +23,7 @@ const WebIDForm = ({changeWebId}) => {
             ...styles.button,
             backgroundColor: pressed ? '#085fbd' : '#007bff',
           }}>
-          {I18n.t('enviar')}
+          {getText('enviar')}
         </Text>
       </Pressable>
     </View>
