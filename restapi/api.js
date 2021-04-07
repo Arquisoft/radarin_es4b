@@ -1,7 +1,9 @@
-const $rdf = require('rdflib')
-const express = require("express")
-const User = require("./models/users")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const $rdf = require('rdflib');
+const User = require("./models/users");
+const SolidNodeClient = require('solid-node-client').SolidNodeClient;
+const client = new SolidNodeClient();
 
 // Get friend list of a user
 router.post("/user/friends", async (req, res) => {
@@ -55,8 +57,8 @@ router.post("/user/friends", async (req, res) => {
                     altitud: user.altitud
                 };})
             );
-    })
-})
+    });
+});
 
 //register a new user location
 router.post("/user/add", async (req, res) => {
@@ -71,12 +73,12 @@ router.post("/user/add", async (req, res) => {
             longitud: req.body.longitud,
             altitud: req.body.altitud,
             fecha: req.body.fecha
-        })
-        await user.save()
+        });
+        await user.save();
     }
         
     res.send("Update successful");
-})
+});
 
 //Add samples to the database
 router.get("/user/sample", async (req, res) => {
@@ -93,6 +95,28 @@ router.get("/user/sample", async (req, res) => {
     }
 
     res.send(users);
-})
+});
 
-module.exports = router
+// Authenticates a user and sends back his WebId
+// The request must include the following fields:
+//      idp : identity provider (e.g. https://solidcommunity.net)
+//      username 
+//      password
+// For this to work, The user must have added 
+// https://solid-node-client as a trusted app on his pod
+router.post("/user/login", async (req, res) => {
+    try {
+        let session = await client.login({
+            idp: req.body.idp,
+            username: req.body.username,
+            password: req.body.password
+        });
+        res.status(200);
+        res.send(session.webId);
+    } catch (err) {
+        res.status(403);
+        res.send(err);
+    }
+});
+
+module.exports = router;
