@@ -6,15 +6,47 @@ export default function getText(key) {
   I18n.translations = {
     es: {
       location: 'Enviar mi ubicación',
-      toast: 'Por favor, activa la localización',
+      toastLocation: 'Por favor, activa la localización',
       webid: 'Escribe tu WebID:',
+      provider: 'Proveedor de identidad de Solid:',
+      providerPlaceholder: 'p. ej. https://solidcommunity.net',
+      username: 'Nombre de usuario:',
+      usernamePlaceholder: 'Nombre de usuario',
+      password: 'Contraseña:',
+      passwordPlaceholder: 'Contraseña',
       enviar: 'Enviar',
+      logOut: 'Cerrar sesión',
+      logIn: 'Iniciar sesión',
+      loading: 'Cargando...',
+      loginInfo:
+        'Para usar Radarin necesitas tener un POD de Solid y haber añadido a https://solid-node-client como aplicación de confianza.',
+      getAPod: 'Si no tienes un POD, puedes crear uno ',
+      here: 'aquí',
+      trustedApps:
+        'Si no sabes como añadir aplicaciones de confianza, puedes encontrar más información ',
+      toastLogIn: 'Datos incorrectos',
     },
     en: {
       location: 'Send my location',
-      toast: 'Please, enable the location service',
+      toastLocation: 'Please, enable the location service',
       webid: 'Write your WebID:',
+      provider: 'Solid identity provider:',
+      providerPlaceholder: 'e. g. https://solidcommunity.net',
+      username: 'Username:',
+      usernamePlaceholder: 'Username',
+      password: 'Password:',
+      passwordPlaceholder: 'Password',
       enviar: 'Send',
+      logOut: 'Log out',
+      logIn: 'Log in',
+      loading: 'Loading...',
+      loginInfo:
+        'To use Radarin you need to have a Solid POD and have added https://solid-node-client as a trusted app',
+      getAPod: "If you don't have a POD, you can get one ",
+      here: 'here',
+      trustedApps:
+        "If you don't know how to add a trusted app, you can find more information ",
+      toastLogIn: 'Invalid log in data',
     },
   };
   return I18n.t(key);

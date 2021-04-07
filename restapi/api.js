@@ -18,7 +18,7 @@ router.post("/user/friends", async (req, res) => {
 
     // Carga el perfil del usuario
     await fetcher.load(profile);
-    // COnsulta las URLs de los amigos
+    // Consulta las URLs de los amigos
     const friends = store.each(me, FOAF('knows')); 
 
     // Consulta los nombres de los amigos en sus respectivos pods y almacena las promesas resultantes en un array
@@ -64,8 +64,10 @@ router.post("/user/friends", async (req, res) => {
 router.post("/user/add", async (req, res) => {
     let URL = req.body.URL;
     
+    // Si ya está el usuario, se actializa su ubicación
     if (await User.findOne({'URL': URL}))
         await User.updateOne({'URL': URL}, { $set: req.body });
+    // Si no, se crea uno nuevo
     else {
         user = new User({
             URL,
@@ -102,19 +104,37 @@ router.get("/user/sample", async (req, res) => {
 //      idp : identity provider (e.g. https://solidcommunity.net)
 //      username 
 //      password
+// The response contains an user object with the following fields:
+//      webId
+//      name
 // For this to work, The user must have added 
 // https://solid-node-client as a trusted app on his pod
 router.post("/user/login", async (req, res) => {
     try {
+        // Iniciamos sesión con las credenciales enviadas
         let session = await client.login({
             idp: req.body.idp,
             username: req.body.username,
             password: req.body.password
         });
+
+        // Inicialización de variables para consultas en pods
+        const store = $rdf.graph();
+        const fetcher = new $rdf.Fetcher(store);
+        const me = store.sym(session.webId);
+        const profile = me.doc();
+        const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
+
+        // Carga el perfil del usuario
+        await fetcher.load(profile);
+        // Consulta el nombre del usuario
+        const name = store.any(me, FOAF('name'));
+
         res.status(200);
-        res.send(session.webId);
+        res.send({webId: session.webId, name: name.value});
     } catch (err) {
         res.status(403);
+        console.log(err);
         res.send(err);
     }
 });

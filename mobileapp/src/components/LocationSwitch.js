@@ -1,5 +1,5 @@
 import React, {useRef, useEffect, useState} from 'react';
-import {View, Switch, Text, StyleSheet, ToastAndroid} from 'react-native';
+import {View, Switch, Text, StyleSheet} from 'react-native';
 import {subscribe, unsubscribe, checkLocationEnabled} from '../location';
 import {checkAndRequestPermissions} from '../permissions';
 import {Icon} from 'react-native-elements';
@@ -15,7 +15,7 @@ const LocationSwitch = props => {
           () => {
             setEnabled(previousState => !previousState);
           },
-          () => Toast.show(getText('toast')),
+          () => Toast.show(getText('toastLocation')),
         ),
       err => console.log(err),
     );

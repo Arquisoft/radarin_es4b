@@ -3,11 +3,12 @@ import {ScrollView, View} from 'react-native';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Divider} from 'react-native-elements';
 import Header from './src/components/Header';
-import WebIDForm from './src/components/WebIDForm';
 import LocationSwitch from './src/components/LocationSwitch';
+import LoginForm from './src/components/LoginForm';
+import UserInfo from './src/components/UserInfo';
 
 const App = () => {
-  const [webId, setWebId] = useState();
+  const [user, setUser] = useState();
 
   return (
     <SafeAreaProvider>
@@ -15,19 +16,20 @@ const App = () => {
         <Header></Header>
         <View
           style={{
-            marginTop: 50,
-            flex: 1
+            marginTop: 40,
+            flex: 1,
           }}>
-          <WebIDForm changeWebId={setWebId}></WebIDForm>
+          {!webId && <LoginForm changeUser={setUser}></LoginForm>}
           {webId && (
             <View
               style={{
                 marginTop: 20,
                 marginStart: 15,
-                marginEnd: 15
+                marginEnd: 15,
               }}>
+              <UserInfo user={user} changeUser={setUser}/>
               <Divider />
-              <LocationSwitch webId={webId} />
+              <LocationSwitch webId={user.webId} />
             </View>
           )}
         </View>
