@@ -5,10 +5,7 @@ const User = require("./models/users");
 const SolidNodeClient = require('solid-node-client').SolidNodeClient;
 const client = new SolidNodeClient();
 
-// Get friend list of a user
-router.post("/user/friends", async (req, res) => {
-    let URL = req.body.URL;
-
+async function getFriends(URL, query) {
     // Inicialización de variables para consultas en pods
     const store = $rdf.graph();
     const fetcher = new $rdf.Fetcher(store);
@@ -40,27 +37,56 @@ router.post("/user/friends", async (req, res) => {
     } 
 
     //Consulta los usuarios (y sus localizaciones) con las URLs de los amigos en la bd
-    const usersQuery = User.find({'URL': {$in: friends.map(friend => friend.value)}}).sort('-_id')
+    const usersQuery = User.find({...query, 'URL': {$in: friends.map(friend => friend.value)}}).sort('-_id');
 
     // Espera a que todas las consultas terminen
-    Promise.all([usersQuery, Promise.all(namesQueries).then(results => results)])
+    return Promise.all([usersQuery, Promise.all(namesQueries).then(results => results)])
         .then(results => {
             const resultDb = results[0];
             const resultNames = results[1];
-            res.send(
-                //Asocia los resultados de la consulta a la bd con los nombres obtenidos de los pods
-                resultDb.map(user => {return {
+            //Asocia los resultados de la consulta a la bd con los nombres obtenidos de los pods
+            return resultDb.map(user => {
+                return {
                     URL: user.URL,
                     nombre: resultNames.filter(result => result.URL === user.URL)[0].name,
-                    latitud: user.latitud,
-                    longitud: user.longitud,
+                    latitud: user.location.coordinates[1],
+                    longitud: user.location.coordinates[0],
                     altitud: user.altitud
-                };})
-            );
+                };
+            }
+        );
     });
+}
+
+// Get friend list of a user
+router.post("/user/friends", async (req, res) => {
+    res.send(await getFriends(req.body.URL, {}));
 });
 
-//register a new user location
+// Get list of friends near a location
+router.post("/user/friends/near", async (req, res) => {
+    res.send(await getFriends(req.body.URL, 
+        {
+            location: {
+                $near: {
+                    $geometry: {
+                        type: "Point" ,
+                        coordinates: [req.body.longitud , req.body.latitud]
+                    },
+                    $maxDistance: req.body.maxDistancia,
+                    $minDistance: 0
+                }
+            }
+        }
+    ));
+});
+
+// Registra un nuevo usuario, o actualiza su ubicación
+// El cuerpo debe contener los siguientes campos:
+//      URL: webId del usuario
+//      latitud
+//      longitud
+//      altitud
 router.post("/user/add", async (req, res) => {
     let URL = req.body.URL;
     
@@ -71,8 +97,13 @@ router.post("/user/add", async (req, res) => {
     else {
         user = new User({
             URL,
-            latitud: req.body.latitud,
-            longitud: req.body.longitud,
+            location: {
+                type : "Point",
+                coordinates : [
+                    req.body.longitud,
+                    req.body.latitud
+                ]
+            },
             altitud: req.body.altitud,
             fecha: req.body.fecha
         });

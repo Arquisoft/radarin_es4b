@@ -34,7 +34,7 @@ describe('friends ', () => {
     it('can be listed',async () => {
         await request(app).get("/api/user/sample"); // add sample data
         let URL = "https://davidaf.solidcommunity.net/profile/card#me";
-        const response = await request(app).post('/api/user/friends').send({URL: URL}).set('Accept', 'application/json')
+        const response = await request(app).post('/api/user/friends').send({URL}).set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
         const results = response.body.sort(result => result.nombre);
         expect(results[0].nombre).toBe("Moises ");
@@ -45,6 +45,25 @@ describe('friends ', () => {
         expect(results[1].latitud).toBe(43.3656691);
         expect(results[1].longitud).toBe(-5.8546573);
         expect(results[1].altitud).toBe(100.0);
+    });
+
+    /**
+     * Test that we can list friends that are near a location.
+     */
+    it('near a location can be listed',async () => {
+        let URL = "https://davidaf.solidcommunity.net/profile/card#me";
+        let latitud = 43.54;
+        let longitud = -5.70;
+        let maxDistancia = 100;
+        const response = await request(app).post('/api/user/friends/near')
+            .send({URL, latitud, longitud, maxDistancia})
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(200);
+        const results = response.body.sort(result => result.nombre);
+        expect(results[0].nombre).toBe("Moises ");
+        expect(results[0].latitud).toBe(43.5405559);
+        expect(results[0].longitud).toBe(-5.7009505);
+        expect(results[0].altitud).toBe(50.0);
     });
 });
 

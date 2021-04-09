@@ -1,21 +1,36 @@
 [{
     "URL": "https://bertofer.solidcommunity.net/profile/card#me",
-    "latitud": 43.3656691,
-    "longitud": -5.8546573,
+    "location": {
+        "type" : "Point",
+        "coordinates" : [
+            -5.8546573,
+            43.3656691
+        ]
+    },
     "altitud": 100.0,
     "fecha": 1000
 }, 
 {
     "URL": "https://moises.solidweb.org/profile/card#me",
-    "latitud": 43.5405559,
-    "longitud": -5.7009505,
+    "location": {
+        "type" : "Point",
+        "coordinates" : [
+            -5.7009505,
+            43.5405559
+        ]
+    },
     "altitud": 50.0,
     "fecha": 1000
 },
 {
     "URL": "https://davidaf.solidcommunity.net/profile/card#me",
-    "latitud": 43.5602847,
-    "longitud": -6.0338846,
+    "location": {
+        "type" : "Point",
+        "coordinates" : [
+            -6.0338846,
+            43.5602847
+        ]
+    },
     "altitud": 70.0,
     "fecha": 1000
 }]
