@@ -2,14 +2,13 @@ import Button from "react-bootstrap/Button";
 import React from 'react';
 
 
-class UsersList extends React.Component {
+class UsersMapList extends React.Component {
 
     constructor(props) {
         super(props); 
         this.props.fetchUsers();  
     }
 
-    //Formamos una tabla con la informacion de los usuarios contenidos en la lista que se pasó como parámetro ("users")
     render() {
         return (
             <div className="table-responsive">
@@ -41,4 +40,4 @@ class UsersList extends React.Component {
     }
 }
 
-export default UsersList
+export default UsersMapList

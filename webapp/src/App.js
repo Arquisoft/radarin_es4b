@@ -4,11 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getFriends } from "./api/api";
 import solidauth from "solid-auth-client";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { LoggedIn, LoggedOut } from '@solid/react';
+import { LoggedIn, LoggedOut, AuthButton } from '@solid/react';
 
 //Imports componentes
 import SimpleMap from "./components/SimpleMap";
-import UsersList from "./components/UsersList";
+import UsersMapList from "./components/UsersMapList";
+import UserFriendsList from "./components/UserFriendsList";
 import Welcome from "./components/Welcome";
 import Navigation from "./components/Navigation";
 import LogIn from "./components/LogIn";
@@ -56,6 +57,7 @@ class App extends React.Component {
     let popupUri = "https://solid.github.io/solid-auth-client/dist/popup.html";
     if (!session) session = await solidauth.popupLogin({ popupUri }); //Muestra el pop up si no has iniciado sesión
     sessionStorage.setItem("webId",session.webId); 
+    window.location.replace("/");
   }
 
   logOut() {
@@ -91,14 +93,12 @@ class App extends React.Component {
           <LoggedIn>
             <Switch>
 
-              <Route path="/amigos"><UsersList users={this.state.users} onUserClick={this.zoomInUser.bind(this)}
-                fetchUsers={this.fetchUsers.bind(this)}
-              /></Route>
+              <Route path="/amigos"><UserFriendsList/></Route>
 
               <Route path="/mapa">
                 <div className="Friends">
                   <div className="UsersList">
-                    <UsersList
+                    <UsersMapList
                       fetchUsers={this.fetchUsers.bind(this)}
                       users={this.state.users}
                       onUserClick={this.zoomInUser.bind(this)}

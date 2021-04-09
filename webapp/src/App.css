@@ -56,14 +56,6 @@ body {
   overflow-x: hidden;
 }
 
-.LogInMessage{
-  text-align: center;
-  align-items: center;
-  padding-bottom: 5px;
-}
-
-
-
 
 @keyframes App-logo-spin {
   from {
