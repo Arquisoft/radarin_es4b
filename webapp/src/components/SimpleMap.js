@@ -9,12 +9,6 @@ const mapStyles = {
 
 export class MapContainer extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
-
-
   showMarkers = () => {
     return this.props.marks.map((store, index) => {
       return <Marker key={index} id={index} position={{
