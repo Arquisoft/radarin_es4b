@@ -13,7 +13,7 @@ class UsersList extends React.Component {
     render() {
         return (
             <div className="table-responsive">
-                <h2>Lista de amigos:</h2>
+                <h2>Lista de amigos</h2>
                 <table className="table table-bordered" id="tableUsers">
 				<thead>
 					<tr>

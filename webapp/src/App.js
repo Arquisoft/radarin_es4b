@@ -19,6 +19,7 @@ class App extends React.Component {
 
   constructor() {
     super();
+    this.loadWebId(); 
     this.state = {
       users: [],
       mapOptions: {
@@ -26,8 +27,17 @@ class App extends React.Component {
         lon: "-5.85",
         zoom: 8,
       },
-      webId: "",
     };
+  }
+
+  async loadWebId() {
+    let session = await solidauth.currentSession();
+    if(session) {
+      sessionStorage.setItem("webId",session.webId); 
+    }
+    else {
+      sessionStorage.setItem("webId",""); 
+    }
   }
 
   async fetchUsers() {
@@ -45,18 +55,12 @@ class App extends React.Component {
     let session = await solidauth.currentSession();
     let popupUri = "https://solid.github.io/solid-auth-client/dist/popup.html";
     if (!session) session = await solidauth.popupLogin({ popupUri }); //Muestra el pop up si no has iniciado sesión
-    this.setState((oldState) => ({
-      ...oldState,
-      webId: session.webId,
-    }));
+    sessionStorage.setItem("webId",session.webId); 
   }
 
   logOut() {
     solidauth.logout();
-    this.setState((oldState) => ({
-      ...oldState,
-      webId: "",
-    }));
+    sessionStorage.setItem("webId",""); 
   }
 
   zoomInUser(user) {
@@ -88,7 +92,6 @@ class App extends React.Component {
             <Switch>
 
               <Route path="/amigos"><UsersList users={this.state.users} onUserClick={this.zoomInUser.bind(this)}
-                webId={this.state.webId}
                 fetchUsers={this.fetchUsers.bind(this)}
               /></Route>
 
@@ -96,7 +99,6 @@ class App extends React.Component {
                 <div className="Friends">
                   <div className="UsersList">
                     <UsersList
-                      webId={this.state.webId}
                       fetchUsers={this.fetchUsers.bind(this)}
                       users={this.state.users}
                       onUserClick={this.zoomInUser.bind(this)}
@@ -104,7 +106,6 @@ class App extends React.Component {
                   </div>
 
                   <SimpleMap
-                    webId={this.state.webId}
                     fetchUsers={this.fetchUsers.bind(this)}
                     lat={this.state.mapOptions.lat}
                     lon={this.state.mapOptions.lon}

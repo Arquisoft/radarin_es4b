@@ -11,7 +11,6 @@ export class MapContainer extends Component {
 
   constructor(props) {
     super(props);
-    this.props.fetchUsers();  
   }
 
 
