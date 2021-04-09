@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getFriends } from "./api/api";
 import solidauth from "solid-auth-client";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { LoggedIn, LoggedOut } from '@solid/react';
 
 //Imports componentes
 import SimpleMap from "./components/SimpleMap";
@@ -12,6 +13,7 @@ import Welcome from "./components/Welcome";
 import Navigation from "./components/Navigation";
 import LogIn from "./components/LogIn";
 import LogOut from "./components/LogOut";
+import Home from "./components/Home";
 
 class App extends React.Component {
 
@@ -25,7 +27,6 @@ class App extends React.Component {
         zoom: 8,
       },
       webId: "",
-      logged: false,
     };
   }
 
@@ -42,22 +43,19 @@ class App extends React.Component {
 
   async logIn() {
     let session = await solidauth.currentSession();
-    let popupUri = "https://solidcommunity.net/common/popup.html";
+    let popupUri = "https://solid.github.io/solid-auth-client/dist/popup.html";
     if (!session) session = await solidauth.popupLogin({ popupUri }); //Muestra el pop up si no has iniciado sesión
     this.setState((oldState) => ({
       ...oldState,
       webId: session.webId,
-      logged: !oldState.logged,
     }));
-    this.fetchUsers();
   }
 
   logOut() {
-    solidauth.logout(); 
+    solidauth.logout();
     this.setState((oldState) => ({
       ...oldState,
       webId: "",
-      logged: !oldState.logged,
     }));
   }
 
@@ -77,30 +75,37 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router >
-          <Navigation logged = {this.state.logged}></Navigation>
+          <Navigation ></Navigation>
 
-          {!this.state.logged && (
+          <LoggedOut>
             <Switch>
-              <Route path="/logIn"><LogIn logIn={this.logIn.bind(this)}/></Route>
+              <Route path="/logIn"><LogIn logIn={this.logIn.bind(this)} /></Route>
               <Route path="/"><Welcome /></Route>
             </Switch>
-          )}
+          </LoggedOut>
 
-          {this.state.logged && (
+          <LoggedIn>
             <Switch>
 
-              <Route path="/amigos"><UsersList users={this.state.users} onUserClick={this.zoomInUser.bind(this)} /></Route>
+              <Route path="/amigos"><UsersList users={this.state.users} onUserClick={this.zoomInUser.bind(this)}
+                webId={this.state.webId}
+                fetchUsers={this.fetchUsers.bind(this)}
+              /></Route>
 
               <Route path="/mapa">
                 <div className="Friends">
                   <div className="UsersList">
                     <UsersList
+                      webId={this.state.webId}
+                      fetchUsers={this.fetchUsers.bind(this)}
                       users={this.state.users}
                       onUserClick={this.zoomInUser.bind(this)}
                     />
                   </div>
 
                   <SimpleMap
+                    webId={this.state.webId}
+                    fetchUsers={this.fetchUsers.bind(this)}
                     lat={this.state.mapOptions.lat}
                     lon={this.state.mapOptions.lon}
                     zoom={this.state.mapOptions.zoom}
@@ -115,14 +120,13 @@ class App extends React.Component {
                 </div>
               </Route>
 
-              <Route path="/logIn"><Welcome/></Route>
+              <Route path="/logOut"><LogOut logOut={this.logOut.bind(this)} /></Route>
 
-              <Route path="/logOut"><LogOut logOut={this.logOut.bind(this)}/></Route>
-
-              <Route path="/"><Welcome /></Route>
+              <Route path="/"><Home /></Route>
 
             </Switch>
-          )}
+          </LoggedIn>
+
         </Router>
       </div>
     );

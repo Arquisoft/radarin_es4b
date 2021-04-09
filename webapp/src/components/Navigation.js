@@ -1,5 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { LoggedIn, LoggedOut } from '@solid/react';
+
 
 class Navigation extends React.Component {
 
@@ -11,34 +13,31 @@ class Navigation extends React.Component {
 
                         <NavLink className="navbar-brand" to="/">Radarin</NavLink>
 
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/">Home</NavLink>
-                        </li>
 
-                        {!this.props.logged && (
+                        <LoggedOut>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/logIn">Iniciar sesión</NavLink>
                             </li>
-                        )}
+                        </LoggedOut>
 
-                        {this.props.logged && (
+                        <LoggedIn>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/amigos">Listar amigos</NavLink>
                             </li>
-                        )}
+                        </LoggedIn>
 
 
-                        {this.props.logged && (
+                        <LoggedIn>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/mapa">Ver mapa</NavLink>
                             </li>
-                        )}
+                        </LoggedIn>
 
-                        {this.props.logged && (
+                        <LoggedIn>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/logOut">Cerrar sesión</NavLink>
                             </li>
-                        )}
+                        </LoggedIn>
 
                     </ul>
                 </div>

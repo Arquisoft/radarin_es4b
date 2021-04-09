@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
+
 const mapStyles = {
   width: '70%',
   height: '100%'
 };
 
 export class MapContainer extends Component {
+
+  constructor(props) {
+    super(props);
+    this.props.fetchUsers();  
+  }
+
+
 
   showMarkers = () => {
     return this.props.marks.map((store, index) => {
