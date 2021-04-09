@@ -11,13 +11,15 @@ beforeAll(async () => {
 
 /**
  * Clear all test data after every test.
+ *
+ * afterEach(async () => await server.clearDatabase()); 
  */
-afterEach(async () => await server.clearDatabase());
 
 /**
  * Remove and close the db and server.
  */
 afterAll(async () => {
+    await server.clearDatabase();
     await server.closeServer() //finish the server
     await server.closeDB()
 })
@@ -44,7 +46,9 @@ describe('friends ', () => {
         expect(results[1].longitud).toBe(-5.8546573);
         expect(results[1].altitud).toBe(100.0);
     });
+});
 
+describe('users ', () => {
     /**
      * Tests that a user with his location can be created without throwing any errors.
      */
