@@ -7,7 +7,7 @@ export default function getText(key) {
     es: {
       location: 'Enviar mi ubicación',
       toastLocation: 'Por favor, activa la localización',
-      webid: 'Escribe tu WebID:',
+      usingLocation: 'Radarin está usando tu localización',
       provider: 'Proveedor de identidad de Solid:',
       providerPlaceholder: 'p. ej. https://solidcommunity.net',
       username: 'Nombre de usuario:',
@@ -25,11 +25,13 @@ export default function getText(key) {
       trustedApps:
         'Si no sabes como añadir aplicaciones de confianza, puedes encontrar más información ',
       toastLogIn: 'Datos incorrectos',
+      channelName: 'Localización',
+      friendClose: ' está cerca',
     },
     en: {
       location: 'Send my location',
       toastLocation: 'Please, enable the location service',
-      webid: 'Write your WebID:',
+      usingLocation: 'Radarin is using your location',
       provider: 'Solid identity provider:',
       providerPlaceholder: 'e. g. https://solidcommunity.net',
       username: 'Username:',
@@ -47,6 +49,8 @@ export default function getText(key) {
       trustedApps:
         "If you don't know how to add a trusted app, you can find more information ",
       toastLogIn: 'Invalid log in data',
+      channelName: 'Location',
+      friendClose: ' is close',
     },
   };
   return I18n.t(key);

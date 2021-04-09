@@ -9,10 +9,12 @@ import {
 const permissions =
   Platform.OS === 'ios'
     ? [PERMISSIONS.IOS.LOCATION_ALWAYS]
-    : [
+    : Platform.Version >= 29
+    ? [
         PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION,
         PERMISSIONS.ANDROID.ACCESS_BACKGROUND_LOCATION,
-      ];
+      ]
+    : [PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION];
 
 export async function checkAndRequestPermissions(
   successCallback,
@@ -31,8 +33,8 @@ export async function checkAndRequestPermissions(
       if (permissionsDenied.length > 0) {
         requestMultiple(permissionsDenied).then(resultsRequest => {
           if (
-            getPermissionsByStatus(resultsRequest, RESULTS.GRANTED)
-              .length === permissions.length
+            getPermissionsByStatus(resultsRequest, RESULTS.GRANTED).length ===
+            permissions.length
           )
             successCallback();
         });

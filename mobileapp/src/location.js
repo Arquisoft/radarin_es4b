@@ -1,18 +1,8 @@
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
-import {sendLocation} from './api/api.js';
-import I18n from 'react-native-i18n';
-
-I18n.fallbacks = true;
-
-I18n.translations = {
-  es: {
-    webid: 'Radarin está usando tu localización',
-  },
-  en: {
-    webid: 'Radarin is using your location',
-  },
-};
+import {sendLocation, getFriendsClose} from './api/api.js';
+import getText from './i18n.js';
+import {postNotification, clearNotfications} from './notifications';
 
 const LOCATION_TASK_NAME = 'background_location_task';
 let selectedWebId = undefined;
@@ -32,13 +22,25 @@ function defineTaskIfNotDefined() {
 function handleLocation(location) {
   console.log(location);
   console.log(selectedWebId);
-  if (selectedWebId) sendLocation(selectedWebId, location);
+  if (selectedWebId) {
+    sendLocation(selectedWebId, location);
+    getFriendsClose(selectedWebId, location, 100).then(results => {
+      console.log(results);
+      clearNotfications();
+      results.forEach(friend =>
+        postNotification(friend.nombre + getText('friendClose')),
+      );
+    });
+  }
 }
 
 function locationErrorHandler(error) {
   console.log(error);
 }
 
+/**
+ * Hace que la aplicación escuche las actualizaciones de ubicación
+ */
 export function subscribe(webId) {
   selectedWebId = webId;
   defineTaskIfNotDefined();
@@ -47,13 +49,16 @@ export function subscribe(webId) {
       Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
         foregroundService: {
           notificationTitle: 'Radarin',
-          notificationBody: I18n.t('webid'),
+          notificationBody: getText('usingLocation'),
         },
       }).then(() => console.log('Subscribed'));
     }
   });
 }
 
+/**
+ * Hace que la aplicación deje de escuchar las actualizaciones de ubicación
+ */
 export function unsubscribe() {
   Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME).then(started => {
     if (started) {
@@ -64,6 +69,9 @@ export function unsubscribe() {
   });
 }
 
+/**
+ * Comprueba si el servicio de ubicación está activado
+ */
 export function checkLocationEnabled(enabledCallback, disabledCallback) {
   Location.hasServicesEnabledAsync().then(enabled => {
     enabled ? enabledCallback() : disabledCallback();

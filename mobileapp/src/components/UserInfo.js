@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {Icon} from 'react-native-elements';
 import CustomButton from './CustomButton';
 import getText from '../i18n.js';
+import {unsubscribe} from '../location.js';
 
 const UserInfo = ({user, changeUser}) => {
   return (
@@ -10,7 +11,10 @@ const UserInfo = ({user, changeUser}) => {
       <Icon name="account-circle" size={20} />
       <Text style={styles.text}>{user.name}</Text>
       <CustomButton
-        action={() => changeUser(null)}
+        action={() => {
+          unsubscribe();
+          changeUser(null);
+        }}
         text={getText('logOut')}
         customContentStyles={styles.button}
       />
