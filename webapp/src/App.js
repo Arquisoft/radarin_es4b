@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { getFriends } from "./api/api";
 import solidauth from "solid-auth-client";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { LoggedIn, LoggedOut, AuthButton } from '@solid/react';
+import { LoggedIn, LoggedOut } from '@solid/react';
 
 //Imports componentes
 import SimpleMap from "./components/SimpleMap";
