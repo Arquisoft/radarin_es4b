@@ -29,4 +29,30 @@ Aprobada.
 ==== Consecuencias
 Cuando un usuario envie una ubicación tendremos que almacenarla en la base de datos junto con su WebID.
 
+=== ADR 3: Realizar el inicio de sesión en la aplicación móvil a través de la API Rest
+==== Contexto
+Necesitamos que el usuario puede iniciar sesión en Solid desde la aplicación móvil, sin embargo, las librerías para autenticar usuarios en Solid no funcionan en React Native.
+
+==== Decisión
+Hemos decidido realizar el inicio de sesión a través de la API Rest. El usuario escribe sus credenciales y la aplicación móvil las envía a la API Rest. En la API Rest usaremos la librería solid-node-client para realizar el inicio de sesión. Finalmente la API Rest enviará a la aplicación móvil la notificación de que el usuario ha sido autenticado.
+
+==== Estado
+Aprobada.
+
+==== Consecuencias
+Esta solución realmente no sirve para iniciar sesión, sino que simplemente comprueba que el usuario es dueño de un Pod y obtiene la información de ese Pod. Si se necesitase acceder a información privada del usuario o escribir en su Pod habría que pasar otra vez por la API Rest. De momento no se necesita hacer nada de eso, por lo que esta solución es perfectamente válida. Sin embargo, para que esto funcione el usuario tendrá que añadir  https://solid-node-client a sus aplicaciones de confianza, por lo que habrá que informar al usuario adecuadamente.
+
+=== ADR 4: Usar las consultas geoespaciales de MongoDB para buscar amigos cerca de una localización
+==== Contexto
+Necesitamos buscar los amigos cercanos a la localización del usuario para mostrarlos en el mapa o para enviarle notificaciones. Podemos obtener todos los amigos del usuario y filtrarlos calculando las distancias directamente o con una librería como geolib, o bien podemos obtener los amigos cercanos directamente de la base de datos.
+
+==== Decisión
+Hemos decidido usar las consultas geoespaciales de MongoDB para filtrar los amigos por distancia. Hemos tomado está decisión porque es la más eficiente tanto en recursos como en código comparada con las demás alternativas. Además usaremos el formato GeoJSON para almacenar las coordenadas de las localizaciones, ya que es el estándar más reciente que soporta MongoDB.
+
+==== Estado
+Aprobada.
+
+==== Consecuencias
+Tendremos que adaptar el esquema de las localizaciones de los usuarios en la base de datos para que tengan un formato compatible con las consultas geoespaciales de MongoDB. Esto implica adaptar el código en todos los lugares donde se usen resultados de consultas a la base de datos, así como modificar los datos de prueba que usamos. Para que estás consultas funcionen, también hay que crear un índice de tipo 2dsphere en la base de datos con los campos en los que se almacenan las coordenadas.
+
 :numbered:

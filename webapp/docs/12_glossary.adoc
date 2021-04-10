@@ -11,4 +11,7 @@ Términos más importantes del ambito de nuestro sistema:
 | Lista de amigos     | Conjunto de ususarios que facilitan su ubicación a un usario en concreto. 
 | https://solidproject.org/users/get-a-pod[POD]     | Almacenamiento personal de datos alojado en un servidor elegido por el usuario.
 | WebID | URL del Pod de un usuario que lo identifica unequívocamente.
+| Proveedor de identidad de Solid | Entidad que se encarga de mantener y validar la identidad de un usuario de Solid.
+| Proveedor de localización | Servicio del sistema operativo que notifica a las aplicaciones de cambios en la localización detectados por el hardware del dispositivo.
+| Consulta geoespacial | Consultas especiales que permiten filtrar información geográfica. 
 |===

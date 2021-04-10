@@ -25,6 +25,6 @@
 |===
 |Convenio|Explicación
 | Presupuesto | Todas las herramientas y tecnologías usadas deberán ser gratuitas.
-| Idioma | Se utilizará el castellano para desarrollar el sistema y su documentación.
+| Idioma | Se utilizará el castellano para desarrollar el sistema y su documentación, aunque se podrán internacionalizar tanto la aplicación web como la aplicación móvil si disponemos de tiempo para ello.
 | arc42 | La documentación debe seguir la plantilla arc42. 
 |===

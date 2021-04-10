@@ -10,7 +10,8 @@ A continuación se describen los principales elementos, regulaciones y solucione
 * Amigos: Son todos los usuarios que permiten a otro usuario acceder a su información.
 
 .Conceptros de desarrollo
-A través de GitHub, usaremos herramientas automáticas para verificar la calidad del código, para realizar pruebas y para comprobar la cobertura de las pruebas.
+A través de GitHub, usaremos Codacy para verificar la calidad del código, y Codecov para comprobar la cobertura de las pruebas.
+En cuanto a las pruebas, usaremos Jest en el caso de la API Rest y el script de test de react-scripts en el caso de la aplicación web.
 
 .Seguridad e información
 La información de nuestros usuarios está descentralizada gracias a los PODs. De esta manera garantizamos su independencia y seguridad.

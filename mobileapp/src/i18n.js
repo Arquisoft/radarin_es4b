@@ -28,7 +28,7 @@ export default function getText(key) {
       getAPod: 'Si no tienes un POD, puedes crear uno ',
       here: 'aquí',
       trustedApps:
-        'Si no sabes como añadir aplicaciones de confianza, puedes encontrar más información ',
+        'Si no sabes cómo añadir aplicaciones de confianza, puedes encontrar más información ',
       toastLogIn: 'Datos incorrectos',
       channelName: 'Localización',
       friendClose: ' está a ',

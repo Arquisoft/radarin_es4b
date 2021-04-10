@@ -3,6 +3,6 @@
 
 Lista de riesgos (ordenados de mayor a menor importancia): 
 
-* Falta de experiencia con el framework React. Deberíamos documentarnos correctamente antes de empezar a usarlo.
+* Falta de experiencia con los framework React y React Native. Deberíamos documentarnos correctamente antes de empezar a usarlo.
 * Escasa madurez de Solid, será más difícil encontrar soluciones a los problemas que se nos planteen.
 * Poca experiencia trabajando con JavaScript y ninguna trabajando con Node.js. También deberíamos documentarnos antes de empezar.

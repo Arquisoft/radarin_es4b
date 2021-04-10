@@ -27,7 +27,7 @@ right side
 
 right side
 ** Rendimiento
-*** Cuando un usuario soloicite que se le muestren las localizaciones de sus amigos, el sistema responderá en un tiempo razonable.
+*** Cuando un usuario solicite que se le muestren las localizaciones de sus amigos, el sistema responderá en un tiempo razonable.
 @endmindmap
 ----
 

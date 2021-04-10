@@ -9,7 +9,8 @@ En el desarrollo del proyecto se usarán las siguientes tecnologías:
 |===
 |Nombre de la tecnología|Objetivo al aplicarla|Justificación
 | JavaScript | Será usado como lenguaje de programación principal | Tenemos un poco de experiencia trabajando con JavaScript del lado del cliente.
-|React | Es una librería de JavaScript. Se utilizará para el desarrarrollo de la aplicación movil y de las interfaces de usuario de esta. | Es la propuesta y la más usada actualmente, por lo que podremos encontrar más documentación. 
+|React | Es una librería de JavaScript. Se utilizará para el desarrarrollo de la aplicación web. | Es la propuesta y la más usada actualmente, por lo que podremos encontrar más documentación. 
+|React Native | Es un framework de JavaScript para crear aplicaciones móviles que funcionen tanto en Android como en iOS. Se utilizará para el desarrollo de la aplicación móvil. | Nos permite desarrollar fácilmente aplicaciones que funcionen en todos los dispositivos móviles modernos y, al estar usando React para la aplicación web, será más sencillo aprender a usarlo.
 | Node.js | Entorno en tiempo de ejecución de código abierto, para la capa del servidor basado en JavaScript con una arquitectura orientada a eventos. | Es muy usado y será usada usada en otras asignaturas, por lo que podemos aprovechar conocimientos. 
 | Solid-auth-client | Libreria para autenticar al ususario del pod. | Única librería disponible para JavaScript. 
 | rdflib | Libreria para leer y escribir en los pods. | Permite leer y escribir en pods fácilmente. Hay otras librerías más sencillas pero esta es la que hemos encontrado más flexible. 

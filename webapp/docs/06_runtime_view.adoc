@@ -1,6 +1,27 @@
 [[section-runtime-view]]
-== Runtime View
+== Vista en tiempo de ejecucuión
 
+=== Iniciar sesión en la aplicación móvil
+
+* Iniciar sesión en Solid desde la aplicación móvil 
+
+[plantuml,"iniciar sesión app móvil",png]
+----
+actor Alice
+participant "Aplicación móvil"
+participant "API REST"
+participant "Proveedor de identidad de Solid"
+participant "Pod"
+Alice -> "Aplicación móvil": Introduce sus credenciales de Solid
+"Aplicación móvil" -> "API REST": Envía las credenciales de Alice
+"API REST" -> "Proveedor de identidad de Solid": Solicita autenticar a Alice
+"Proveedor de identidad de Solid" -> "Proveedor de identidad de Solid": Autentica a Alice
+"Proveedor de identidad de Solid" -> "API REST": Notificar que Alice ha sido autenticada
+"API REST" -> "Pod": Solicita la información personal de Alice
+"Pod" -> "API REST": Envía la información personal de Alice
+"API REST" -> "Aplicación móvil": Notifica que Alice ha sido autenticada y envía su información personal
+"Aplicación móvil" -> Alice: Muestra la pantalla de usuario autenticado
+----
 
 === Subir posición
 
@@ -9,14 +30,20 @@
 [plantuml,"Subir posición",png]
 ----
 actor Alice
-participant  "Aplicación movil"
+participant "Aplicación móvil"
+participant "Proveedor de localización"
 participant "API REST"
 participant "Base de datos"
-"Aplicación movil" -> Alice: Pedir permiso para usar su localizacion
-Alice -> "Aplicación movil": Dar acceso a su localización
-"Aplicación movil" -> "API REST": envia la localización
-"API REST" -> "Base de datos": almacena la localización
+Alice -> "Aplicación móvil": Activa el envío de localizaciones
+"Aplicación móvil" -> Alice: Pide permiso para usar su localizacion
+Alice -> "Aplicación móvil": Da acceso a su localización
+"Aplicación móvil" -> "Proveedor de localización": Se suscribe a acutalizaciones de localización
+"Proveedor de localización" -> "Aplicación móvil": Notifica una nueva localización
+"Aplicación móvil" -> "API REST": Envia la localización
+"API REST" -> "Base de datos": Almacena la localización
 ----
+
+El proveedor de localización es el propio del dispositivo móvil del usuario.
 
 === Ver localización de amigos cercanos
 * Se recibirán notificaciones de los amigos cercanos cada cierto tiempo.
@@ -24,19 +51,23 @@ Alice -> "Aplicación movil": Dar acceso a su localización
 [plantuml,"Ver localización de amigos cercanos",png]
 ----
 actor Alice
-participant  "Aplicación movil"
+participant "Aplicación móvil"
+participant "Proveedor de localización"
 participant "API REST"
 participant "Pod"
 participant "Base de datos"
-"Aplicación movil" -> "API REST": pide las ubicaciones de los amigos cercanos
-"API REST" -> "Pod": solicita la lista de amigos
-"Pod" -> "API REST": devuelve la lista de amigos
-"API REST" -> "Base de datos": pide las localizaciones
-"Base de datos" -> "API REST": devuelve las localizaciones
-"API REST" -> "API REST": filtra los más cercanos
-"API REST" -> "Aplicación movil": envía la lista de localizaciones de amigos cercanos
-"Aplicación movil" -> "Alice": notifica si tiene algún amigo cerca
+Alice -> "Aplicación móvil": Indica la distancia máxima para filtrar los amigos cercanos
+"Proveedor de localización" -> "Aplicación móvil": Notifica una nueva localización
+"Aplicación móvil" -> "API REST": Envia la localización
+"API REST" -> "Pod": Solicita la lista de amigos
+"Pod" -> "API REST": Devuelve la lista de amigos
+"API REST" -> "Base de datos": Consulta las localizaciones de los amigos cercanos
+"Base de datos" -> "API REST": Devuelve las localizaciones filtradas por distancia
+"API REST" -> "Aplicación móvil": Envía la lista de localizaciones de amigos cercanos
+"Aplicación móvil" -> "Alice": Notifica los amigos que tiene cerca
 ----
+
+Al igual que en el caso anterior, el proveedor de localización es el propio del dispositivo móvil del usuario.
 
 === Ver amigos en el mapa
 * Se mostrará un mapa en el que se podrán visualizar los amigos del usuario. 
