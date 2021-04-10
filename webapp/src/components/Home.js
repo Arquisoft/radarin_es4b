@@ -1,13 +1,15 @@
 import React from 'react';
 import Profile from './Profile/Profile';
+import { DivConFondo } from "../AppStyles"
+
 
 function Home(props) {
 
     return (
-        <div>
+        <DivConFondo>
             <h1>¡ Bienvenido a Radarin !</h1>
             <Profile />
-        </div>
+        </DivConFondo>
     );
 }
 

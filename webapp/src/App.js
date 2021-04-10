@@ -6,10 +6,11 @@ import solidauth from "solid-auth-client";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { LoggedIn, LoggedOut } from '@solid/react';
 
+
 //Imports componentes
 import SimpleMap from "./components/SimpleMap";
 import UsersMapList from "./components/UsersMapList";
-import UserFriendsList from "./components/UserFriendsList";
+import UserFriendsList from "./components/Friends/UserFriendsList";
 import Welcome from "./components/Welcome";
 import Navigation from "./components/Navigation";
 import LogIn from "./components/LogIn";
