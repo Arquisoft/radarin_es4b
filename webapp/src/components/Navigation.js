@@ -13,13 +13,6 @@ class Navigation extends React.Component {
 
                         <NavLink className="navbar-brand" to="/">Radarin</NavLink>
 
-
-                        <LoggedOut>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/logIn">Iniciar sesión</NavLink>
-                            </li>
-                        </LoggedOut>
-
                         <LoggedIn>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/amigos">Listar amigos</NavLink>
@@ -33,6 +26,17 @@ class Navigation extends React.Component {
                             </li>
                         </LoggedIn>
 
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <LoggedOut>
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/logIn">Iniciar sesión</NavLink>
+                            </li>
+                        </LoggedOut>
+
+
                         <LoggedIn>
                             <li className="nav-item">
                                 <NavLink className="nav-link" to="/logOut">Cerrar sesión</NavLink>
@@ -40,6 +44,7 @@ class Navigation extends React.Component {
                         </LoggedIn>
 
                     </ul>
+
                 </div>
             </nav>
         );
