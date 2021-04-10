@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set('useCreateIndex', true)
 
 // Esquema para las localizaciones de los usuarios
 const pointSchema = new mongoose.Schema({

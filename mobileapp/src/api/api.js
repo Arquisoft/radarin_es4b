@@ -61,7 +61,8 @@ export async function getFriendsClose(URL, location, maxDistance) {
  * }} credentials credenciales del usuario
  * @returns {Promise<{
  *  webId: String, 
- *  name: String
+ *  name: String,
+ *  photo: String
  * }>} información del usuario autenticado
  */
 export async function authenticate(credentials) {

@@ -5,6 +5,9 @@ const User = require("./models/users");
 const SolidNodeClient = require('solid-node-client').SolidNodeClient;
 const client = new SolidNodeClient();
 
+const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
+const VCARD = $rdf.Namespace('http://www.w3.org/2006/vcard/ns#');
+
 /**
  * Consultas los amigos de un usuario
  * @param {String} URL webId del usuario
@@ -17,7 +20,6 @@ async function getFriends(URL) {
     const fetcher = new $rdf.Fetcher(store);
     const me = store.sym(URL);
     const profile = me.doc();
-    const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
 
     // Carga el perfil del usuario
     await fetcher.load(profile);
@@ -170,6 +172,7 @@ router.get("/user/sample", async (req, res) => {
 // The response contains an user object with the following fields:
 //      webId
 //      name
+//      photo
 // For this to work, The user must have added 
 // https://solid-node-client as a trusted app on his pod
 router.post("/user/login", async (req, res) => {
@@ -186,15 +189,19 @@ router.post("/user/login", async (req, res) => {
         const fetcher = new $rdf.Fetcher(store);
         const me = store.sym(session.webId);
         const profile = me.doc();
-        const FOAF = $rdf.Namespace('http://xmlns.com/foaf/0.1/');
 
         // Carga el perfil del usuario
         await fetcher.load(profile);
-        // Consulta el nombre del usuario
+        // Consulta el y la foto nombre del usuario
         const name = store.any(me, FOAF('name'));
+        const photo = store.any(me, VCARD('hasPhoto'));
 
         res.status(200);
-        res.send({webId: session.webId, name: name.value});
+        res.send({
+            webId: session.webId, 
+            name: name.value, 
+            photo: photo?.value
+        });
     } catch (err) {
         res.status(403);
         console.log(err);

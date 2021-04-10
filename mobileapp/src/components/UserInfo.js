@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {Icon} from 'react-native-elements';
+import {Avatar} from 'react-native-elements';
 import CustomButton from './CustomButton';
 import getText from '../i18n.js';
 import {unsubscribe} from '../location.js';
@@ -8,7 +8,7 @@ import {unsubscribe} from '../location.js';
 const UserInfo = ({user, changeUser}) => {
   return (
     <View style={styles.container}>
-      <Icon name="account-circle" size={20} />
+      <Avatar rounded size={'medium'} source={{uri: 'https://davidaf.solidcommunity.net/profile/fotosolid.png'}} />
       <Text style={styles.text}>{user.name}</Text>
       <CustomButton
         action={() => {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     fontSize: 16,
     marginEnd: 'auto',
-    marginStart: 7,
+    marginStart: 15,
   },
   button: {
     width: 100,
