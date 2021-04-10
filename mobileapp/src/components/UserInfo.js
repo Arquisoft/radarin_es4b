@@ -8,7 +8,7 @@ import {unsubscribe} from '../location.js';
 const UserInfo = ({user, changeUser}) => {
   return (
     <View style={styles.container}>
-      <Avatar rounded size={'medium'} source={{uri: 'https://davidaf.solidcommunity.net/profile/fotosolid.png'}} />
+      <Avatar rounded size={'medium'} source={{uri: user.photo}} />
       <Text style={styles.text}>{user.name}</Text>
       <CustomButton
         action={() => {
