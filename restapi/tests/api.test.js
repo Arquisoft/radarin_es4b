@@ -64,6 +64,7 @@ describe('friends ', () => {
         expect(results[0].latitud).toBe(43.5405559);
         expect(results[0].longitud).toBe(-5.7009505);
         expect(results[0].altitud).toBe(50.0);
+        expect(results[0].distancia).toBeLessThan(100);
     });
 });
 

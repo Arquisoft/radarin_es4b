@@ -5,7 +5,13 @@ const User = require("./models/users");
 const SolidNodeClient = require('solid-node-client').SolidNodeClient;
 const client = new SolidNodeClient();
 
-async function getFriends(URL, query) {
+/**
+ * Consultas los amigos de un usuario
+ * @param {String} URL webId del usuario
+ * @returns {{namesQueries: Promise<{URL: String, name: String}>[], friends: String[]}} array de promesas que se resolveran
+ * con los nombres de cada amigo y array con los webIds de los amigos
+ */
+async function getFriends(URL) {
     // Inicialización de variables para consultas en pods
     const store = $rdf.graph();
     const fetcher = new $rdf.Fetcher(store);
@@ -34,10 +40,20 @@ async function getFriends(URL, query) {
                     URL: friend.value, 
                     name: friend.value
                 }}));
-    } 
+    }
+
+    return {
+        namesQueries: namesQueries,
+        friends: friends.map(friend => friend.value),
+    };
+}
+
+// Get friend list of a user
+router.post("/user/friends", async (req, res) => {
+    const {namesQueries, friends} = await getFriends(req.body.URL);
 
     //Consulta los usuarios (y sus localizaciones) con las URLs de los amigos en la bd
-    const usersQuery = User.find({...query, 'URL': {$in: friends.map(friend => friend.value)}}).sort('-_id');
+    const usersQuery = User.find({'URL': {$in: friends}}).sort('-_id');
 
     // Espera a que todas las consultas terminen
     return Promise.all([usersQuery, Promise.all(namesQueries).then(results => results)])
@@ -45,7 +61,7 @@ async function getFriends(URL, query) {
             const resultDb = results[0];
             const resultNames = results[1];
             //Asocia los resultados de la consulta a la bd con los nombres obtenidos de los pods
-            return resultDb.map(user => {
+            res.send(resultDb.map(user => {
                 return {
                     URL: user.URL,
                     nombre: resultNames.filter(result => result.URL === user.URL)[0].name,
@@ -54,31 +70,47 @@ async function getFriends(URL, query) {
                     altitud: user.altitud
                 };
             }
-        );
+        ));
     });
-}
-
-// Get friend list of a user
-router.post("/user/friends", async (req, res) => {
-    res.send(await getFriends(req.body.URL, {}));
 });
 
 // Get list of friends near a location
 router.post("/user/friends/near", async (req, res) => {
-    res.send(await getFriends(req.body.URL, 
+    const {namesQueries, friends} = await getFriends(req.body.URL);
+
+    //Consulta los usuarios cercanos (y sus localizaciones) con las URLs de los amigos en la bd
+    const usersAggregate = User.aggregate([
         {
-            location: {
-                $near: {
-                    $geometry: {
-                        type: "Point" ,
-                        coordinates: [req.body.longitud , req.body.latitud]
-                    },
-                    $maxDistance: req.body.maxDistancia,
-                    $minDistance: 0
-                }
-            }
+          $geoNear: {
+             near: { 
+                type: "Point" ,
+                coordinates: [req.body.longitud , req.body.latitud] 
+            },
+            distanceField: "distancia",
+            maxDistance: req.body.maxDistancia,
+            query: {'URL': {$in: friends}},
+          }
         }
-    ));
+     ])
+
+    // Espera a que todas las consultas terminen
+    return Promise.all([usersAggregate, Promise.all(namesQueries).then(results => results)])
+        .then(results => {
+            const resultDb = results[0];
+            const resultNames = results[1];
+            //Asocia los resultados de la consulta a la bd con los nombres obtenidos de los pods
+            res.send(resultDb.map(user => {
+                return {
+                    URL: user.URL,
+                    nombre: resultNames.filter(result => result.URL === user.URL)[0].name,
+                    latitud: user.location.coordinates[1],
+                    longitud: user.location.coordinates[0],
+                    altitud: user.altitud,
+                    distancia: user.distancia,
+                };
+            }
+        ));
+    });
 });
 
 // Registra un nuevo usuario, o actualiza su ubicación
