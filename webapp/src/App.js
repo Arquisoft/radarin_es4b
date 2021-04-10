@@ -122,6 +122,7 @@ class App extends React.Component {
               </Route>
 
               <Route path="/logOut"><LogOut logOut={this.logOut.bind(this)} /></Route>
+              
 
               <Route path="/"><Home /></Route>
 

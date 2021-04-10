@@ -15,7 +15,7 @@ function Home(props) {
 
               <Fragment>
                   <Header>
-                      <ImageRounded src={image} />
+                      <ImageRounded src={image} defaultSrc="/img/defaultUser.png" />
                   </Header>
                   <FormRenderContainer>
                       <h2><Value src="user.name"></Value></h2>
