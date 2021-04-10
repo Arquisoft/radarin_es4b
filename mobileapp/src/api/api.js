@@ -1,5 +1,10 @@
 const apiEndPoint = 'https://radarines4brestapi.herokuapp.com/api';
 
+/**
+ * Envía la localización del usuario
+ * @param {String} URL webId del usuario 
+ * @param {*} location localización del usuario
+ */
 export async function sendLocation(URL, location) {
   console.log(apiEndPoint);
   fetch(apiEndPoint + '/user/add', {
@@ -17,13 +22,20 @@ export async function sendLocation(URL, location) {
     .catch(error => console.log(error));
 }
 
-//Devuelve un array con objetos que tienen las siguientes propiedades:
-// - nombre
-// - latitud
-// - longitud
-// - altitud
-// - fecha
-// - URL
+/**
+ * Busca amigos del usuario cercanos a su localización
+ * @param {String} URL webId del usuario 
+ * @param {*} location localización del usuario
+ * @param {Number} maxDistance distancia máxima de los amigos al usuario
+ * @returns {Promise<{
+ *  URL: String, 
+ *  nombre: String, 
+ *  latitud: Number, 
+ *  longitud: Number,  
+ *  altitud: Number, 
+ *  distancia: Number
+ * }[]>} array de amigos cercanos
+ */
 export async function getFriendsClose(URL, location, maxDistance) {
   console.log(apiEndPoint);
   let response = await fetch(apiEndPoint + '/user/friends/near', {
@@ -40,6 +52,18 @@ export async function getFriendsClose(URL, location, maxDistance) {
   return await response.json();
 }
 
+/**
+ * Autentica al usuario en solid
+ * @param {{
+ *  idp: String, 
+ *  username: String, 
+ *  password: String
+ * }} credentials credenciales del usuario
+ * @returns {Promise<{
+ *  webId: String, 
+ *  name: String
+ * }>} información del usuario autenticado
+ */
 export async function authenticate(credentials) {
   console.log(apiEndPoint);
   try {

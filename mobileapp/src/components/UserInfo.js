@@ -27,13 +27,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     flexDirection: 'row',
     flexWrap: 'nowrap',
+    alignItems: 'center',
   },
   text: {
     flex: 1,
     flexWrap: 'wrap',
     fontSize: 16,
     marginEnd: 'auto',
-    marginStart: 5,
+    marginStart: 7,
   },
   button: {
     width: 100,

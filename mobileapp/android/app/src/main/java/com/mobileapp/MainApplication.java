@@ -10,8 +10,6 @@ import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.zoontek.rnpermissions.RNPermissionsPackage;
-import com.reactnativecommunity.geolocation.GeolocationPackage;
-import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;

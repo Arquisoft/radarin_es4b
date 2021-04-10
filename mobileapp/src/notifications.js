@@ -40,6 +40,10 @@ PushNotification.channelExists(LOCATION_CHANNEL_ID, exists => {
   } else console.log('Notification channel already created');
 });
 
+/**
+ * Muestra una notificación local
+ * @param {String} message mensaje de la notificación
+ */
 export function postNotification(message) {
   PushNotification.localNotification({
     channelId: LOCATION_CHANNEL_ID,
@@ -49,6 +53,9 @@ export function postNotification(message) {
   });
 }
 
+/**
+ * Borra todas las notificaciones
+ */
 export function clearNotfications() {
   PushNotification.removeAllDeliveredNotifications();
 }

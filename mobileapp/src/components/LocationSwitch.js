@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     marginEnd: 'auto',
-    marginStart: 5,
+    marginStart: 7,
   },
 });
 

@@ -1,5 +1,10 @@
 import I18n from 'react-native-i18n';
 
+/**
+ * Obtiene el texto asociado a una clave
+ * @param {String} key clave asociada al texto
+ * @returns {String} texto asociado a la clave
+ */
 export default function getText(key) {
   I18n.fallbacks = true;
 
@@ -26,7 +31,9 @@ export default function getText(key) {
         'Si no sabes como añadir aplicaciones de confianza, puedes encontrar más información ',
       toastLogIn: 'Datos incorrectos',
       channelName: 'Localización',
-      friendClose: ' está cerca',
+      friendClose: ' está a ',
+      friendDistance: ' metros',
+      maxDistance: 'Distancia máxima para notifiaciones de amigos:'
     },
     en: {
       location: 'Send my location',
@@ -50,7 +57,9 @@ export default function getText(key) {
         "If you don't know how to add a trusted app, you can find more information ",
       toastLogIn: 'Invalid log in data',
       channelName: 'Location',
-      friendClose: ' is close',
+      friendClose: ' is ',
+      friendDistance: ' meters away',
+      maxDistance: 'Max distance for friend notifications:'
     },
   };
   return I18n.t(key);

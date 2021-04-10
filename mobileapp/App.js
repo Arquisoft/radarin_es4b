@@ -6,6 +6,7 @@ import Header from './src/components/Header';
 import LocationSwitch from './src/components/LocationSwitch';
 import LoginForm from './src/components/LoginForm';
 import UserInfo from './src/components/UserInfo';
+import DistanceSlider from './src/components/DistanceSlider';
 
 const App = () => {
   const [user, setUser] = useState();
@@ -16,20 +17,20 @@ const App = () => {
         <Header></Header>
         <View
           style={{
-            marginTop: 40,
+            marginTop: 30,
             flex: 1,
           }}>
           {!user && <LoginForm changeUser={setUser}></LoginForm>}
           {user && (
             <View
               style={{
-                marginTop: 20,
                 marginStart: 15,
                 marginEnd: 15,
               }}>
               <UserInfo user={user} changeUser={setUser}/>
               <Divider />
               <LocationSwitch webId={user.webId} />
+              <DistanceSlider />
             </View>
           )}
         </View>
