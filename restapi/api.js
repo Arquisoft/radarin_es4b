@@ -200,7 +200,7 @@ router.post("/user/login", async (req, res) => {
         res.send({
             webId: session.webId, 
             name: name.value, 
-            photo: photo?.value
+            photo: photo? photo.value : null
         });
     } catch (err) {
         res.status(403);
