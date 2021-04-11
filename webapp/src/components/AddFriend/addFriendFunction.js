@@ -1,10 +1,16 @@
 import ldflex from "@solid/query-ldflex";
 
 
-export const addFriend = async (friendWebId, userWebId, caller) => {
+export const addFriend = async (friendWebId, userWebId) => {
 	console.log(friendWebId);
 	console.log(userWebId);
 
 
 	await ldflex[userWebId].knows.add(ldflex[friendWebId]);	
+
+
+
+	setTimeout(function() {
+		window.location.reload();
+	}, 1000);
 };

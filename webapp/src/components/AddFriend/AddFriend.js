@@ -36,7 +36,7 @@ class AddFriend extends React.Component {
                         <Form.Control name="url" type="text" placeholder="WebID/URL" onChange={this.changeUrl.bind(this)} value={this.state.friendWebId} required/>
                         <Form.Control.Feedback type="invalid">Escriba un WebID válido</Form.Control.Feedback>
                     </Form.Group>
-                    <Button variant="primary" onClick={() => addFriend(this.state.friendWebId,sessionStorage.getItem("webId"),this)}>Añadir</Button>
+                    <Button variant="primary" onClick={() => addFriend(this.state.friendWebId,sessionStorage.getItem("webId"))}>Añadir</Button>
                 </Form>
                 <div className="AddFriend-Alert">
                 {this.state.showAlert && <Alert variant="success" onClose={ this.setState((prevState) => ({ ...prevState, showAlert: true }))} dismissible>
