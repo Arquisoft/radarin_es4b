@@ -1,13 +1,14 @@
 import React from 'react';
 import Friend from "./Friend";
-import { DivConFondo, FriendsWrapper, FriendsCard, FriendsList } from "../../AppStyles"
+import { FriendsWrapper, FriendsCard, FriendsList, LoginWrapper } from "../../AppStyles"
+import AddFriend from '../AddFriend/AddFriend';
 
 function UserFriendsList(props) {
 
 
     return (
-        <DivConFondo>
-            <h1>Lista de amigos</h1>
+        <div>
+            <h1 className="h1Card">Lista de amigos</h1>
             <FriendsWrapper>
                 <FriendsCard className="friends-list">
                     <FriendsList src="user.friends">
@@ -17,7 +18,13 @@ function UserFriendsList(props) {
                     </FriendsList>
                 </FriendsCard>
             </FriendsWrapper>
-        </DivConFondo>
+
+            <LoginWrapper>
+            <FriendsCard>
+                <AddFriend/>
+                </FriendsCard>
+            </LoginWrapper>
+        </div>
     );
 }
 
