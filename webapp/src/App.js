@@ -25,12 +25,21 @@ class App extends React.Component {
     this.loadWebId(); 
     this.state = {
       users: [],
-      mapOptions: {
-        lat: "43.36",
-        lon: "-5.85",
-        zoom: 8,
-      },
+     lat: null,
+      lon: null,
+      marks: [],
+      webId: "",
+      logged: false,
+      zoom: 8
     };
+    const self = this;
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) { //watchPosition()
+        self.state.lat = position.coords.latitude
+        self.state.lon = position.coords.longitude
+      });
+
+    }
   }
 
   async loadWebId() {
@@ -78,8 +87,27 @@ class App extends React.Component {
     }));
     console.log(this.state);
   }
+  setMarks() {
 
+
+    this.state.marks.push({
+      nombre: 'YOU',
+      lat: this.state.lat,
+      lng: this.state.lon,
+    })
+
+      this.state.users.forEach(user => {
+      this.state.marks.push({
+        nombre: user.nombre,
+        lat: user.latitud,
+        lng: user.longitud,
+      });
+    });
+      
+    return this.state.marks;
+  }
   render() {
+    this.setMarks()
     return (
       <div className="App">
         <Router >
@@ -111,16 +139,10 @@ class App extends React.Component {
 
                   <SimpleMap
                     fetchUsers={this.fetchUsers.bind(this)}
-                    lat={this.state.mapOptions.lat}
-                    lon={this.state.mapOptions.lon}
-                    zoom={this.state.mapOptions.zoom}
-                    marks={this.state.users.map((user) => {
-                      return {
-                        nombre: user.nombre,
-                        lat: user.latitud,
-                        lng: user.longitud,
-                      };
-                    })}
+                    lat={this.state.lat}
+                    lon={this.state.lon}
+                    zoom={this.state.zoom}
+                    marks={this.state.marks}
                   />
                 </WhiteContainer>
               </Route>
