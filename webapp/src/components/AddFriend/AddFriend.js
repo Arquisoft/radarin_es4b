@@ -2,7 +2,6 @@ import Button from "react-bootstrap/Button";
 import React from 'react';
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
-import ldflex from "@solid/query-ldflex";
 import { addFriend } from "./addFriendFunction";
 
 
