@@ -39,3 +39,5 @@ Para alcanzar nuestros objetivos de calidad:
 Se realizarán reuniones en los laboratorios de la asignatura. Además, se realizarán reuniones privadas adicionales (acordadas entre los miembros del equipo). En todas estas reuniones se realizará un acta a modo de registro del estado del desarrollo en ese momento y de los acuerdos que se alcanzaron. 
 
 Haremos uso de un repositorio GitHub para tener un control de versiones de nuestro sistema. Usarmos issues para registrar las tareas a realizar y su estado. También se usarán para documentar los problemas que surjan durante el desarrollo.
+
+En cuanto al uso de Git, decidimos seguir un Trunk Based Development, es decir, hacer todos los commits sobre la rama principal del repositorio. De este modo conseguimos hacer despliegues frecuentes y evitamos problemas a la hora de integrar cambios de ramas muy diferentes.
