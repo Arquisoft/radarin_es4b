@@ -8,17 +8,20 @@ import getText from '../i18n.js';
 
 const LocationSwitch = props => {
   const [enabled, setEnabled] = useState(false);
-  const toggleSwitch = () =>
-    checkAndRequestPermissions(
-      () =>
-        checkLocationEnabled(
-          () => {
-            setEnabled(previousState => !previousState);
-          },
-          () => Toast.show(getText('toastLocation')),
-        ),
-      err => console.log(err),
-    );
+  const toggleSwitch = () => {
+    if (!enabled) {
+      checkAndRequestPermissions(
+        () =>
+          checkLocationEnabled(
+            () => {
+              setEnabled(true);
+            },
+            () => Toast.show(getText('toastLocation')),
+          ),
+        err => console.log(err),
+      );
+    } else setEnabled(false);
+  };
 
   const didMount = useRef(false);
 

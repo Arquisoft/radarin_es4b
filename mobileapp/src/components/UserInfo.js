@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Linking} from 'react-native';
 import {Avatar} from 'react-native-elements';
 import CustomButton from './CustomButton';
 import getText from '../i18n.js';
@@ -8,7 +8,16 @@ import {unsubscribe} from '../location.js';
 const UserInfo = ({user, changeUser}) => {
   return (
     <View style={styles.container}>
-      <Avatar rounded size={'medium'} source={{uri: user.photo}} />
+      <Avatar
+        rounded
+        onPress={() => Linking.openURL(user.webId)}
+        size={'medium'}
+        source={
+          user.photo
+            ? {uri: user.photo}
+            : require('../../resources/images/icon-user-default.png')
+        }
+      />
       <Text style={styles.text}>{user.name}</Text>
       <CustomButton
         action={() => {
@@ -34,7 +43,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     fontSize: 16,
     marginEnd: 'auto',
-    marginStart: 15,
+    marginStart: 10,
   },
   button: {
     width: 100,

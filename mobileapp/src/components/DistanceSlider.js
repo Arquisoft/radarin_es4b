@@ -1,14 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon, Slider} from 'react-native-elements';
 import {setMaxDistance} from '../location.js';
+import {getValue, storeValue} from '../storage.js';
 import getText from '../i18n.js';
 
 const DistanceSlider = () => {
   const [distance, setDistance] = useState(100);
+  const didMount = useRef(false);
 
   useEffect(() => {
-    setMaxDistance(distance);
+    getValue('maxDistance').then(value => {
+      if (value !== null) setDistance(JSON.parse(value));
+    });
+  }, []);
+
+  useEffect(() => {
+    if (didMount.current) {
+      setMaxDistance(distance);
+      storeValue('maxDistance', JSON.stringify(distance));
+    } else didMount.current = true;
   }, [distance]);
 
   return (
