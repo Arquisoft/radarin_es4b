@@ -69,6 +69,22 @@ Alice -> "Aplicación móvil": Indica la distancia máxima para filtrar los amig
 
 Al igual que en el caso anterior, el proveedor de localización es el propio del dispositivo móvil del usuario.
 
+=== Añadir y visualizar amigos
+* Añadir amigos de Solid desde la aplicación web.
+
+[plantuml,"Añadir y visualizar amigos",png]
+----
+actor Alice
+participant "Aplicación web"
+participant "Pod"
+Alice -> "Aplicación web": Introduce la WebID de su amigo
+"Aplicación web" -> "Pod": Recibe la orden a través de solid-ldflex
+"Pod" -> "Pod": Añade la WebID a la lista de amigos de Alice
+"Aplicación web" -> "Pod": Solicita la lista de amigos de Alice
+"Pod" -> "Aplicación web": Envía la lista de amigos actualizada
+"Aplicación web" -> "Alice": Muestra la lista actualizada
+----
+
 === Ver amigos en el mapa
 * Se mostrará un mapa en el que se podrán visualizar los amigos del usuario. 
 
