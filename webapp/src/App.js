@@ -95,13 +95,14 @@ class App extends React.Component {
       lng: this.state.lon,
     })
 
-    this.state.users.map((user) => {
+      users.forEach(element => {
       this.state.marks.push({
         nombre: user.nombre,
         lat: user.latitud,
         lng: user.longitud,
       });
-    })
+    });
+      
     return this.state.marks;
   }
   render() {
