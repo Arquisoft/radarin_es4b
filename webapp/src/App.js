@@ -88,7 +88,8 @@ class App extends React.Component {
     console.log(this.state);
   }
   setMarks() {
-    this.state.marks = []
+    this.setState((prevState) => ({
+      ...prevState, marks:{[]},});
 
     this.state.marks.push({
       nombre: 'YOU',
