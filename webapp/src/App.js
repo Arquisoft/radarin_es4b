@@ -88,7 +88,7 @@ class App extends React.Component {
     console.log(this.state);
   }
   setMarks() {
-    this.state.marks = null
+    this.state.marks = []
 
     this.state.marks.push({
       nombre: 'YOU',
