@@ -5,6 +5,7 @@ import { getFriends } from "./api/api";
 import solidauth from "solid-auth-client";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { LoggedIn, LoggedOut } from '@solid/react';
+import { WhiteContainer } from './AppStyles';
 
 
 //Imports componentes
@@ -97,7 +98,9 @@ class App extends React.Component {
               <Route path="/amigos"><UserFriendsList/></Route>
 
               <Route path="/mapa">
-                <div className="Friends">
+
+
+                <WhiteContainer className="Friends">
                   <div className="UsersList">
                     <UsersMapList
                       fetchUsers={this.fetchUsers.bind(this)}
@@ -119,7 +122,7 @@ class App extends React.Component {
                       };
                     })}
                   />
-                </div>
+                </WhiteContainer>
               </Route>
 
               <Route path="/logOut"><LogOut logOut={this.logOut.bind(this)} /></Route>

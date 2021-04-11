@@ -5,14 +5,10 @@ import { ListItemAvatar } from "@material-ui/core";
 
 
 // ESTILOS GENERALES DE LA APLICACIÓN 
-export const DivConFondo = styled.div`
-background-image: url("./img/fondo.jpg");
-background-repeat: repeat;
-height: 100%;
-width: 100%;
-position: absolute;
+export const WhiteContainer = styled.div`
+  background-color: white;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 `;
-
 
 // ESTILO SECCIÓN LOGIN
 export const LoginWrapper = styled.section`
@@ -20,8 +16,6 @@ display: flex;
 flex: 1 0 auto;
 align-items: center;
 justify-content: center;
-background-image: url("./img/concentric-hex-pattern_2x.png");
-background-repeat: repeat;
 padding: 60px 0;
 `;
 
@@ -41,7 +35,7 @@ export const ProfileWrapper = styled.section`
   flex: 1 0 auto;
   align-items: center;
   justify-content: center;
-  padding: 80px 0;
+  padding: 60px 0;
 `;
 export const ProfileContainer = styled.div`
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
@@ -81,7 +75,6 @@ display: flex;
 flex: 1 0 auto;
 align-items: center;
 justify-content: center;
-
 padding: 60px 0;
 `;
 

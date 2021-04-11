@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from "react-bootstrap/Button";
-import { DivConFondo, LoginContainer, LoginWrapper } from "../AppStyles"; 
+import { LoginContainer, LoginWrapper } from "../AppStyles";
 
 class LogIn extends React.Component {
-    
+
 
     async handleButton(e) {
         e.preventDefault()
@@ -12,8 +12,7 @@ class LogIn extends React.Component {
 
     render() {
         return (
-            <DivConFondo>
-                <LoginWrapper>
+            <LoginWrapper>
                 <LoginContainer>
                     <h2>Bienvenido</h2>
                     <br />
@@ -24,8 +23,7 @@ class LogIn extends React.Component {
                     <br />
                     <p>¿No tienes un POD? <a href="https://solidproject.org/users/get-a-pod">Hazte uno</a></p>
                 </LoginContainer>
-                </LoginWrapper>
-            </DivConFondo>
+            </LoginWrapper>
         );
     }
 }
