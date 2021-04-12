@@ -1,6 +1,11 @@
 import React, {useRef, useEffect, useState} from 'react';
 import {View, Switch, Text, StyleSheet} from 'react-native';
-import {subscribe, unsubscribe, checkLocationEnabled} from '../location';
+import {
+  subscribe,
+  unsubscribe,
+  isSubscribed,
+  checkLocationEnabled,
+} from '../location';
 import {checkAndRequestPermissions} from '../permissions';
 import {Icon} from 'react-native-elements';
 import Toast from 'react-native-simple-toast';
@@ -24,6 +29,16 @@ const LocationSwitch = props => {
   };
 
   const didMount = useRef(false);
+
+  useEffect(() => {
+    let mounted = true;
+    isSubscribed().then(subscribed => {
+      if (subscribed && mounted) setEnabled(true);
+    });
+    return function cleanup() {
+      mounted = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (didMount.current) enabled ? subscribe(props.webId) : unsubscribe();

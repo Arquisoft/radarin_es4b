@@ -25,18 +25,20 @@ function handleLocation(location) {
   console.log(selectedWebId);
   if (selectedWebId) {
     sendLocation(selectedWebId, location);
-    getFriendsClose(selectedWebId, location, maxDistance).then(results => {
-      console.log(results);
-      clearNotfications();
-      results.forEach(friend =>
-        postNotification(
+    getFriendsClose(selectedWebId, location, maxDistance)
+      .then(results => {
+        console.log(results);
+        clearNotfications();
+        results.forEach(friend =>
+          postNotification(
             friend.nombre +
-            getText('friendClose') +
-            friend.distancia.toFixed() +
-            getText('friendDistance'),
-        ),
-      );
-    });
+              getText('friendClose') +
+              friend.distancia.toFixed() +
+              getText('friendDistance'),
+          ),
+        );
+      })
+      .catch(err => console.log(err));
   }
 }
 
@@ -77,6 +79,15 @@ export function unsubscribe() {
 }
 
 /**
+ * Comprueba si la aplicación está suscrita a las actualizaciones de localización
+ * @returns {Promise<Boolean>} promesa que se resuelve a `true` si está suscrita,
+ *  o `false` si no
+ */
+export async function isSubscribed() {
+  return await Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME);
+}
+
+/**
  * Comprueba si el servicio de ubicación está activado
  * @param {Function} enabledCallback función a la que se llamará si está activado
  * @param {Function} disabledCallback función a la que se llamará si no está activado
@@ -89,7 +100,7 @@ export function checkLocationEnabled(enabledCallback, disabledCallback) {
 
 /**
  * Establece la distancia máxima para filtrar las notificaciones de amigos cercanos
- * @param {Number} distance 
+ * @param {Number} distance
  */
 export function setMaxDistance(distance) {
   maxDistance = distance;

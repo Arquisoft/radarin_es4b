@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {Pressable, Text, StyleSheet} from 'react-native';
 
 const CustomButton = ({
@@ -8,13 +8,23 @@ const CustomButton = ({
   customContentStyles,
 }) => {
   const [pressed, setPressed] = useState(false);
+  const mounted = useRef(false);
+
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
   return (
     <Pressable
       style={customContainerStyles}
       onPress={action}
       onPressIn={() => setPressed(true)}
-      onPressOut={() => setPressed(false)}>
+      onPressOut={() => {
+        if (mounted) setPressed(false);
+      }}>
       <Text
         style={{
           ...styles.button,
