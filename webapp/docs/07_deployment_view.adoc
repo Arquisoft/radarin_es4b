@@ -11,11 +11,11 @@ node "Heroku" {
     node "BD"
     node "Aplicación web" 
 }
-node "Aplicación movil"
+node "Aplicación móvil"
 @enduml
 ----
 
-La API REST, la base de datos y la aplicación web se desplegaran como contenedores docker independientes en un servidor de integración continua Heroku. Por otro lado, también se generará un APK de la aplicación móvil en cada despliegue. Los despliegues se harán cada vez que se haga un commit en la rama principal del repositorio en GitHub. 
+La API REST, la base de datos y la aplicación web se desplegaran como contenedores docker independientes en un servidor de integración continua Heroku. Por otro lado, también se generará un APK de la aplicación móvil en cada despliegue. Los despliegues se harán cada vez que se haga un commit en la rama principal del repositorio en GitHub y se gestionarán a través de GitHub Actions. 
 
 El APK que se generará será una versión para depuración, ya que de este modo se genera autofirmado y se puede instalar en cualquier dispositivo sin necesidad de firmarlo manualmente. No generamos una versión para iOS de la aplicación móvil porque la única manera de distribuir aplicaciones para este sistema operativo es a través de la App Store, y esto implica pagar una suscripción.
 

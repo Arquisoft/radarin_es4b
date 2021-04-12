@@ -17,6 +17,8 @@ En el desarrollo del proyecto se usarán las siguientes tecnologías:
 | Google Maps API | API para ver las localizaciones en el mapa | Se tiene expriencia de otras asignaturas. 
 | MongoDB | Base de datos NoSQL para almacenar las localizaciones de los usuarios. | Tiene buen rendimiento en el ámbito actual y contamos con ejemplos.
 | mongoose | Librería JavaScript que permite crear esquemas para trabajar con MongoDB. | Facilita el trabajo con MongoDB ya que el uso de esquemas evita realizar conversiones y validaciones. 
+| expo-location y expo-task-manager | Librerías para React Native que permiten trabajar con la localización del dispositivo y programar tareas en segundo plano. La usaremos para enviar las ubicaciones del usuario desde su dispositivo móvil en segundo plano. | Es la mejor combinación de librerías para conseguir nuestro objetivo, ya que hay pocas librerías para React Native que permitan enviar localizaciones en segundo plano y la mayoría no funcionan correctamente.
+| react-native-push-notification | Librería para React Native que permite enviar y recibir notificaciones push y notificaciones locales. La usaremos para enviar notificaciones locales sobre amigos cercanos al usuario. | Es la librería más completa y mejor documentada para trabajar con notificaciones locales en React Native.
 |===
 
 === ¿ Cómo llegaremos a los objetivos de calidad ?
