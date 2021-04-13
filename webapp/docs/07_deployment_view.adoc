@@ -8,8 +8,10 @@
 @startuml
 node "Heroku" {
     node "API REST"
-    node "BD"
     node "Aplicación web" 
+}
+node "MongoDB Atlas" {
+    node "BD"
 }
 node "Aplicación móvil"
 @enduml
