@@ -33,7 +33,8 @@ export default function getText(key) {
       channelName: 'Localización',
       friendClose: ' está a ',
       friendDistance: ' metros',
-      maxDistance: 'Distancia máxima para notifiaciones de amigos:'
+      maxDistance: 'Distancia máxima para notifiaciones de amigos:',
+      lastLocation: 'Tu última ubicación',
     },
     en: {
       location: 'Send my location',
@@ -59,7 +60,8 @@ export default function getText(key) {
       channelName: 'Location',
       friendClose: ' is ',
       friendDistance: ' meters away',
-      maxDistance: 'Max distance for friend notifications:'
+      maxDistance: 'Max distance for friend notifications:',
+      lastLocation: 'Your last location',
     },
   };
   return I18n.t(key);

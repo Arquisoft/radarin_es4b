@@ -5,6 +5,7 @@ import {
   unsubscribe,
   isSubscribed,
   checkLocationEnabled,
+  getCurrentLocation,
 } from '../location';
 import {checkAndRequestPermissions} from '../permissions';
 import {Icon} from 'react-native-elements';
@@ -41,8 +42,20 @@ const LocationSwitch = props => {
   }, []);
 
   useEffect(() => {
-    if (didMount.current) enabled ? subscribe(props.webId) : unsubscribe();
+    let mounted = true;
+    if (didMount.current)
+      if (enabled) {
+        // Solicita la ubicación actual para el usuario vea cambiar su ubicación
+        // sin tener que esperar a que la tarea en segundo plano reciba una ubicación nueva
+        getCurrentLocation(location => {
+          if (mounted) props.onLocationChange(location);
+        });
+        subscribe(props.webId, props.onLocationChange);
+      } else unsubscribe();
     else didMount.current = true;
+    return function cleanup() {
+      mounted = false;
+    };
   }, [enabled]);
 
   return (

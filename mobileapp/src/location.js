@@ -3,9 +3,14 @@ import * as TaskManager from 'expo-task-manager';
 import {sendLocation, getFriendsClose} from './api/api.js';
 import getText from './i18n.js';
 import {postNotification, clearNotfications} from './notifications';
+import {AppState} from 'react-native';
+import Toast from 'react-native-simple-toast';
+import {checkAndRequestPermissions} from './permissions.js';
+import {storeObject} from './storage.js';
 
 const LOCATION_TASK_NAME = 'background_location_task';
 let selectedWebId = undefined;
+let handleLocationOnForeground = () => {};
 let maxDistance = 100;
 
 function defineTaskIfNotDefined() {
@@ -39,6 +44,10 @@ function handleLocation(location) {
         );
       })
       .catch(err => console.log(err));
+    storeObject('lastLocation', location);
+    if (AppState.currentState === 'active') {
+      handleLocationOnForeground(location);
+    }
   }
 }
 
@@ -47,11 +56,34 @@ function locationErrorHandler(error) {
 }
 
 /**
+ * Solicita la ubicación actual del usuario
+ * @param {(location: Location.LocationObject) => void} onLocationReceived callback llamado
+ * cuando se recibe la localización
+ */
+export function getCurrentLocation(onLocationReceived) {
+  checkAndRequestPermissions(
+    () =>
+      checkLocationEnabled(
+        () => {
+          Location.getCurrentPositionAsync().then(location =>
+            onLocationReceived(location),
+          );
+        },
+        () => Toast.show(getText('toastLocation')),
+      ),
+    err => console.log(err),
+  );
+}
+
+/**
  * Hace que la aplicación escuche las actualizaciones de ubicación
  * @param {String} webId webId del usuario actual
+ * @param {(location: Location.LocationObject) => void} foregroundLocationHandler callback llamado
+ * cuando se recibe una nueva localización y la aplicación está en primer plano
  */
-export function subscribe(webId) {
+export function subscribe(webId, foregroundLocationHandler) {
   selectedWebId = webId;
+  handleLocationOnForeground = foregroundLocationHandler;
   defineTaskIfNotDefined();
   Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME).then(started => {
     if (!started) {

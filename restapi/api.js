@@ -136,13 +136,12 @@ router.post("/user/friends/near", async (req, res) => {
 //      longitud
 //      altitud
 router.post("/user/add", async (req, res) => {
-  existingUser = await User.findOne({ URL: req.body.URL }).exec();
+  user = await User.findOne({ URL: req.body.URL }).exec();
   // Si ya está el usuario, se actializa su ubicación
-  if (existingUser) {
-    existingUser.location.coordinates = [req.body.longitud, req.body.latitud];
-    existingUser.altitud = req.body.altitud;
-    existingUser.fecha = req.body.fecha;
-    await existingUser.save();
+  if (user) {
+    user.location.coordinates = [req.body.longitud, req.body.latitud];
+    user.altitud = req.body.altitud;
+    user.fecha = req.body.fecha;
   }
   // Si no, se crea uno nuevo
   else {
@@ -155,9 +154,8 @@ router.post("/user/add", async (req, res) => {
       altitud: req.body.altitud,
       fecha: req.body.fecha,
     });
-    await user.save();
   }
-
+  await user.save();
   res.send("Update successful");
 });
 

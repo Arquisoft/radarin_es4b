@@ -1,27 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Icon, Slider} from 'react-native-elements';
-import {setMaxDistance} from '../location.js';
-import {getValue, storeValue} from '../storage.js';
 import getText from '../i18n.js';
 
-const DistanceSlider = () => {
-  const [distance, setDistance] = useState(100);
-  const didMount = useRef(false);
-
-  useEffect(() => {
-    getValue('maxDistance').then(value => {
-      if (value !== null) setDistance(JSON.parse(value));
-    });
-  }, []);
-
-  useEffect(() => {
-    if (didMount.current) {
-      setMaxDistance(distance);
-      storeValue('maxDistance', JSON.stringify(distance));
-    } else didMount.current = true;
-  }, [distance]);
-
+const DistanceSlider = ({distance, changeDistance}) => {
   return (
     <View style={styles.container}>
       <View style={styles.infoContainer}>
@@ -36,7 +18,7 @@ const DistanceSlider = () => {
       <Slider
         style={styles.slider}
         value={distance}
-        onValueChange={value => setDistance(value)}
+        onValueChange={value => changeDistance(value)}
         allowTouchTrack={true}
         maximumValue={1000}
         minimumValue={10}
