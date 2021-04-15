@@ -4,7 +4,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Header from './src/components/Header';
 import LoginForm from './src/components/LoginForm';
 import {getObject, storeObject} from './src/storage.js';
-import LoggedInView from './src/components/LoggedInView';
+import LoggedInView from './src/components/LoggedInView.js';
+import * as CurrentUser from './src/user.js';
 
 const App = () => {
   const [user, setUser] = useState();
@@ -17,8 +18,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (didMount.current) storeObject('user', user);
-    else didMount.current = true;
+    if (didMount.current) {
+      storeObject('user', user);
+      CurrentUser.setWebId(user?.webId);
+    } else didMount.current = true;
   }, [user]);
 
   return (

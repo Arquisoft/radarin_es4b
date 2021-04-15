@@ -1,19 +1,20 @@
 import * as Location from 'expo-location';
 import * as TaskManager from 'expo-task-manager';
-import {sendLocation, getFriendsClose} from './api/api.js';
+import * as CurrentUser from './user.js';
+import {sendLocation} from './api/api.js';
 import getText from './i18n.js';
-import {postNotification, clearNotfications} from './notifications';
 import {AppState} from 'react-native';
 import Toast from 'react-native-simple-toast';
 import {checkAndRequestPermissions} from './permissions.js';
 import {storeObject} from './storage.js';
 
 const LOCATION_TASK_NAME = 'background_location_task';
-let selectedWebId = undefined;
 let handleLocationOnForeground = () => {};
-let maxDistance = 100;
 
-function defineTaskIfNotDefined() {
+/**
+ * Define la tarea en segundo plano si no se ha definido todavía
+ */
+export function defineTaskIfNotDefined() {
   if (!TaskManager.isTaskDefined(LOCATION_TASK_NAME)) {
     TaskManager.defineTask(LOCATION_TASK_NAME, ({data: {locations}, error}) => {
       if (error) {
@@ -26,25 +27,13 @@ function defineTaskIfNotDefined() {
 }
 
 function handleLocation(location) {
+  let webId = CurrentUser.getWebId();
   console.log(location);
-  console.log(selectedWebId);
-  if (selectedWebId) {
-    sendLocation(selectedWebId, location);
-    getFriendsClose(selectedWebId, location, maxDistance)
-      .then(results => {
-        console.log(results);
-        clearNotfications();
-        results.forEach(friend =>
-          postNotification(
-            friend.nombre +
-              getText('friendClose') +
-              friend.distancia.toFixed() +
-              getText('friendDistance'),
-          ),
-        );
-      })
-      .catch(err => console.log(err));
-    storeObject('lastLocation', location);
+  console.log(webId);
+  if (webId) {
+    CurrentUser.setLastUserLocation(location);
+    sendLocation(webId, location);
+    storeObject(`${webId}-lastLocation`, location);
     if (AppState.currentState === 'active') {
       handleLocationOnForeground(location);
     }
@@ -57,17 +46,17 @@ function locationErrorHandler(error) {
 
 /**
  * Solicita la ubicación actual del usuario
- * @param {(location: Location.LocationObject) => void} onLocationReceived callback llamado
- * cuando se recibe la localización
  */
-export function getCurrentLocation(onLocationReceived) {
+export function getCurrentLocation() {
   checkAndRequestPermissions(
     () =>
       checkLocationEnabled(
         () => {
-          Location.getCurrentPositionAsync().then(location =>
-            onLocationReceived(location),
-          );
+          Location.getCurrentPositionAsync({
+            accuracy: Location.Accuracy.Highest,
+          })
+            .then(location => handleLocation(location))
+            .catch(locationErrorHandler);
         },
         () => Toast.show(getText('toastLocation')),
       ),
@@ -77,13 +66,8 @@ export function getCurrentLocation(onLocationReceived) {
 
 /**
  * Hace que la aplicación escuche las actualizaciones de ubicación
- * @param {String} webId webId del usuario actual
- * @param {(location: Location.LocationObject) => void} foregroundLocationHandler callback llamado
- * cuando se recibe una nueva localización y la aplicación está en primer plano
  */
-export function subscribe(webId, foregroundLocationHandler) {
-  selectedWebId = webId;
-  handleLocationOnForeground = foregroundLocationHandler;
+export function subscribe() {
   defineTaskIfNotDefined();
   Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME).then(started => {
     if (!started) {
@@ -131,9 +115,10 @@ export function checkLocationEnabled(enabledCallback, disabledCallback) {
 }
 
 /**
- * Establece la distancia máxima para filtrar las notificaciones de amigos cercanos
- * @param {Number} distance
+ * Establece el manejador que se ejecutará cuando se reciba una localización en primer plano
+ * @param {(location: Location.LocationObject) => void} foregroundLocationHandler callback llamado
+ * cuando se recibe una nueva localización y la aplicación está en primer plano
  */
-export function setMaxDistance(distance) {
-  maxDistance = distance;
+export function setForegroundLocationHandler(foregroundLocationHandler) {
+  handleLocationOnForeground = foregroundLocationHandler;
 }

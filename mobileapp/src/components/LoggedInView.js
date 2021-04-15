@@ -1,12 +1,13 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {View} from 'react-native';
+import {View, AppState} from 'react-native';
 import {Divider} from 'react-native-elements';
 import LocationSwitch from './LocationSwitch.js';
 import UserInfo from './UserInfo.js';
 import DistanceSlider from './DistanceSlider.js';
 import Map from './Map.js';
 import {getObject, storeObject, getValue, storeValue} from '../storage.js';
-import {setMaxDistance} from '../location.js';
+import {startFriendUpdates, setMaxDistance} from '../friends.js';
+import * as CurrentUser from '../user.js';
 
 const LoggedInView = ({user, changeUser}) => {
   const [mapRegion, setMapRegion] = useState({
@@ -17,6 +18,7 @@ const LoggedInView = ({user, changeUser}) => {
   });
   const [distance, setDistance] = useState(100);
   const [lastLocation, setLastlocation] = useState(null);
+  const [friends, setFriends] = useState([]);
   const didMount = useRef(false);
 
   useEffect(() => {
@@ -26,10 +28,27 @@ const LoggedInView = ({user, changeUser}) => {
     getValue('maxDistance').then(value => {
       if (value !== null) setDistance(JSON.parse(value));
     });
-    getObject('lastLocation').then(location => {
-      if (location !== null) setLastlocation(location);
+    getObject(`${user.webId}-lastLocation`).then(location => {
+      if (location !== null) {
+        setLastlocation(location);
+        CurrentUser.setLastUserLocation(location);
+      }
     });
+    startFriendUpdates(friends => setFriends(friends));
+    AppState.addEventListener('change', handleAppStateChange);
+
+    return () => {
+      AppState.removeEventListener('change', handleAppStateChange);
+    };
   }, []);
+
+  const handleAppStateChange = state => {
+    if (state === 'active') {
+      getObject(`${user.webId}-lastLocation`).then(location => {
+        if (location !== null) setLastlocation(location);
+      });
+    }
+  };
 
   useEffect(() => {
     let mounted = didMount.current;
@@ -77,7 +96,7 @@ const LoggedInView = ({user, changeUser}) => {
         }}>
         <UserInfo user={user} changeUser={changeUser} />
         <Divider />
-        <LocationSwitch webId={user.webId} onLocationChange={setLastlocation} />
+        <LocationSwitch onLocationChange={setLastlocation} />
         <DistanceSlider distance={distance} changeDistance={setDistance} />
       </View>
       <Map
@@ -85,6 +104,7 @@ const LoggedInView = ({user, changeUser}) => {
         changeRegion={setMapRegion}
         lastUserLocation={lastLocation}
         locationDistance={distance}
+        friends={friends}
       />
     </View>
   );

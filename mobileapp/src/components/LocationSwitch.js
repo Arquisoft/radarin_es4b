@@ -6,6 +6,8 @@ import {
   isSubscribed,
   checkLocationEnabled,
   getCurrentLocation,
+  defineTaskIfNotDefined,
+  setForegroundLocationHandler,
 } from '../location';
 import {checkAndRequestPermissions} from '../permissions';
 import {Icon} from 'react-native-elements';
@@ -33,6 +35,7 @@ const LocationSwitch = props => {
 
   useEffect(() => {
     let mounted = true;
+    defineTaskIfNotDefined();
     isSubscribed().then(subscribed => {
       if (subscribed && mounted) setEnabled(true);
     });
@@ -45,12 +48,12 @@ const LocationSwitch = props => {
     let mounted = true;
     if (didMount.current)
       if (enabled) {
+        setForegroundLocationHandler(props.onLocationChange);
         // Solicita la ubicación actual para el usuario vea cambiar su ubicación
         // sin tener que esperar a que la tarea en segundo plano reciba una ubicación nueva
-        getCurrentLocation(location => {
-          if (mounted) props.onLocationChange(location);
-        });
-        subscribe(props.webId, props.onLocationChange);
+        getCurrentLocation();
+        // Espera un segundo para que no lleguen varias localizaciones a la vez
+        setTimeout(() => subscribe(), 1000);
       } else unsubscribe();
     else didMount.current = true;
     return function cleanup() {

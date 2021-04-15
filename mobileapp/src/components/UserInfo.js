@@ -4,6 +4,7 @@ import {Avatar} from 'react-native-elements';
 import CustomButton from './CustomButton';
 import getText from '../i18n.js';
 import {unsubscribe} from '../location.js';
+import { stopFriendUpdates } from '../friends';
 
 const UserInfo = ({user, changeUser}) => {
   return (
@@ -22,6 +23,7 @@ const UserInfo = ({user, changeUser}) => {
       <CustomButton
         action={() => {
           unsubscribe();
+          stopFriendUpdates();
           changeUser(null);
         }}
         text={getText('logOut')}

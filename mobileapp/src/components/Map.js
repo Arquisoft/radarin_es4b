@@ -3,7 +3,13 @@ import {View, StyleSheet} from 'react-native';
 import MapView, {Circle, Marker} from 'react-native-maps';
 import getText from '../i18n.js';
 
-const Map = ({region, changeRegion, lastUserLocation, locationDistance}) => {
+const Map = ({
+  region,
+  changeRegion,
+  lastUserLocation,
+  locationDistance,
+  friends,
+}) => {
   return (
     <View style={styles.container}>
       <MapView
@@ -30,6 +36,15 @@ const Map = ({region, changeRegion, lastUserLocation, locationDistance}) => {
             pinColor={'aqua'}
           />
         )}
+        {friends.map(friend => (
+          <Marker
+            key={friend.URL}
+            coordinate={{
+              latitude: friend.latitud,
+              longitude: friend.longitud,
+            }}
+            title={friend.nombre}></Marker>
+        ))}
       </MapView>
     </View>
   );
