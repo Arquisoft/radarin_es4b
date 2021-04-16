@@ -33,7 +33,8 @@ export async function sendLocation(URL, location) {
  *  latitud: Number, 
  *  longitud: Number,  
  *  altitud: Number, 
- *  distancia: Number
+ *  distancia: Number,
+ *  fecha: String,
  * }[]>} array de amigos cercanos
  */
 export async function getFriendsClose(URL, location, maxDistance) {

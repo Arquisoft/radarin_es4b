@@ -33,6 +33,11 @@ const Map = ({
               longitude: lastUserLocation.coords.longitude,
             }}
             title={getText('lastLocation')}
+            description={
+              new Date(lastUserLocation.timestamp).toLocaleDateString() +
+              ' ' +
+              new Date(lastUserLocation.timestamp).toLocaleTimeString()
+            }
             pinColor={'aqua'}
           />
         )}
@@ -43,13 +48,17 @@ const Map = ({
               latitude: friend.latitud,
               longitude: friend.longitud,
             }}
+            description={
+              new Date(friend.fecha).toLocaleDateString() +
+              ' ' +
+              new Date(friend.fecha).toLocaleTimeString()
+            }
             title={friend.nombre}></Marker>
         ))}
       </MapView>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     height: '100%',

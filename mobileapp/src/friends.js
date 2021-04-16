@@ -6,19 +6,21 @@ import {clearNotfications, postNotification} from './notifications.js';
 import getText from './i18n.js';
 
 let maxDistance = 100;
+let foregroundFriendsHandler = () => {};
 
-export function startFriendUpdates(handleUpdateOnForeground) {
-  BackgroundTimer.stopBackgroundTimer();
-  BackgroundTimer.runBackgroundTimer(() => {
-    if (CurrentUser.getLastUserLocation() && CurrentUser.getWebId()) {
-      console.log('Getting close friends...');
-      getFriendsClose(
-        CurrentUser.getWebId(),
-        CurrentUser.getLastUserLocation(),
-        maxDistance,
-      )
-        .then(results => {
-          console.log(results);
+export function getCurrentFriendsClose() {
+  if (CurrentUser.getLastUserLocation() && CurrentUser.getWebId()) {
+    console.log('Getting close friends...');
+    getFriendsClose(
+      CurrentUser.getWebId(),
+      CurrentUser.getLastUserLocation(),
+      maxDistance,
+    )
+      .then(results => {
+        console.log(results);
+        if (AppState.currentState === 'active') {
+          foregroundFriendsHandler(results);
+        } else {
           clearNotfications();
           results.forEach(friend =>
             postNotification(
@@ -28,17 +30,23 @@ export function startFriendUpdates(handleUpdateOnForeground) {
                 getText('friendDistance'),
             ),
           );
-          if (AppState.currentState === 'active') {
-            handleUpdateOnForeground(results);
-          }
-        })
-        .catch(err => console.log(err));
-    }
-  }, 10000);
+        }
+      })
+      .catch(err => console.log(err));
+  }
+}
+
+export function startFriendUpdates() {
+  BackgroundTimer.stopBackgroundTimer();
+  BackgroundTimer.runBackgroundTimer(getCurrentFriendsClose, 60000);
 }
 
 export function stopFriendUpdates() {
   BackgroundTimer.stopBackgroundTimer();
+}
+
+export function setForegroundFriendsHandler(handleUpdateOnForeground) {
+  foregroundFriendsHandler = handleUpdateOnForeground;
 }
 
 /**

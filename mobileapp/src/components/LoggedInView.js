@@ -6,8 +6,14 @@ import UserInfo from './UserInfo.js';
 import DistanceSlider from './DistanceSlider.js';
 import Map from './Map.js';
 import {getObject, storeObject, getValue, storeValue} from '../storage.js';
-import {startFriendUpdates, setMaxDistance} from '../friends.js';
+import {
+  startFriendUpdates,
+  setMaxDistance,
+  setForegroundFriendsHandler,
+  getCurrentFriendsClose,
+} from '../friends.js';
 import * as CurrentUser from '../user.js';
+import {setForegroundLocationHandler} from '../location.js';
 
 const LoggedInView = ({user, changeUser}) => {
   const [mapRegion, setMapRegion] = useState({
@@ -22,6 +28,11 @@ const LoggedInView = ({user, changeUser}) => {
   const didMount = useRef(false);
 
   useEffect(() => {
+    setForegroundLocationHandler(location => {
+      setLastlocation(location);
+      getCurrentFriendsClose();
+    });
+    setForegroundFriendsHandler(friends => setFriends(friends));
     getObject('region').then(region => {
       if (region !== null) setMapRegion(region);
     });
@@ -34,7 +45,7 @@ const LoggedInView = ({user, changeUser}) => {
         CurrentUser.setLastUserLocation(location);
       }
     });
-    startFriendUpdates(friends => setFriends(friends));
+    startFriendUpdates();
     AppState.addEventListener('change', handleAppStateChange);
 
     return () => {
@@ -44,6 +55,7 @@ const LoggedInView = ({user, changeUser}) => {
 
   const handleAppStateChange = state => {
     if (state === 'active') {
+      getCurrentFriendsClose();
       getObject(`${user.webId}-lastLocation`).then(location => {
         if (location !== null) setLastlocation(location);
       });
@@ -57,8 +69,9 @@ const LoggedInView = ({user, changeUser}) => {
       if (!onTimeout) {
         onTimeout = true;
         setTimeout(() => {
-          if (mounted)
+          if (mounted) {
             storeObject('region', mapRegion).then(() => (onTimeout = false));
+          }
         }, 1000);
       }
     } else didMount.current = true;
@@ -75,10 +88,12 @@ const LoggedInView = ({user, changeUser}) => {
       if (!onTimeout) {
         onTimeout = true;
         setTimeout(() => {
-          if (mounted)
+          if (mounted) {
+            getCurrentFriendsClose();
             storeValue('maxDistance', JSON.stringify(distance)).then(
               () => (onTimeout = false),
             );
+          }
         }, 1000);
       }
     } else didMount.current = true;
@@ -96,7 +111,7 @@ const LoggedInView = ({user, changeUser}) => {
         }}>
         <UserInfo user={user} changeUser={changeUser} />
         <Divider />
-        <LocationSwitch onLocationChange={setLastlocation} />
+        <LocationSwitch />
         <DistanceSlider distance={distance} changeDistance={setDistance} />
       </View>
       <Map

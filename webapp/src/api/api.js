@@ -9,7 +9,8 @@
  *  nombre: String, 
  *  latitud: Number, 
  *  longitud: Number,  
- *  altitud: Number
+ *  altitud: Number,
+ *  fecha: String,
  * }[]>} array de amigos del usuario
  */
 export async function getFriends(URL){

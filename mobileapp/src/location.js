@@ -72,6 +72,7 @@ export function subscribe() {
   Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME).then(started => {
     if (!started) {
       Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
+        accuracy: Location.Accuracy.High,
         foregroundService: {
           notificationTitle: 'Radarin',
           notificationBody: getText('usingLocation'),
@@ -100,7 +101,11 @@ export function unsubscribe() {
  *  o `false` si no
  */
 export async function isSubscribed() {
-  return await Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME);
+  try {
+    return await Location.hasStartedLocationUpdatesAsync(LOCATION_TASK_NAME);
+  } catch (err) {
+    return false;
+  }
 }
 
 /**

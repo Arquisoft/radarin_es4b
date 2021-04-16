@@ -80,6 +80,7 @@ router.post("/user/friends", async (req, res) => {
           latitud: user.location.coordinates[1],
           longitud: user.location.coordinates[0],
           altitud: user.altitud,
+          fecha: user.fecha,
         };
       })
     );
@@ -123,6 +124,7 @@ router.post("/user/friends/near", async (req, res) => {
           longitud: user.location.coordinates[0],
           altitud: user.altitud,
           distancia: user.distancia,
+          fecha: user.fecha,
         };
       })
     );

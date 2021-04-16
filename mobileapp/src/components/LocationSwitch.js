@@ -7,14 +7,13 @@ import {
   checkLocationEnabled,
   getCurrentLocation,
   defineTaskIfNotDefined,
-  setForegroundLocationHandler,
 } from '../location';
 import {checkAndRequestPermissions} from '../permissions';
 import {Icon} from 'react-native-elements';
 import Toast from 'react-native-simple-toast';
 import getText from '../i18n.js';
 
-const LocationSwitch = props => {
+const LocationSwitch = () => {
   const [enabled, setEnabled] = useState(false);
   const toggleSwitch = () => {
     if (!enabled) {
@@ -48,7 +47,6 @@ const LocationSwitch = props => {
     let mounted = true;
     if (didMount.current)
       if (enabled) {
-        setForegroundLocationHandler(props.onLocationChange);
         // Solicita la ubicación actual para el usuario vea cambiar su ubicación
         // sin tener que esperar a que la tarea en segundo plano reciba una ubicación nueva
         getCurrentLocation();
