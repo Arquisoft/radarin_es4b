@@ -43,9 +43,11 @@ PushNotification.channelExists(LOCATION_CHANNEL_ID, exists => {
 /**
  * Muestra una notificación local
  * @param {String} message mensaje de la notificación
+ * @param {String} id identificador de la notificación
  */
-export function postNotification(message) {
+export function postNotification(message, id) {
   PushNotification.localNotification({
+    id,
     channelId: LOCATION_CHANNEL_ID,
     ignoreInForeground: false,
     title: 'Radarin',
@@ -54,8 +56,9 @@ export function postNotification(message) {
 }
 
 /**
- * Borra todas las notificaciones
+ * Borra las notificaciones especificadas
+ * @param {String[]} ids identificadores de las notificaciones
  */
-export function clearNotfications() {
-  PushNotification.removeAllDeliveredNotifications();
+export function clearNotfications(ids) {
+  PushNotification.removeDeliveredNotifications(ids);
 }

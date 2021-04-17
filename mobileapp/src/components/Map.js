@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {Circle, Marker} from 'react-native-maps';
-import getText from '../i18n.js';
+import getText, {getDateTimeString} from '../i18n.js';
 
 const Map = ({
   region,
@@ -33,11 +33,9 @@ const Map = ({
               longitude: lastUserLocation.coords.longitude,
             }}
             title={getText('lastLocation')}
-            description={
-              new Date(lastUserLocation.timestamp).toLocaleDateString() +
-              ' ' +
-              new Date(lastUserLocation.timestamp).toLocaleTimeString()
-            }
+            description={getDateTimeString(
+              new Date(lastUserLocation.timestamp),
+            )}
             pinColor={'aqua'}
           />
         )}
@@ -48,11 +46,7 @@ const Map = ({
               latitude: friend.latitud,
               longitude: friend.longitud,
             }}
-            description={
-              new Date(friend.fecha).toLocaleDateString() +
-              ' ' +
-              new Date(friend.fecha).toLocaleTimeString()
-            }
+            description={getDateTimeString(new Date(friend.fecha))}
             title={friend.nombre}></Marker>
         ))}
       </MapView>

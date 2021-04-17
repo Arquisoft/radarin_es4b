@@ -7,6 +7,7 @@ import getText from './i18n.js';
 
 let maxDistance = 100;
 let foregroundFriendsHandler = () => {};
+let lastFriends = [];
 
 export function getCurrentFriendsClose() {
   if (CurrentUser.getLastUserLocation() && CurrentUser.getWebId()) {
@@ -21,19 +22,48 @@ export function getCurrentFriendsClose() {
         if (AppState.currentState === 'active') {
           foregroundFriendsHandler(results);
         } else {
-          clearNotfications();
-          results.forEach(friend =>
-            postNotification(
-              friend.nombre +
-                getText('friendClose') +
-                friend.distancia.toFixed() +
-                getText('friendDistance'),
-            ),
-          );
+          showNotifications(results);
         }
+        lastFriends = results;
       })
       .catch(err => console.log(err));
   }
+}
+
+// Para poder convertir el webId en identificador de notificación
+String.prototype.hashCode = function () {
+  let hash = 0, chr;
+  if (this.length === 0) return hash;
+  for (let i = 0; i < this.length; i++) {
+    chr = this.charCodeAt(i);
+    hash = (hash << 5) - hash + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
+};
+
+function showNotifications(friends) {
+  let friendsToNotify = friends.filter(friend => {
+    return (
+      lastFriends.filter(
+        lastFriend =>
+          lastFriend.URL === friend.URL &&
+          Math.abs(lastFriend.distancia - friend.distancia) < 10,
+      ).length == 0
+    );
+  });
+  clearNotfications(
+    friendsToNotify.map(friend => friend.URL.hashCode().toString()),
+  );
+  friendsToNotify.forEach(friend =>
+    postNotification(
+      friend.nombre +
+        getText('friendClose') +
+        friend.distancia.toFixed() +
+        getText('friendDistance'),
+      friend.URL.hashCode(),
+    ),
+  );
 }
 
 export function startFriendUpdates() {

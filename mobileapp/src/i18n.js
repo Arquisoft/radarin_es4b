@@ -10,6 +10,11 @@ export default function getText(key) {
 
   I18n.translations = {
     es: {
+      date: {
+        formats: {
+          full: '%d/%m/%y %H:%M',
+        },
+      },
       location: 'Enviar mi ubicación',
       toastLocation: 'Por favor, activa la localización',
       usingLocation: 'Radarin está usando tu localización',
@@ -37,6 +42,11 @@ export default function getText(key) {
       lastLocation: 'Tu última ubicación',
     },
     en: {
+      date: {
+        formats: {
+          full: '%m/%d/%y %H:%M',
+        },
+      },
       location: 'Send my location',
       toastLocation: 'Please, enable the location service',
       usingLocation: 'Radarin is using your location',
@@ -65,4 +75,12 @@ export default function getText(key) {
     },
   };
   return I18n.t(key);
+}
+
+/**
+ * Obtiene una string con la fecha y hora
+ * @param {Date} date
+ */
+export function getDateTimeString(date) {
+  return I18n.l('date.formats.full', date);
 }

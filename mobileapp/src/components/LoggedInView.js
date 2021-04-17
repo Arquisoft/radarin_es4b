@@ -94,7 +94,7 @@ const LoggedInView = ({user, changeUser}) => {
               () => (onTimeout = false),
             );
           }
-        }, 1000);
+        }, 500);
       }
     } else didMount.current = true;
     return function cleanup() {
