@@ -1,6 +1,7 @@
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import getText from './i18n.js';
+import {Platform} from 'react-native';
 
 const LOCATION_CHANNEL_ID = 'location-channel';
 
