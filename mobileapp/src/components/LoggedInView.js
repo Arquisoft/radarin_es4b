@@ -26,6 +26,7 @@ const LoggedInView = ({user, changeUser}) => {
   const [lastLocation, setLastlocation] = useState(null);
   const [friends, setFriends] = useState([]);
   const didMount = useRef(false);
+  const map = useRef(null);
 
   useEffect(() => {
     setForegroundLocationHandler(location => {
@@ -102,8 +103,12 @@ const LoggedInView = ({user, changeUser}) => {
     };
   }, [distance]);
 
+  useEffect(() => {
+    if (map.current) map.current.centerMap(lastLocation);
+  }, [lastLocation]);
+
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View
         style={{
           marginStart: 15,
@@ -115,6 +120,7 @@ const LoggedInView = ({user, changeUser}) => {
         <DistanceSlider distance={distance} changeDistance={setDistance} />
       </View>
       <Map
+        ref={map}
         region={mapRegion}
         changeRegion={setMapRegion}
         lastUserLocation={lastLocation}

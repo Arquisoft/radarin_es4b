@@ -73,6 +73,7 @@ export function subscribe() {
     if (!started) {
       Location.startLocationUpdatesAsync(LOCATION_TASK_NAME, {
         accuracy: Location.Accuracy.High,
+        timeInterval: 10000,
         foregroundService: {
           notificationTitle: 'Radarin',
           notificationBody: getText('usingLocation'),

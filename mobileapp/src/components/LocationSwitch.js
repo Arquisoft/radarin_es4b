@@ -36,7 +36,10 @@ const LocationSwitch = () => {
     let mounted = true;
     defineTaskIfNotDefined();
     isSubscribed().then(subscribed => {
-      if (subscribed && mounted) setEnabled(true);
+      if (subscribed && mounted) {
+        unsubscribe();
+        toggleSwitch();
+      }
     });
     return function cleanup() {
       mounted = false;
@@ -44,7 +47,6 @@ const LocationSwitch = () => {
   }, []);
 
   useEffect(() => {
-    let mounted = true;
     if (didMount.current)
       if (enabled) {
         // Solicita la ubicación actual para el usuario vea cambiar su ubicación
@@ -54,9 +56,6 @@ const LocationSwitch = () => {
         setTimeout(() => subscribe(), 1000);
       } else unsubscribe();
     else didMount.current = true;
-    return function cleanup() {
-      mounted = false;
-    };
   }, [enabled]);
 
   return (
