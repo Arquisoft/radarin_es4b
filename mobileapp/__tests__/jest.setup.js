@@ -1,6 +1,7 @@
 import mockAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
 import mock from 'react-native-permissions/mock';
 import mockTranslations from '../resources/translations.json';
+import Promise from 'promise-polyfill';
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 
@@ -10,6 +11,7 @@ jest.mock('react-native-permissions', () => {
 
 jest.mock('react-native-simple-toast', () => ({
   SHORT: jest.fn(),
+  show: jest.fn(),
 }));
 
 jest.mock('react-native-push-notification', () => ({
@@ -19,12 +21,13 @@ jest.mock('react-native-push-notification', () => ({
   addEventListener: jest.fn(),
   requestPermissions: jest.fn(),
   channelExists: jest.fn(),
+  removeDeliveredNotifications: jest.fn(),
 }));
 
 jest.mock('@react-native-community/push-notification-ios', () => ({
   addEventListener: jest.fn(),
-  requestPermissions: jest.fn(() => Promise.resolve()),
-  getInitialNotification: jest.fn(() => Promise.resolve()),
+  requestPermissions: jest.fn(),
+  getInitialNotification: jest.fn(),
 }));
 
 jest.mock('react-native-i18n', () => ({
@@ -37,4 +40,16 @@ jest.mock('react-native-background-timer', () => ({
   runBackgroundTimer: jest.fn(),
 }));
 
+jest.mock('react-native/Libraries/AppState/AppState', () => ({
+  addEventListener: jest.fn(),
+  removeEventListener: jest.fn(),
+  currentState: 'active',
+}));
+
 require('jest-fetch-mock').enableMocks();
+
+jest.mock('../src/notifications');
+
+jest.useFakeTimers();
+
+global.Promise = Promise;

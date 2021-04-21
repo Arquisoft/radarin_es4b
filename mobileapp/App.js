@@ -1,44 +1,13 @@
-import React, {useEffect, useState, useRef} from 'react';
-import {ScrollView, View} from 'react-native';
+import React from 'react';
+import AppContent from './src/components/AppContent.js';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Header from './src/components/Header';
-import LoginForm from './src/components/LoginForm';
-import {getObject, storeObject} from './src/storage.js';
-import LoggedInView from './src/components/LoggedInView.js';
-import * as CurrentUser from './src/user.js';
 
 const App = () => {
-  const [user, setUser] = useState();
-  const didMount = useRef(false);
-
-  useEffect(() => {
-    getObject('user').then(user => {
-      if (user) setUser(user);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (didMount.current) {
-      storeObject('user', user);
-      CurrentUser.setWebId(user?.webId);
-    } else didMount.current = true;
-  }, [user]);
-
   return (
     <SafeAreaProvider>
       <Header></Header>
-      <View
-        style={{
-          marginTop: 30,
-          flex: 1,
-        }}>
-        {!user && (
-          <ScrollView>
-            <LoginForm changeUser={setUser}></LoginForm>
-          </ScrollView>
-        )}
-        {user && <LoggedInView user={user} changeUser={setUser}></LoggedInView>}
-      </View>
+      <AppContent></AppContent>
     </SafeAreaProvider>
   );
 };

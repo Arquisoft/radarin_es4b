@@ -11,6 +11,7 @@ import {
   setMaxDistance,
   setForegroundFriendsHandler,
   getCurrentFriendsClose,
+  setOnFriendNotificationCallback,
 } from '../friends.js';
 import * as CurrentUser from '../user.js';
 import {setForegroundLocationHandler} from '../location.js';
@@ -29,27 +30,57 @@ const LoggedInView = ({user, changeUser}) => {
   const map = useRef(null);
 
   useEffect(() => {
+    let mounted = true;
+    
     setForegroundLocationHandler(location => {
-      setLastlocation(location);
-      getCurrentFriendsClose();
+      if (mounted) {
+        setLastlocation(location);
+        getCurrentFriendsClose();
+      }
     });
-    setForegroundFriendsHandler(friends => setFriends(friends));
+
+    setForegroundFriendsHandler(friends => {
+      if (mounted) setFriends(friends);
+    });
+
+    setOnFriendNotificationCallback(friend => {
+      if (map.current) {
+        // Espera a que se realice el primer centrado sobre la posición
+        // del propio usuario y después centra sobre el amigo
+        setTimeout(
+          () =>
+            map.current.centerMap({
+              coords: {
+                latitude: friend.latitud,
+                longitude: friend.longitud,
+              },
+            }),
+          500,
+        );
+      }
+    });
+
     getObject('region').then(region => {
-      if (region !== null) setMapRegion(region);
+      if (region !== null && mounted) setMapRegion(region);
     });
+
     getValue('maxDistance').then(value => {
-      if (value !== null) setDistance(JSON.parse(value));
+      if (value !== null && mounted) setDistance(JSON.parse(value));
     });
+
     getObject(`${user.webId}-lastLocation`).then(location => {
-      if (location !== null) {
+      if (location !== null && mounted) {
         setLastlocation(location);
         CurrentUser.setLastUserLocation(location);
       }
     });
+
     startFriendUpdates();
+
     AppState.addEventListener('change', handleAppStateChange);
 
     return () => {
+      mounted = false;
       AppState.removeEventListener('change', handleAppStateChange);
     };
   }, []);
@@ -104,7 +135,9 @@ const LoggedInView = ({user, changeUser}) => {
   }, [distance]);
 
   useEffect(() => {
-    if (map.current) map.current.centerMap(lastLocation);
+    if (didMount.current) {
+      if (map.current) map.current.centerMap(lastLocation);
+    }
   }, [lastLocation]);
 
   return (

@@ -75,7 +75,7 @@ jobs:
             MONGO_URI
         env:
           MONGO_URI: ${{secrets.MONGO_URI}}
-  build-android:
+  build-test-android:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -85,6 +85,10 @@ jobs:
       - name: Install npm dependencies
         run: |
           npm install
+      - name: Run tests
+        run: |
+          npm test
+      - uses: codecov/codecov-action@v1
       - name: Make Gradlew Executable
         run: cd android && chmod +x ./gradlew
       - name: Build Android APK

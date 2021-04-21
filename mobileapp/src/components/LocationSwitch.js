@@ -52,8 +52,7 @@ const LocationSwitch = () => {
         // Solicita la ubicación actual para el usuario vea cambiar su ubicación
         // sin tener que esperar a que la tarea en segundo plano reciba una ubicación nueva
         getCurrentLocation();
-        // Espera un segundo para que no lleguen varias localizaciones a la vez
-        setTimeout(() => subscribe(), 1000);
+        subscribe();
       } else unsubscribe();
     else didMount.current = true;
   }, [enabled]);
