@@ -12,8 +12,6 @@ export const WhiteContainer = styled.div`
 
 // ESTILO SECCIÓN LOGIN
 export const LoginWrapper = styled.section`
-display: flex;
-flex: 1 0 auto;
 align-items: center;
 justify-content: center;
 padding: 60px 0;
@@ -23,9 +21,10 @@ export const LoginContainer = styled(Card)`
 box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 background-color: white;
 max-width: 900px;
-margin: 50px 20px;
 width: 100%;
-flex: 1 0 auto;
+align-items: center;
+margin-left: auto;
+margin-right: auto;
 `;
 
 // ESTILOS DE HOME

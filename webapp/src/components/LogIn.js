@@ -1,3 +1,4 @@
+import { Card } from '@material-ui/core';
 import React from 'react';
 import Button from "react-bootstrap/Button";
 import { LoginContainer, LoginWrapper } from "../AppStyles";
@@ -13,6 +14,7 @@ class LogIn extends React.Component {
     render() {
         return (
             <LoginWrapper>
+
                 <LoginContainer>
                     <h2>Bienvenido</h2>
                     <br />
@@ -23,6 +25,8 @@ class LogIn extends React.Component {
                     <br />
                     <p>¿No tienes un POD? <a href="https://solidproject.org/users/get-a-pod">Hazte uno</a></p>
                 </LoginContainer>
+                <p class="alert">Es necesario añadir Radarin en aplicaciones de confianza</p>
+
             </LoginWrapper>
         );
     }

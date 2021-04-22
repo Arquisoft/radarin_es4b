@@ -23,11 +23,11 @@
 }
 
 .App-content {
-  padding-top:5vh;
+  padding-top: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
 
 .Friends {
@@ -58,12 +58,25 @@
 body {
   overflow-x: hidden;
   background-color: #83b5ff !important;
-
 }
 
 .h1Card {
   background-color: white;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-  margin: 1% 10% 0 10% !important; 
+  margin: 1% 10% 0 10% !important;
   padding: 1% 0;
+}
+
+.h5Card {
+  background-color: rgba(243, 235, 199, 0.377);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  margin: 0.4% 20% 0 20% !important;
+  padding: 1% 0;
+}
+
+.alert {
+  background-color: #f44336;
+  color: white;
+  margin-left: 25%;
+  margin-right: 25%;
 }
