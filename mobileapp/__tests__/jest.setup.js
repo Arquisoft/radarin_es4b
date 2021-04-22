@@ -46,6 +46,11 @@ jest.mock('react-native/Libraries/AppState/AppState', () => ({
   currentState: 'active',
 }));
 
+jest.mock('react-native-splash-screen', () => ({
+  show: jest.fn(),
+  hide: jest.fn(),
+}));
+
 require('jest-fetch-mock').enableMocks();
 
 jest.mock('../src/notifications');

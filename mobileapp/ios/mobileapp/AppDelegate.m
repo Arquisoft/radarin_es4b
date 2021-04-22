@@ -20,6 +20,8 @@
 
 #import <GoogleMaps/GoogleMaps.h>
 
+#import "RNSplashScreen.h" 
+
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
   SKDescriptorMapper *layoutDescriptorMapper = [[SKDescriptorMapper alloc] initWithDefaults];
@@ -93,6 +95,8 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
    // Define UNUserNotificationCenter
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
+
+  [RNSplashScreen show];
 
   return YES;
 }

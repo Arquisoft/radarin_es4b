@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "android-releas": "react-native run-android --variant release",
+    "android-release": "react-native run-android --variant release",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest --ci --coverage",
@@ -25,6 +25,7 @@
     "react-native-push-notification": "^7.2.3",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-simple-toast": "^1.1.3",
+    "react-native-splash-screen": "^3.2.0",
     "react-native-unimodules": "^0.12.0",
     "react-native-vector-icons": "^8.1.0"
   },

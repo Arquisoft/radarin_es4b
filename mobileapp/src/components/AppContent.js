@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 import {getObject, storeObject} from '../storage.js';
 import LoggedInView from './LoggedInView.js';
 import * as CurrentUser from '../user.js';
+import SplashScreen from 'react-native-splash-screen';
 
 const AppContent = () => {
   const [user, setUser] = useState();
@@ -12,11 +13,13 @@ const AppContent = () => {
   useEffect(() => {
     getObject('user').then(user => {
       if (user) setUser(user);
+      else SplashScreen.hide();
     });
   }, []);
 
   useEffect(() => {
     if (didMount.current) {
+      if (user) SplashScreen.hide();
       storeObject('user', user);
       CurrentUser.setWebId(user?.webId);
     } else didMount.current = true;
