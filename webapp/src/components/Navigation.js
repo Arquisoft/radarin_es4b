@@ -11,7 +11,7 @@ class Navigation extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
 
-                        <NavLink className="navbar-brand" to="/">Radarin</NavLink>
+                        <NavLink className="navbar-brand" to="/"><img src="/img/radarinSmallLogo.png" alt="inrupt" className="NavLogo" /></NavLink>
 
                         <LoggedIn>
                             <li className="nav-item">
