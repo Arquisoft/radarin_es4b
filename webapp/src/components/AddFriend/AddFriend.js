@@ -19,11 +19,6 @@ class AddFriend extends React.Component {
         const url = e.target.value ;
         this.setState({friendWebId: url});
     }
-    
-
-
-
-
 
     render() {
         return (

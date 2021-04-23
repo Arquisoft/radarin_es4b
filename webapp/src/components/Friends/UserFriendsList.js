@@ -1,6 +1,6 @@
 import React from 'react';
 import Friend from "./Friend";
-import { FriendsWrapper, FriendsCard, FriendsList, LoginWrapper } from "../../AppStyles"
+import { FriendsWrapper, FriendsCard, FriendsList } from "../../AppStyles"
 import AddFriend from '../AddFriend/AddFriend';
 
 function UserFriendsList(props) {
@@ -18,12 +18,7 @@ function UserFriendsList(props) {
                     </FriendsList>
                 </FriendsCard>
             </FriendsWrapper>
-
-            <LoginWrapper>
-            <FriendsCard>
-                <AddFriend/>
-                </FriendsCard>
-            </LoginWrapper>
+            <AddFriend />
         </div>
     );
 }

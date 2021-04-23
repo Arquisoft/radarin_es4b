@@ -9,9 +9,10 @@ class Navigation extends React.Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
+                    
+                    <NavLink className="navbar-brand" to="/"><img src="/img/radarinSmallLogo.png" alt="inrupt" className="NavLogo" /></NavLink>
 
-                        <NavLink className="navbar-brand" to="/"><img src="/img/radarinSmallLogo.png" alt="inrupt" className="NavLogo" /></NavLink>
+                    <ul className="navbar-nav mr-auto">
 
                         <LoggedIn>
                             <li className="nav-item">
