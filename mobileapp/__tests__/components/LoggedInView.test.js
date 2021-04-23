@@ -5,13 +5,14 @@
  import 'react-native';
  import React from 'react';
  import getText from '../../src/i18n.js';
- import {storeObject} from '../../src/storage.js';
+ import {storeObject, storeSecretValue} from '../../src/storage.js';
 
  // Note: test renderer must be required after react-native.
  import renderer from 'react-test-renderer';
  import {render, fireEvent, waitFor} from '@testing-library/react-native';
  import LoggedInView from '../../src/components/LoggedInView';
  import AppContent from '../../src/components/AppContent';
+ import {hashCode} from '../../src/utils.js';
  
  const expectUser = {
    webId: 'https://davidaf.solidcommunity.net/profile/card#me',
@@ -30,6 +31,10 @@
   
   test('user can log out', async () => {
     await storeObject('user', expectUser);
+    await storeSecretValue(
+      `${hashCode(expectUser.webId)}-token`, 
+      'tokenDelUsuario'
+      );
 
     const {getByText} = render(<AppContent />);
   

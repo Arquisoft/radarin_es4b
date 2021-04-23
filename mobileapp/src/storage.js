@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStorage from 'expo-secure-store';
 
 /**
  * Almacena un objeto con la clave especificada.
@@ -54,3 +55,29 @@ export async function getObject(key) {
       console.log(e);
     }
   };
+
+/**
+ * Almacena un valor sensible con la clave especificada.
+ * @param {String} key clave
+ * @param {String} value valor
+ */
+ export async function storeSecretValue(key, value) {
+  try {
+    await SecureStorage.setItemAsync(key, JSON.stringify(value));
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+/**
+ * Recupera un valor sensible almacenado con la clave especificada
+ * @param {String} key clave
+ * @return {Promise<String>} valor almacenado 
+ */
+export async function getSecretValue(key) {
+  try {
+    return JSON.parse(await SecureStorage.getItemAsync(key));
+  } catch (e) {
+    console.log(e);
+  }
+};

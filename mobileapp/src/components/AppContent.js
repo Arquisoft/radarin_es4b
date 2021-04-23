@@ -5,6 +5,8 @@ import {getObject, storeObject} from '../storage.js';
 import LoggedInView from './LoggedInView.js';
 import * as CurrentUser from '../user.js';
 import SplashScreen from 'react-native-splash-screen';
+import {getSecretValue} from '../storage.js';
+import {hashCode} from '../utils.js'
 
 const AppContent = () => {
   const [user, setUser] = useState();
@@ -12,8 +14,16 @@ const AppContent = () => {
 
   useEffect(() => {
     getObject('user').then(user => {
-      if (user) setUser(user);
-      else SplashScreen.hide();
+      if (user) {
+        getSecretValue(`${hashCode(user.webId)}-token`).then(token => {
+          if (token) {
+            CurrentUser.setToken(token);
+            setUser(user);
+            return;
+          }
+        });
+      }
+      SplashScreen.hide();
     });
   }, []);
 

@@ -5,6 +5,12 @@ import Promise from 'promise-polyfill';
 
 jest.mock('@react-native-async-storage/async-storage', () => mockAsyncStorage);
 
+jest.mock('expo-secure-store', () => ({
+  ...mockAsyncStorage,
+  setItemAsync: mockAsyncStorage.setItem,
+  getItemAsync: mockAsyncStorage.getItem,
+}));
+
 jest.mock('react-native-permissions', () => {
   return mock;
 });

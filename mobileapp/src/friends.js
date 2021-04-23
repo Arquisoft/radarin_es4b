@@ -9,6 +9,7 @@ import {
   addOnNotificationCallback,
 } from './notifications.js';
 import getText from './i18n.js';
+import {hashCode} from './utils.js'
 
 const NOTIFICATION_CHANNEL_ID = 'friends-channel';
 
@@ -22,7 +23,7 @@ export function getCurrentFriendsClose() {
   if (CurrentUser.getLastUserLocation() && CurrentUser.getWebId()) {
     console.log('Getting close friends...');
     getFriendsClose(
-      CurrentUser.getWebId(),
+      CurrentUser.getToken(),
       CurrentUser.getLastUserLocation(),
       maxDistance,
     )
@@ -39,19 +40,6 @@ export function getCurrentFriendsClose() {
   }
 }
 
-// Para poder convertir el webId en identificador de notificación
-String.prototype.hashCode = function () {
-  let hash = 0,
-    chr;
-  if (this.length === 0) return hash;
-  for (let i = 0; i < this.length; i++) {
-    chr = this.charCodeAt(i);
-    hash = (hash << 5) - hash + chr;
-    hash |= 0; // Convert to 32bit integer
-  }
-  return hash;
-};
-
 export function showNotifications(friends) {
   let friendsToNotify = friends.filter(friend => {
     return (
@@ -63,7 +51,7 @@ export function showNotifications(friends) {
     );
   });
   clearNotfications(
-    friendsToNotify.map(friend => friend.URL.hashCode().toString()),
+    friendsToNotify.map(friend => hashCode(friend.URL).toString()),
   );
   friendsToNotify.forEach(friend =>
     postNotification(
@@ -71,7 +59,7 @@ export function showNotifications(friends) {
         getText('friendClose') +
         friend.distancia.toFixed() +
         getText('friendDistance'),
-      friend.URL.hashCode(),
+      hashCode(friend.URL),
       NOTIFICATION_CHANNEL_ID,
     ),
   );
@@ -126,7 +114,7 @@ export function setForegroundFriendsHandler(handleUpdateOnForeground) {
 export function setOnFriendNotificationCallback(callback) {
   addOnNotificationCallback(NOTIFICATION_CHANNEL_ID, notification => {
     let friend = lastFriends.filter(
-      lastFriend => lastFriend.URL.hashCode().toString() === notification.id,
+      lastFriend => hashCode(lastFriend.URL).toString() === notification.id,
     )[0];
     if (friend) callback(friend);
   });

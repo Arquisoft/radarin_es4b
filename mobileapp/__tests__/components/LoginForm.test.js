@@ -14,9 +14,10 @@
  import AppContent from '../../src/components/AppContent';
  
  const expectUser = {
-   webId: 'https://davidaf.solidcommunity.net/profile/card#me',
-   name: 'David Álvarez',
-   photo: 'https://davidaf.solidcommunity.net/profile/fotosolid.png',
+    token: 'tokenDelUsuario',
+    webId: 'https://davidaf.solidcommunity.net/profile/card#me',
+    name: 'David Álvarez',
+    photo: 'https://davidaf.solidcommunity.net/profile/fotosolid.png',
  };
 
  test('log in form renders correctly', () => {

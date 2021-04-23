@@ -28,11 +28,11 @@ export function defineTaskIfNotDefined() {
 
 function handleLocation(location) {
   let webId = CurrentUser.getWebId();
+  let token = CurrentUser.getToken();
   console.log(location);
-  console.log(webId);
-  if (webId) {
+  if (token && webId) {
     CurrentUser.setLastUserLocation(location);
-    sendLocation(webId, location);
+    sendLocation(token, location);
     storeObject(`${webId}-lastLocation`, location);
     if (AppState.currentState === 'active') {
       handleLocationOnForeground(location);

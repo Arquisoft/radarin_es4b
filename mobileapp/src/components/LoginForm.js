@@ -5,6 +5,9 @@ import Toast from 'react-native-simple-toast';
 import {authenticate} from '../api/api.js';
 import getText from '../i18n.js';
 import CustomLoadingButton from './CustomLoadingButton';
+import * as CurrentUser from '../user.js';
+import {storeSecretValue} from '../storage.js';
+import {hashCode} from '../utils.js'
 
 const LoginForm = ({changeUser}) => {
   const [idp, setIdp] = useState();
@@ -12,8 +15,14 @@ const LoginForm = ({changeUser}) => {
   const [password, setPassword] = useState();
 
   const authenticateWithCredentials = async credentials => {
-    let user = await authenticate(credentials);
-    user ? changeUser(user) : Toast.show(getText('toastLogIn'));
+    try {
+      let {token, user} = await authenticate(credentials);
+      storeSecretValue(`${hashCode(user.webId)}-token`, token);
+      CurrentUser.setToken(token);
+      changeUser(user);
+    } catch (err) {
+      Toast.show(getText('toastLogIn'));
+    }
   };
 
   return (
