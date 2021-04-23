@@ -1,5 +1,11 @@
 const request = require('supertest');
-const server = require('./server-for-tests')
+const server = require('./server-for-tests');
+
+const jwt = require("jsonwebtoken");
+const token = jwt.sign(
+    { webId: "https://davidaf.solidcommunity.net/profile/card#me" },
+    process.env.TOKEN_SECRET ?? "contraseñapruebas"
+  );
 
 /**
  * Connect to a new in-memory database before running any tests.
@@ -53,13 +59,12 @@ describe('friends ', () => {
      * Test that we can list friends that are near a location.
      */
     it('near a location can be listed',async () => {
-        let URL = "https://davidaf.solidcommunity.net/profile/card#me";
         let latitud = 43.54;
         let longitud = -5.70;
         let maxDistancia = 100;
         const response = await request(app).post('/api/user/friends/near')
-            .send({URL, latitud, longitud, maxDistancia})
-            .set('Accept', 'application/json')
+            .send({token, latitud, longitud, maxDistancia})
+            .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
         const results = response.body.sort(result => result.nombre);
         expect(results[0].nombre).toBe("moises");
@@ -68,6 +73,17 @@ describe('friends ', () => {
         expect(results[0].altitud).toBe(50.0);
         expect(results[0].distancia).toBeLessThan(100);
         expect(new Date(results[0].fecha)).toStrictEqual(new Date(1000));
+    });
+
+    it('near a location cant be listed by unauthorized users',async () => {
+        let latitud = 43.51;
+        let longitud = -5.73;
+        let maxDistancia = 120;
+        const response = await request(app).post('/api/user/friends/near')
+            .send({token: "123assda123tokenInventado", latitud, longitud, maxDistancia})
+            .set('Accept', 'application/json');
+        expect(response.statusCode).toBe(403);
+        expect(response.text).toBe("Invalid or missing token");
     });
 });
 
@@ -80,7 +96,7 @@ describe('users ', () => {
         email = 'pablo@uniovi.es'
         const response = await request(app).post('/api/user/add')
             .send({
-                URL: "https://prueba.solidcommunity.net/profile/card#me",
+                token,
                 latitud: 43.3656691,
                 longitud: -5.8546573,
                 altitud: 100.0})
@@ -97,12 +113,29 @@ describe('users ', () => {
         email = 'pablo@uniovi.es'
         const response = await request(app).post('/api/user/add')
             .send({
-                URL: "https://prueba.solidcommunity.net/profile/card#me",
+                token,
                 latitud: 43.00,
                 longitud: -5.00,
                 altitud: 120.0})
             .set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
         expect(response.text).toBe("Update successful");
+    });
+
+    /**
+     * Tests that an existing user with his location can be updated.
+     */
+     it('unauthorized cant be updated correctly', async () => {
+        username = 'Pablo'
+        email = 'pablo@uniovi.es'
+        const response = await request(app).post('/api/user/add')
+            .send({
+                token: "tokenInventado1zx232xsds",
+                latitud: 43.23,
+                longitud: -5.12,
+                altitud: 140.0})
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(403);
+        expect(response.text).toBe("Invalid or missing token");
     });
 });

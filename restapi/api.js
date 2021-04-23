@@ -8,6 +8,8 @@ const client = new SolidNodeClient();
 const FOAF = $rdf.Namespace("http://xmlns.com/foaf/0.1/");
 const VCARD = $rdf.Namespace("http://www.w3.org/2006/vcard/ns#");
 
+const jwt = require("jsonwebtoken");
+
 /**
  * Consultas los amigos de un usuario
  * @param {String} URL webId del usuario
@@ -88,77 +90,106 @@ router.post("/user/friends", async (req, res) => {
 });
 
 // Get list of friends near a location
+// A token is needed to perform this action
 router.post("/user/friends/near", async (req, res) => {
-  const { namesQueries, friends } = await getFriends(req.body.URL);
+  let token = req.body.token;
 
-  //Consulta los usuarios cercanos (y sus localizaciones) con las URLs de los amigos en la bd
-  const usersAggregate = User.aggregate([
-    {
-      $geoNear: {
-        near: {
-          type: "Point",
-          coordinates: [req.body.longitud, req.body.latitud],
+  jwt.verify(
+    token,
+    process.env.TOKEN_SECRET ?? "contraseñapruebas",
+    async (err, infoToken) => {
+      if (err || !infoToken.webId) {
+        res.status(403);
+        res.send("Invalid or missing token");
+        return;
+      }
+
+      const { namesQueries, friends } = await getFriends(infoToken.webId);
+
+      //Consulta los usuarios cercanos (y sus localizaciones) con las URLs de los amigos en la bd
+      const usersAggregate = User.aggregate([
+        {
+          $geoNear: {
+            near: {
+              type: "Point",
+              coordinates: [req.body.longitud, req.body.latitud],
+            },
+            distanceField: "distancia",
+            maxDistance: req.body.maxDistancia,
+            query: { URL: { $in: friends } },
+          },
         },
-        distanceField: "distancia",
-        maxDistance: req.body.maxDistancia,
-        query: { URL: { $in: friends } },
-      },
-    },
-  ]);
+      ]);
 
-  // Espera a que todas las consultas terminen
-  return Promise.all([
-    usersAggregate,
-    Promise.all(namesQueries).then((results) => results),
-  ]).then((results) => {
-    const resultDb = results[0];
-    const resultNames = results[1];
-    //Asocia los resultados de la consulta a la bd con los nombres obtenidos de los pods
-    res.send(
-      resultDb.map((user) => {
-        return {
-          URL: user.URL,
-          nombre: resultNames.filter((result) => result.URL === user.URL)[0]
-            .name,
-          latitud: user.location.coordinates[1],
-          longitud: user.location.coordinates[0],
-          altitud: user.altitud,
-          distancia: user.distancia,
-          fecha: user.fecha,
-        };
-      })
-    );
-  });
+      // Espera a que todas las consultas terminen
+      return Promise.all([
+        usersAggregate,
+        Promise.all(namesQueries).then((results) => results),
+      ]).then((results) => {
+        const resultDb = results[0];
+        const resultNames = results[1];
+        //Asocia los resultados de la consulta a la bd con los nombres obtenidos de los pods
+        res.send(
+          resultDb.map((user) => {
+            return {
+              URL: user.URL,
+              nombre: resultNames.filter((result) => result.URL === user.URL)[0]
+                .name,
+              latitud: user.location.coordinates[1],
+              longitud: user.location.coordinates[0],
+              altitud: user.altitud,
+              distancia: user.distancia,
+              fecha: user.fecha,
+            };
+          })
+        );
+      });
+    }
+  );
 });
 
 // Registra un nuevo usuario, o actualiza su ubicación
 // El cuerpo debe contener los siguientes campos:
-//      URL: webId del usuario
+//      token
 //      latitud
 //      longitud
 //      altitud
 router.post("/user/add", async (req, res) => {
-  user = await User.findOne({ URL: req.body.URL }).exec();
-  // Si ya está el usuario, se actializa su ubicación
-  if (user) {
-    user.location.coordinates = [req.body.longitud, req.body.latitud];
-    user.altitud = req.body.altitud;
-    user.fecha = req.body.fecha;
-  }
-  // Si no, se crea uno nuevo
-  else {
-    user = new User({
-      URL: req.body.URL,
-      location: {
-        type: "Point",
-        coordinates: [req.body.longitud, req.body.latitud],
-      },
-      altitud: req.body.altitud,
-      fecha: req.body.fecha,
-    });
-  }
-  await user.save();
-  res.send("Update successful");
+  let token = req.body.token;
+
+  jwt.verify(
+    token,
+    process.env.TOKEN_SECRET ?? "contraseñapruebas",
+    async (err, infoToken) => {
+      if (err || !infoToken.webId) {
+        res.status(403);
+        res.send("Invalid or missing token");
+        return;
+      }
+
+      user = await User.findOne({ URL: infoToken.webId }).exec();
+      // Si ya está el usuario, se actializa su ubicación
+      if (user) {
+        user.location.coordinates = [req.body.longitud, req.body.latitud];
+        user.altitud = req.body.altitud;
+        user.fecha = req.body.fecha;
+      }
+      // Si no, se crea uno nuevo
+      else {
+        user = new User({
+          URL: infoToken.webId,
+          location: {
+            type: "Point",
+            coordinates: [req.body.longitud, req.body.latitud],
+          },
+          altitud: req.body.altitud,
+          fecha: req.body.fecha,
+        });
+      }
+      await user.save();
+      res.send("Update successful");
+    }
+  );
 });
 
 //Add samples to the database
@@ -187,6 +218,7 @@ router.get("/user/sample", async (req, res) => {
 //      webId
 //      name
 //      photo
+//      token
 // For this to work, The user must have added
 // https://solid-node-client as a trusted app on his pod
 router.post("/user/login", async (req, res) => {
@@ -210,8 +242,14 @@ router.post("/user/login", async (req, res) => {
     const name = store.any(me, FOAF("name"));
     const photo = store.any(me, VCARD("hasPhoto"));
 
+    let token = jwt.sign(
+      { webId: session.webId },
+      process.env.TOKEN_SECRET ?? "contraseñapruebas"
+    );
+
     res.status(200);
     res.send({
+      token,
       webId: session.webId,
       name: name.value,
       photo: photo ? photo.value : null,

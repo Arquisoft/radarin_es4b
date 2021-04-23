@@ -37,7 +37,13 @@ const LoginForm = ({changeUser}) => {
           onChangeText={text => setPassword(text)}
           placeholder={getText('passwordPlaceholder')}></TextInput>
         <CustomLoadingButton
-          action={() => authenticateWithCredentials({idp, username, password})}
+          action={() =>
+            authenticateWithCredentials({
+              idp: idp.replace(/\/$/, ''),
+              username,
+              password,
+            })
+          }
           text={getText('enviar')}
           customContainerStyles={styles.button}
         />
