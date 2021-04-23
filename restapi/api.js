@@ -96,7 +96,7 @@ router.post("/user/friends/near", async (req, res) => {
 
   jwt.verify(
     token,
-    process.env.TOKEN_SECRET ?? "contraseñapruebas",
+    process.env.TOKEN_SECRET || "contraseñapruebas",
     async (err, infoToken) => {
       if (err || !infoToken.webId) {
         res.status(403);
@@ -159,7 +159,7 @@ router.post("/user/add", async (req, res) => {
 
   jwt.verify(
     token,
-    process.env.TOKEN_SECRET ?? "contraseñapruebas",
+    process.env.TOKEN_SECRET || "contraseñapruebas",
     async (err, infoToken) => {
       if (err || !infoToken.webId) {
         res.status(403);
@@ -244,7 +244,7 @@ router.post("/user/login", async (req, res) => {
 
     let token = jwt.sign(
       { webId: session.webId },
-      process.env.TOKEN_SECRET ?? "contraseñapruebas"
+      process.env.TOKEN_SECRET || "contraseñapruebas"
     );
 
     res.status(200);
