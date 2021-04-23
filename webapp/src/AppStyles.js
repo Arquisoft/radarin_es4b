@@ -74,7 +74,7 @@ display: flex;
 flex: 1 0 auto;
 align-items: center;
 justify-content: center;
-padding: 60px 0;
+padding: 40px 0 20px 0;
 `;
 
 export const FriendsCard = styled(Card)`
