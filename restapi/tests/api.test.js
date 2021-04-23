@@ -4,7 +4,7 @@ const server = require('./server-for-tests');
 const jwt = require("jsonwebtoken");
 const token = jwt.sign(
     { webId: "https://davidaf.solidcommunity.net/profile/card#me" },
-    process.env.TOKEN_SECRET ?? "contraseñapruebas"
+    process.env.TOKEN_SECRET || "contraseñapruebas"
   );
 
 /**
