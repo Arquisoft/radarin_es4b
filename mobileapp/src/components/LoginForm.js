@@ -10,9 +10,9 @@ import {storeSecretValue} from '../storage.js';
 import {hashCode} from '../utils.js'
 
 const LoginForm = ({changeUser}) => {
-  const [idp, setIdp] = useState();
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
+  const [idp, setIdp] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const authenticateWithCredentials = async credentials => {
     try {
@@ -48,7 +48,7 @@ const LoginForm = ({changeUser}) => {
         <CustomLoadingButton
           action={() =>
             authenticateWithCredentials({
-              idp: idp.replace(/\/$/, ''),
+              idp: idp?.replace(/\/$/, ''),
               username,
               password,
             })

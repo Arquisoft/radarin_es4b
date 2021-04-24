@@ -4,8 +4,6 @@ import * as CurrentUser from './user.js';
 import {sendLocation} from './api/api.js';
 import getText from './i18n.js';
 import {AppState} from 'react-native';
-import Toast from 'react-native-simple-toast';
-import {checkAndRequestPermissions} from './permissions.js';
 import {storeObject} from './storage.js';
 
 const LOCATION_TASK_NAME = 'background_location_task';
@@ -27,11 +25,18 @@ export function defineTaskIfNotDefined() {
 }
 
 function handleLocation(location) {
+  let lastLocation = CurrentUser.getLastUserLocation();
+  if (
+    lastLocation &&
+    Math.abs(location.timestamp - lastLocation.timestamp) < 10000
+  )
+    return;
+
+  CurrentUser.setLastUserLocation(location);
   let webId = CurrentUser.getWebId();
   let token = CurrentUser.getToken();
   console.log(location);
   if (token && webId) {
-    CurrentUser.setLastUserLocation(location);
     sendLocation(token, location);
     storeObject(`${webId}-lastLocation`, location);
     if (AppState.currentState === 'active') {
@@ -48,20 +53,11 @@ function locationErrorHandler(error) {
  * Solicita la ubicación actual del usuario
  */
 export function getCurrentLocation() {
-  checkAndRequestPermissions(
-    () =>
-      checkLocationEnabled(
-        () => {
-          Location.getCurrentPositionAsync({
-            accuracy: Location.Accuracy.Highest,
-          })
-            .then(location => handleLocation(location))
-            .catch(locationErrorHandler);
-        },
-        () => Toast.show(getText('toastLocation')),
-      ),
-    err => console.log(err),
-  );
+  Location.getCurrentPositionAsync({
+    accuracy: Location.Accuracy.Highest,
+  })
+    .then(location => handleLocation(location))
+    .catch(locationErrorHandler);
 }
 
 /**

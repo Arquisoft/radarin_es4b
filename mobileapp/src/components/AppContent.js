@@ -6,7 +6,7 @@ import LoggedInView from './LoggedInView.js';
 import * as CurrentUser from '../user.js';
 import SplashScreen from 'react-native-splash-screen';
 import {getSecretValue} from '../storage.js';
-import {hashCode} from '../utils.js'
+import {hashCode} from '../utils.js';
 
 const AppContent = () => {
   const [user, setUser] = useState();
@@ -19,11 +19,9 @@ const AppContent = () => {
           if (token) {
             CurrentUser.setToken(token);
             setUser(user);
-            return;
-          }
+          } else SplashScreen.hide();
         });
-      }
-      SplashScreen.hide();
+      } else SplashScreen.hide();
     });
   }, []);
 

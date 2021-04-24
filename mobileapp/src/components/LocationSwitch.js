@@ -5,8 +5,8 @@ import {
   unsubscribe,
   isSubscribed,
   checkLocationEnabled,
-  getCurrentLocation,
   defineTaskIfNotDefined,
+  getCurrentLocation,
 } from '../location';
 import {checkAndRequestPermissions} from '../permissions';
 import {Icon} from 'react-native-elements';
@@ -53,7 +53,8 @@ const LocationSwitch = () => {
         // sin tener que esperar a que la tarea en segundo plano reciba una ubicación nueva
         getCurrentLocation();
         subscribe();
-      } else unsubscribe();
+      }
+      else unsubscribe();
     else didMount.current = true;
   }, [enabled]);
 
