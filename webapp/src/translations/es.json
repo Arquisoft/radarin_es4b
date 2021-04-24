@@ -1,3 +1,6 @@
 {
-    "welcome.bienvenida": "¡ Bienvenido a Radarin !" 
+    "welcome.bienvenida": "¡ Bienvenido a Radarin !",
+    "welcome.descripcion": "Radarin es un sistema para facilitar encuentros entre amigos utilizando nuevas tecnologías.",
+    "welcome.info1": "El sistema es compatible con el proyecto ",
+    "welcome.info2": "y no almacena información personal sobre los usuarios de forma centralizada."
 }
