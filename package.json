@@ -2,6 +2,7 @@
   "dependencies": {
     "@solid/query-ldflex": "^2.11.3",
     "google-map-react": "^2.1.9",
+    "rdflib": "^2.2.0",
     "react-native": "^0.64.0",
     "react-native-i18n": "^2.0.15"
   }
