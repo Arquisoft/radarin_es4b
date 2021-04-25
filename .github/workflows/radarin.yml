@@ -73,8 +73,10 @@ jobs:
           appdir: "restapi"
           docker_build_args: |
             MONGO_URI
+            TOKEN_SECRET
         env:
           MONGO_URI: ${{secrets.MONGO_URI}}
+          TOKEN_SECRET: ${{secrets.TOKEN_SECRET}}
   build-test-android:
     runs-on: ubuntu-latest
     defaults:
@@ -93,10 +95,12 @@ jobs:
         run: cd android && chmod +x ./gradlew
       - name: Build Android APK
         run: |
-          cd android && ./gradlew assembleDebug --no-daemon
+          echo "${{secrets.ANDROID_KEYSTORE}}" > radarin.keystore.asc
+          gpg -d --passphrase "${{secrets.ANDROID_KEYSTORE_DECIPHER_PASSPHRASE}}" --batch radarin.keystore.asc > android/app/radarin.keystore
+          cd android && ./gradlew assembleRelease -PMYAPP_UPLOAD_STORE_FILE='radarin.keystore' -PMYAPP_UPLOAD_KEY_ALIAS='radarin' -PMYAPP_UPLOAD_STORE_PASSWORD='${{secrets.ANDROID_KEYSTORE_PASSWORD}}' -PMYAPP_UPLOAD_KEY_PASSWORD='${{secrets.ANDROID_KEY_PASSWORD}}'
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: app-debug.apk
-          path: mobileapp/android/app/build/outputs/apk/debug/app-debug.apk
+          name: radarin.apk
+          path: mobileapp/android/app/build/outputs/apk/release/app-release.apk
 

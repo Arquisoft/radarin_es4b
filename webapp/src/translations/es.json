@@ -1,6 +1,20 @@
 {
+    "navigation.listaAmigos": "Listar amigos", 
+    "navigation.mapa": "Ver mapa",
+    "navigation.idioma": "Idioma",
+    "navigation.idioma1": "Español", 
+    "navigation.idioma2": "Inglés", 
+    "navigation.login": "Iniciar sesión", 
+    "navigation.logout": "Cerrar sesión", 
+
     "welcome.bienvenida": "¡ Bienvenido a Radarin !",
     "welcome.descripcion": "Radarin es un sistema para facilitar encuentros entre amigos utilizando nuevas tecnologías.",
     "welcome.info1": "El sistema es compatible con el proyecto ",
-    "welcome.info2": "y no almacena información personal sobre los usuarios de forma centralizada."
+    "welcome.info2": "y no almacena información personal sobre los usuarios de forma centralizada.", 
+
+    "login.bienvenida": "Bienvenido",
+    "login.botonInicio": "Accede con tu POD",
+    "login.info1": "¿No tienes un POD? ",
+    "login.info2": "Hazte uno",
+    "login.info3": "Es necesario añadir Radarin en aplicaciones de confianza"
 }
