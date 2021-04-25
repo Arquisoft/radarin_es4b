@@ -28,7 +28,7 @@ export async function getFriends(URL){
 
 export async function inyectSamples(){
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
-  console.log(apiEndPoint);
+  console.log("AAAAAAAAAA");
   let response = await fetch(apiEndPoint+'/user/sample', {
       method: 'GET',
       headers: {'Content-Type':'application/json'}
