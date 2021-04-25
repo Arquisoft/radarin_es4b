@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from "react-bootstrap/Button";
 import { LoginContainer, LoginWrapper } from "../AppStyles";
+import { getText } from '../translations/i18n';
 
 class LogIn extends React.Component {
 
@@ -15,16 +16,16 @@ class LogIn extends React.Component {
             <LoginWrapper>
 
                 <LoginContainer>
-                    <h2>Bienvenido</h2>
+                    <h2>{ getText("login.bienvenida") }</h2>
                     <br />
                     <h4>
                         <Button variant="primary" onClick={this.handleButton.bind(this)}>
-                            Accede con tu POD</Button>
+                        { getText("login.botonInicio") }</Button>
                     </h4>
                     <br />
-                    <p>¿No tienes un POD? <a href="https://solidproject.org/users/get-a-pod">Hazte uno</a></p>
+                    <p>{ getText("login.info1") }<a href="https://solidproject.org/users/get-a-pod">{ getText("login.info2") }</a></p>
                 </LoginContainer>
-                <p class="alert">Es necesario añadir Radarin en aplicaciones de confianza</p>
+                <p class="alert">{ getText("login.info3") }</p>
 
             </LoginWrapper>
         );
