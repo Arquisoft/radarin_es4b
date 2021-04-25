@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import React from 'react';
+import { getText } from '../translations/i18n'
 
 
 class UsersMapList extends React.Component {
@@ -12,14 +13,14 @@ class UsersMapList extends React.Component {
     render() {
         return (
             <div className="table-responsive">
-                <h2>Lista de amigos</h2>
+                <h2>{ getText("userMapList.titulo") }</h2>
                 <table className="table table-bordered" id="tableUsers">
 				<thead>
 					<tr>
-						<th>Nombre</th>
-						<th>Latitud</th>
-						<th>Longitud</th>
-                        <th>Altitud</th>
+						<th>{ getText("userMapList.nombre") }</th>
+						<th>{ getText("userMapList.latitud") }</th>
+						<th>{ getText("userMapList.longitud") }</th>
+                        <th>{ getText("userMapList.altitud") }</th>
 					</tr>
 				</thead>
 				<tbody>

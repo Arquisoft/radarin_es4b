@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import data from "@solid/query-ldflex";
-
+import { getText } from '../../translations/i18n'
 import { Value, Link } from "@solid/react";
 import { Header, ProfileContainer, ProfileWrapper, FormRenderContainer, ImageRounded } from "../../AppStyles";
 
@@ -19,8 +19,8 @@ function Home(props) {
                   </Header>
                   <FormRenderContainer>
                       <h2><Value src="user.name"></Value></h2>
-                      <p><Link href={`${webId}`}>URL POD</Link></p>
-                      <p><Link href="user.inbox">Bandeja de entrada</Link></p>
+                      <p><Link href={`${webId}`}>{getText("profile.pod")}</Link></p>
+                      <p><Link href="user.inbox">{getText("profile.bandeja")}</Link></p>
                   </FormRenderContainer>
               </Fragment>
 

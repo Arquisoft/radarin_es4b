@@ -16,5 +16,16 @@
     "login.botonInicio": "Accede con tu POD",
     "login.info1": "¿No tienes un POD? ",
     "login.info2": "Hazte uno",
-    "login.info3": "Es necesario añadir Radarin en aplicaciones de confianza"
+    "login.info3": "Es necesario añadir Radarin en aplicaciones de confianza",
+
+    "home.bienvenida": "¡ Bienvenido a Radarin !",
+    "profile.pod": "URL POD",
+    "profile.bandeja": "Bandeja de entrada",
+
+    "userMapList.titulo": "Lista de amigos",
+    "userMapList.nombre": "Nombre",
+    "userMapList.latitud": "Latitud",
+    "userMapList.longitud": "Longitud",
+    "userMapList.altitud": "Altitud"
+
 }
