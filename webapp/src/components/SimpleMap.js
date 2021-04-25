@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import data from "@solid/query-ldflex";
-
 
 const mapStyles = {
   width: '70%',
   height: '100%'
 };
-
-
-const webId = sessionStorage.getItem("webId");
-const image = data[webId].vcard_hasPhoto;
 
 export class MapContainer extends Component {
 
@@ -39,10 +33,7 @@ export class MapContainer extends Component {
 
   showMarkers = () => {
     return this.props.marks.map((store, index) => {
-      return <Marker key={index} id={index} name={store.nombre} icon={{
-        url: "/img/defaultUser.png",
-        scaledSize: new this.props.google.maps.Size(42, 42)
-      }}
+      return <Marker key={index} id={index} name={store.nombre}
         position={{
           lat: store.lat,
           lng: store.lng
@@ -70,7 +61,7 @@ export class MapContainer extends Component {
         }}>
 
         {this.showMarkers()}
-        
+
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}>
