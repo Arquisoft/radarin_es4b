@@ -26,5 +26,13 @@
     "userMapList.nombre": "Name",
     "userMapList.latitud": "Latitude",
     "userMapList.longitud": "Length",
-    "userMapList.altitud": "Altitude"
+    "userMapList.altitud": "Altitude",
+
+    "userFriendsList.titulo": "Friends list",
+    "userFriendsList.urlPOD": "POD URL of ", 
+    "addFriend.titulo": "Add friend",
+    "addFriend.solicitud": "Enter your friend's WebID:",
+    "addFriend.feedback": "Please enter a valid WebID", 
+    "addFriend.accion": "Add",
+    "addFriend.exito": "Friend added successfully!"
 }

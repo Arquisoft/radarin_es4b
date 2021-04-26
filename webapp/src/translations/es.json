@@ -26,6 +26,14 @@
     "userMapList.nombre": "Nombre",
     "userMapList.latitud": "Latitud",
     "userMapList.longitud": "Longitud",
-    "userMapList.altitud": "Altitud"
+    "userMapList.altitud": "Altitud", 
+
+    "userFriendsList.titulo": "Lista de amigos",
+    "userFriendsList.urlPOD": "URL del POD de ", 
+    "addFriend.titulo": "Añadir amigo",
+    "addFriend.solicitud": "Introduce el WebID de tu amigo:",
+    "addFriend.feedback": "Escriba un WebID válido", 
+    "addFriend.accion": "Añadir",
+    "addFriend.exito": "¡Amigo añadido con éxito!"
 
 }
