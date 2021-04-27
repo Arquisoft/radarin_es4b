@@ -69,7 +69,7 @@ class App extends React.Component {
   async logIn() {
     let session = await solidauth.currentSession();
     let popupUri = "https://solid.github.io/solid-auth-client/dist/popup.html";
-    if (!session) session = await solidauth.popupLogin({ popupUri }); //Muestra el pop up si no has iniciado sesión
+    if (!session) session = await solidauth.popupLogin({ popupUri}); //Muestra el pop up si no has iniciado sesión
     sessionStorage.setItem("webId", session.webId);
     window.location.replace("/");
   }

@@ -34,7 +34,7 @@ class Navigation extends React.Component {
 
                         <li className="nav-item">
                             <Dropdown className="nav-link">
-                                <Dropdown.Toggle className="btn btn-secondary btn-sm dropdown-toggle">
+                                <Dropdown.Toggle className="btn btn-secondary btn-sm dropdown-toggle" >
                                 { getText("navigation.idioma") }
                             </Dropdown.Toggle>
 
