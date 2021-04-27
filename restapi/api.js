@@ -36,14 +36,16 @@ async function getFriends(URL) {
       fetcher
         .load(friend.doc())
         // Si no hay errores consulta el nombre y lo devuelve
-        .then((result) => {
+        .then(() => {
           return {
             URL: friend.value,
             name: store.any(friend, FOAF("name")).value,
+            photo: store.any(friend, VCARD("hasPhoto")).value
+
           };
         })
         // Si se produce un error devuelve la URL del amigo en lugar del nombre
-        .catch((err) => {
+        .catch(() => {
           return {
             URL: friend.value,
             name: friend.value,
@@ -51,6 +53,7 @@ async function getFriends(URL) {
         })
     );
   }
+
 
   return {
     namesQueries: namesQueries,
@@ -83,6 +86,8 @@ router.post("/user/friends", async (req, res) => {
           longitud: user.location.coordinates[0],
           altitud: user.altitud,
           fecha: user.fecha,
+          foto: resultNames.filter((result) => result.URL === user.URL)[0]
+            .photo
         };
       })
     );
@@ -167,7 +172,7 @@ router.post("/user/add", async (req, res) => {
         return;
       }
 
-      user = await User.findOne({ URL: infoToken.webId }).exec();
+      let user = await User.findOne({ URL: infoToken.webId }).exec();
       // Si ya está el usuario, se actializa su ubicación
       if (user) {
         user.location.coordinates = [req.body.longitud, req.body.latitud];
@@ -200,7 +205,7 @@ router.get("/user/sample", async (req, res) => {
 
   await User.deleteMany();
 
-  for (sample of samples) {
+  for (let sample of samples) {
     let user = new User(sample);
     users.push(user);
     await user.save();

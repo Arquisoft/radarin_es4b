@@ -22,10 +22,10 @@ class App extends React.Component {
 
   constructor() {
     super();
-    this.loadWebId(); 
+    this.loadWebId();
     this.state = {
       users: [],
-     lat: null,
+      lat: null,
       lon: null,
       marks: [],
       webId: "",
@@ -35,8 +35,10 @@ class App extends React.Component {
     const self = this;
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) { //watchPosition()
-        self.state.lat = position.coords.latitude
-        self.state.lon = position.coords.longitude
+        if (position) {
+          self.state.lat = position.coords.latitude
+          self.state.lon = position.coords.longitude
+        }
       });
 
     }
@@ -44,11 +46,11 @@ class App extends React.Component {
 
   async loadWebId() {
     let session = await solidauth.currentSession();
-    if(session) {
-      sessionStorage.setItem("webId",session.webId); 
+    if (session) {
+      sessionStorage.setItem("webId", session.webId);
     }
     else {
-      sessionStorage.setItem("webId",""); 
+      sessionStorage.setItem("webId", "");
     }
   }
 
@@ -56,6 +58,7 @@ class App extends React.Component {
     const URL = (await solidauth.currentSession()).webId;
     try {
       let listOfFriends = await getFriends(URL);
+
       this.setState((prevState) => ({ ...prevState, users: listOfFriends }));
       console.log(listOfFriends);
     } catch (error) {
@@ -67,13 +70,13 @@ class App extends React.Component {
     let session = await solidauth.currentSession();
     let popupUri = "https://solid.github.io/solid-auth-client/dist/popup.html";
     if (!session) session = await solidauth.popupLogin({ popupUri }); //Muestra el pop up si no has iniciado sesión
-    sessionStorage.setItem("webId",session.webId); 
+    sessionStorage.setItem("webId", session.webId);
     window.location.replace("/");
   }
 
   logOut() {
     solidauth.logout();
-    sessionStorage.setItem("webId",""); 
+    sessionStorage.setItem("webId", "");
   }
 
   zoomInUser(user) {
@@ -87,26 +90,33 @@ class App extends React.Component {
     }));
     console.log(this.state);
   }
+
   setMarks() {
-   this.state.marks.forEach(mark => {
+    this.state.marks.forEach(() => {
       this.state.marks.shift()
     })
-    this.state.marks.push({
-      nombre: 'YOU',
-      lat: this.state.lat,
-      lng: this.state.lon,
-    })
 
-      this.state.users.forEach(user => {
+    if (this.state.lat || this.state.lon) {
+      this.state.marks.push({
+        nombre: 'YOU',
+        lat: this.state.lat,
+        lng: this.state.lon,
+      })
+    }
+
+    this.state.users.forEach(user => {
       this.state.marks.push({
         nombre: user.nombre,
         lat: user.latitud,
         lng: user.longitud,
+        foto: user.foto,
+        fecha: user.fecha
       });
     });
-      
+
     return this.state.marks;
   }
+
   render() {
     this.setMarks()
     return (
@@ -124,7 +134,7 @@ class App extends React.Component {
           <LoggedIn>
             <Switch>
 
-              <Route path="/amigos"><UserFriendsList/></Route>
+              <Route path="/amigos"><UserFriendsList /></Route>
 
               <Route path="/mapa">
 
@@ -149,7 +159,7 @@ class App extends React.Component {
               </Route>
 
               <Route path="/logOut"><LogOut logOut={this.logOut.bind(this)} /></Route>
-              
+
 
               <Route path="/"><Home /></Route>
 

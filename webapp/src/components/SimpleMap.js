@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-import data from "@solid/query-ldflex";
 
 const mapStyles = {
   width: '70%',
   height: '100%'
 };
-
-
-const webId = sessionStorage.getItem("webId");
 
 
 export class MapContainer extends Component {
@@ -18,29 +14,6 @@ export class MapContainer extends Component {
     activeMarker: {},
     selected: {},
   };
-
-  /*   
-  async parsePhoto() {
-    const webId = sessionStorage.getItem("webId");
-    const $rdf = require("rdflib");
-    const VCARD = $rdf.Namespace("http://www.w3.org/2006/vcard/ns#");
-    const store = $rdf.graph();
-    const fetcher = new $rdf.Fetcher(store);
-    const me = store.sym(webId);
-    const profile = me.doc();
-    await fetcher.load(profile);
-    const photo = store.any(me, VCARD("hasPhoto"));
-    return  "/img/defaultUser.png";
-  } */
-
-  async parsePhoto() {
-    const image = data[webId].vcard_hasPhoto;
-    image.then(result => {
-      console.log(result.value);
-      return result.value;
-    });
-  }
-
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -62,8 +35,8 @@ export class MapContainer extends Component {
   showMarkers = () => {
 
     return this.props.marks.map((store, index) => {
-      return <Marker key={index} id={index} name={store.nombre} icon={{
-        url: this.parsePhoto(),
+      return <Marker key={index} id={index} name={store.nombre} fecha={store.fecha} icon={{
+        url: store.foto,
         scaledSize: new this.props.google.maps.Size(42, 42)
       }}
         position={{
@@ -100,6 +73,7 @@ export class MapContainer extends Component {
           visible={this.state.showingInfoWindow}>
           <div>
             <h3>{this.state.selected.name}</h3>
+            <p>{this.state.selected.fecha}</p>
           </div>
         </InfoWindow>
 
