@@ -5,12 +5,6 @@ const puppeteer = require('puppeteer');
 
 defineFeature(feature, test => {
 
-  function wait(time) {
-    return new Promise(function (resolve) {
-      setTimeout(resolve, time);
-    });
-  }
-
   beforeEach(async () => {
     await global.page.goto('http://localhost:3000');
   })
@@ -28,10 +22,7 @@ defineFeature(feature, test => {
     });
 
     when('The user registers in the application', async () => {
-      newPagePromise = new Promise(x => page.once('popup', x));
-      await expect(page).toClick('a', { text: 'Iniciar sesión' });
-      await expect(page).toClick('button', { text: 'Accede con tu POD' });
-      popup = await newPagePromise;
+
     });
 
     then('The user will access to his friends list', async () => {
