@@ -35,7 +35,7 @@ export class MapContainer extends Component {
   showMarkers = () => {
 
     return this.props.marks.map((store, index) => {
-      return <Marker key={index} id={index} name={store.nombre} fecha={store.fecha} icon={{
+      return <Marker key={index} id={index} name={store.nombre} fecha={store.fecha.substr(0, 10)} hora={store.fecha.substr(11, 11).substr(0, 5)} icon={{
         url: store.foto,
         scaledSize: new this.props.google.maps.Size(42, 42)
       }}
@@ -74,6 +74,7 @@ export class MapContainer extends Component {
           <div>
             <h3>{this.state.selected.name}</h3>
             <p>{this.state.selected.fecha}</p>
+            <p>{this.state.selected.hora}</p>
           </div>
         </InfoWindow>
 
