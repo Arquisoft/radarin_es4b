@@ -2,8 +2,12 @@ const request = require('supertest');
 const server = require('./server-for-tests');
 
 const jwt = require("jsonwebtoken");
-const token = jwt.sign(
+const tokenDavid = jwt.sign(
     { webId: "https://davidaf.solidcommunity.net/profile/card#me" },
+    process.env.TOKEN_SECRET || "contraseñapruebas"
+  );
+const tokenPablo = jwt.sign(
+    { webId: "https://pablo.solidcommunity.net/profile/card#me" },
     process.env.TOKEN_SECRET || "contraseñapruebas"
   );
 
@@ -44,11 +48,13 @@ describe('friends ', () => {
         expect(response.statusCode).toBe(200);
         const results = response.body.sort(result => result.nombre);
         expect(results[0].nombre).toBe("moises");
+        expect(results[0].foto).toBe("https://moises.solidcommunity.net/profile/unnamed.png");
         expect(results[0].latitud).toBe(43.5405559);
         expect(results[0].longitud).toBe(-5.7009505);
         expect(results[0].altitud).toBe(50.0);
         expect(new Date(results[0].fecha)).toStrictEqual(new Date(1000));
         expect(results[1].nombre).toBe("Alberto");
+        expect(results[1].foto).toBe("https://bertofer.solidcommunity.net/profile/ezgif.com-gif-maker.gif");
         expect(results[1].latitud).toBe(43.3656691);
         expect(results[1].longitud).toBe(-5.8546573);
         expect(results[1].altitud).toBe(100.0);
@@ -63,11 +69,12 @@ describe('friends ', () => {
         let longitud = -5.70;
         let maxDistancia = 100;
         const response = await request(app).post('/api/user/friends/near')
-            .send({token, latitud, longitud, maxDistancia})
+            .send({token: tokenDavid, latitud, longitud, maxDistancia})
             .set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
         const results = response.body.sort(result => result.nombre);
         expect(results[0].nombre).toBe("moises");
+        expect(results[0].foto).toBe("https://moises.solidcommunity.net/profile/unnamed.png");
         expect(results[0].latitud).toBe(43.5405559);
         expect(results[0].longitud).toBe(-5.7009505);
         expect(results[0].altitud).toBe(50.0);
@@ -96,7 +103,7 @@ describe('users ', () => {
         email = 'pablo@uniovi.es'
         const response = await request(app).post('/api/user/add')
             .send({
-                token,
+                token: tokenPablo,
                 latitud: 43.3656691,
                 longitud: -5.8546573,
                 altitud: 100.0})
@@ -113,7 +120,7 @@ describe('users ', () => {
         email = 'pablo@uniovi.es'
         const response = await request(app).post('/api/user/add')
             .send({
-                token,
+                token: tokenPablo,
                 latitud: 43.00,
                 longitud: -5.00,
                 altitud: 120.0})

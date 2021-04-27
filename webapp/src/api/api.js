@@ -6,7 +6,8 @@
  * @param {String} URL webId del usuario
  * @returns {Promise<{
  *  URL: String, 
- *  nombre: String, 
+ *  nombre: String,
+ *  foto: String,
  *  latitud: Number, 
  *  longitud: Number,  
  *  altitud: Number,

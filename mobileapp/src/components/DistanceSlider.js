@@ -20,7 +20,7 @@ const DistanceSlider = ({distance, changeDistance}) => {
         value={distance}
         onValueChange={value => changeDistance(value)}
         allowTouchTrack={true}
-        maximumValue={1000}
+        maximumValue={5000}
         minimumValue={10}
         thumbTintColor={'#007bff'}
         thumbStyle={styles.thumb}

@@ -13,7 +13,7 @@ const jwt = require("jsonwebtoken");
 /**
  * Consultas los amigos de un usuario
  * @param {String} URL webId del usuario
- * @returns {{namesQueries: Promise<{URL: String, name: String}>[], friends: String[]}} array de promesas que se resolveran
+ * @returns {{podsQueries: Promise<{URL: String, name: String}>[], friends: String[]}} array de promesas que se resolveran
  * con los nombres de cada amigo y array con los webIds de los amigos
  */
 async function getFriends(URL) {
@@ -28,14 +28,15 @@ async function getFriends(URL) {
   // Consulta las URLs de los amigos
   const friends = store.each(me, FOAF("knows"));
 
-  // Consulta los nombres de los amigos en sus respectivos pods y almacena las promesas resultantes en un array
-  const namesQueries = [];
+  // Consulta los nombres y las fotos de los amigos en sus respectivos pods y 
+  // almacena las promesas resultantes en un array
+  const podsQueries = [];
   for (const friend of friends) {
-    namesQueries.push(
+    podsQueries.push(
       // Carga el perfil del amigo
       fetcher
         .load(friend.doc())
-        // Si no hay errores consulta el nombre y lo devuelve
+        // Si no hay errores consulta el nombre, la foto y los devuelve
         .then(() => {
           return {
             URL: friend.value,
@@ -56,14 +57,14 @@ async function getFriends(URL) {
 
 
   return {
-    namesQueries: namesQueries,
+    podsQueries: podsQueries,
     friends: friends.map((friend) => friend.value),
   };
 }
 
 // Get friend list of a user
 router.post("/user/friends", async (req, res) => {
-  const { namesQueries, friends } = await getFriends(req.body.URL);
+  const { podsQueries, friends } = await getFriends(req.body.URL);
 
   //Consulta los usuarios (y sus localizaciones) con las URLs de los amigos en la bd
   const usersQuery = User.find({ URL: { $in: friends } }).sort("-_id");
@@ -71,23 +72,22 @@ router.post("/user/friends", async (req, res) => {
   // Espera a que todas las consultas terminen
   return Promise.all([
     usersQuery,
-    Promise.all(namesQueries).then((results) => results),
+    Promise.all(podsQueries).then((results) => results),
   ]).then((results) => {
     const resultDb = results[0];
-    const resultNames = results[1];
-    //Asocia los resultados de la consulta a la bd con los nombres obtenidos de los pods
+    const resultPods = results[1];
+    //Asocia los resultados de la consulta a la bd con los de los pods
     res.send(
       resultDb.map((user) => {
+        userInfo = resultPods.filter((result) => result.URL === user.URL)[0];
         return {
           URL: user.URL,
-          nombre: resultNames.filter((result) => result.URL === user.URL)[0]
-            .name,
+          nombre: userInfo.name,
+          foto: userInfo.photo,
           latitud: user.location.coordinates[1],
           longitud: user.location.coordinates[0],
           altitud: user.altitud,
           fecha: user.fecha,
-          foto: resultNames.filter((result) => result.URL === user.URL)[0]
-            .photo
         };
       })
     );
@@ -109,7 +109,7 @@ router.post("/user/friends/near", async (req, res) => {
         return;
       }
 
-      const { namesQueries, friends } = await getFriends(infoToken.webId);
+      const { podsQueries, friends } = await getFriends(infoToken.webId);
 
       //Consulta los usuarios cercanos (y sus localizaciones) con las URLs de los amigos en la bd
       const usersAggregate = User.aggregate([
@@ -129,17 +129,18 @@ router.post("/user/friends/near", async (req, res) => {
       // Espera a que todas las consultas terminen
       return Promise.all([
         usersAggregate,
-        Promise.all(namesQueries).then((results) => results),
+        Promise.all(podsQueries).then((results) => results),
       ]).then((results) => {
         const resultDb = results[0];
-        const resultNames = results[1];
-        //Asocia los resultados de la consulta a la bd con los nombres obtenidos de los pods
+        const resultPods = results[1];
+        //Asocia los resultados de la consulta a la bd con los de los pods
         res.send(
           resultDb.map((user) => {
+            userInfo = resultPods.filter((result) => result.URL === user.URL)[0];
             return {
               URL: user.URL,
-              nombre: resultNames.filter((result) => result.URL === user.URL)[0]
-                .name,
+              nombre: userInfo.name,
+              foto: userInfo.photo,
               latitud: user.location.coordinates[1],
               longitud: user.location.coordinates[0],
               altitud: user.altitud,

@@ -2,11 +2,11 @@ import React, {forwardRef, useImperativeHandle, useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
 import MapView, {Circle, Marker} from 'react-native-maps';
 import getText, {getDateTimeString} from '../i18n.js';
-import {Icon} from 'react-native-elements';
+import {Icon, Avatar} from 'react-native-elements';
 
 const Map = forwardRef(
   (
-    {region, changeRegion, lastUserLocation, locationDistance, friends},
+    {region, changeRegion, lastUserLocation, locationDistance, user, friends},
     ref,
   ) => {
     const map = useRef(null);
@@ -54,8 +54,17 @@ const Map = forwardRef(
                 description={getDateTimeString(
                   new Date(lastUserLocation.timestamp),
                 )}
-                pinColor={'aqua'}
-              />
+                pinColor={'aqua'}>
+                <Avatar
+                  rounded
+                  size={'small'}
+                  source={
+                    user.photo
+                      ? {uri: user.photo}
+                      : require('../../resources/images/icon-user-default.png')
+                  }
+                />
+              </Marker>
             )}
             {friends.map(friend => (
               <Marker
@@ -65,7 +74,19 @@ const Map = forwardRef(
                   longitude: friend.longitud,
                 }}
                 description={getDateTimeString(new Date(friend.fecha))}
-                title={friend.nombre}></Marker>
+                title={friend.nombre}>
+                {!friend.foto && (
+                  <Avatar
+                    rounded
+                    size={'small'}
+                    title={friend.nombre.charAt(0)}
+                    overlayContainerStyle={{backgroundColor: '#BDBDBD'}}
+                  />
+                )}
+                {friend.foto && (
+                  <Avatar rounded size={'small'} source={{uri: friend.photo}} />
+                )}
+              </Marker>
             ))}
           </MapView>
           {lastUserLocation && (
@@ -74,7 +95,7 @@ const Map = forwardRef(
               color="#007bff"
               size={26}
               containerStyle={{
-                margin: 20
+                margin: 20,
               }}
               onPress={() => {
                 if (map.current)

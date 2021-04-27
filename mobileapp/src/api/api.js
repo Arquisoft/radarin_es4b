@@ -30,6 +30,7 @@ export async function sendLocation(token, location) {
  * @returns {Promise<{
  *  URL: String,
  *  nombre: String,
+ *  foto: String,
  *  latitud: Number,
  *  longitud: Number,
  *  altitud: Number,

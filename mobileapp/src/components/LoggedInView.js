@@ -158,6 +158,7 @@ const LoggedInView = ({user, changeUser}) => {
         changeRegion={setMapRegion}
         lastUserLocation={lastLocation}
         locationDistance={distance}
+        user={user}
         friends={friends}
       />
     </View>
