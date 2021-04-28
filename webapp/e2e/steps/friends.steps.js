@@ -1,5 +1,5 @@
 const { defineFeature, loadFeature } = require('jest-cucumber');
-const feature = loadFeature('./features/register-form.feature');
+const feature = loadFeature('./features/friends.feature');
 
 defineFeature(feature, test => {
 
@@ -13,7 +13,7 @@ defineFeature(feature, test => {
     await global.page.goto('http://localhost:3000/LogIn')
   })
 
-  test('The user is not registered in the site', ({ given, when, then }) => {
+  test('he user is not registered in the site and wants to see his friends list', ({ given, when, then }) => {
 
     let webID;
     let username;
@@ -25,7 +25,7 @@ defineFeature(feature, test => {
       password = "TestTest1?";
     });
 
-    when('I fill the data in the form and press submit', async () => {
+    when('The user registers in the application', async () => {
 
       // Accedemos a la ventana de inicio de sesión  
       newPagePromise = new Promise(x => page.once('popup', x));
@@ -43,7 +43,7 @@ defineFeature(feature, test => {
 
     });
 
-    then('A welcome message should be shown in the screen', async () => {
+    then('The user will access to his friends list', async () => {
 
       // Accedemos a la sección de amigos
       await page.goto('http://localhost:3000/amigos')
@@ -55,18 +55,5 @@ defineFeature(feature, test => {
       await expect(page).toMatch('moises');
     });
   });
-
-  test('The user is already registered in the site', ({ given, when, then }) => {
-
-    given('An already registered user', () => {
-    });
-
-    when('I fill the data in the form and press submit', async () => {
-
-    });
-
-    then('An error message should be shown in the screen', async () => {
-    });
-
-  });
+  
 });
