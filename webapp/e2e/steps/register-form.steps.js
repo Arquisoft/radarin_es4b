@@ -23,6 +23,8 @@ defineFeature(feature, test => {
 
       // Cambiamos el idioma a español 
       await expect(page).toClick('button', { text: 'Idioma' || 'Language' });
+      await expect(page).toClick('a', { text: 'Español' || 'Spanish' });
+      await page.goto('http://localhost:3000', { waitUntil: 'load', timeout: 0 });
     });
 
     then('A welcome message should be shown in the screen', async () => {
