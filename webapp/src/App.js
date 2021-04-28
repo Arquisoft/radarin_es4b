@@ -27,7 +27,7 @@ class App extends React.Component {
       lat: null,
       lon: null,
       marks: [],
-      mapOptions: {zoom: 8},
+      mapOptions: {zoom: 11},
     };
   }
 
@@ -36,7 +36,6 @@ class App extends React.Component {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.updateUserPosition.bind(this));
     }
-    this.fetchUsers();
   }
 
   updateUserPosition(position) {
@@ -65,18 +64,21 @@ class App extends React.Component {
   }
 
   async fetchUsers() {
-    const URL = (await solidauth.currentSession()).webId;
-    try {
-      let listOfFriends = await getFriends(URL);
-      this.setState((prevState) => ({ 
-        ...prevState, 
-        users: listOfFriends, 
-        marks: this.getMarks(listOfFriends) 
-      }));
-      console.log(listOfFriends);
-    } catch (error) {
-      console.log("Error fetching user list from restapi. Is it on?");
-    }
+    solidauth.trackSession(async session => {
+      if(session) {
+        try {
+          let listOfFriends = await getFriends(session.webId);
+          this.setState((prevState) => ({ 
+            ...prevState, 
+            users: listOfFriends, 
+            marks: this.getMarks(listOfFriends) 
+          }));
+          console.log(listOfFriends);
+        } catch (error) {
+          console.log("Error fetching user list from restapi. Is it on?");
+        }
+      }
+    });
   }
 
   async logIn() {
@@ -98,7 +100,7 @@ class App extends React.Component {
       mapOptions: {
         lat: user.latitud,
         lon: user.longitud,
-        zoom: 12,
+        zoom: 14,
       },
     }));
   }
@@ -151,6 +153,7 @@ class App extends React.Component {
                 <WhiteContainer className="Friends">
                   <div className="UsersList">
                     <UsersMapList
+                      fetchUsers={this.fetchUsers.bind(this)}
                       users={this.state.users}
                       onUserClick={this.zoomInUser.bind(this)}
                     />
