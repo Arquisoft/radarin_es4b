@@ -35,7 +35,7 @@ defineFeature(feature, test => {
       // Introducimos los datos de incio de sesión 
       await expect(popup).toFill('input[type="url"]', webID);
       await expect(popup).toClick('[type="submit"]');
-      await wait(6000);
+      await wait(8000);
       await expect(popup).toFill('input[name="username"]', username);
       await expect(popup).toFill('input[name="password"]', password);
       await expect(popup).toClick('[id="login"]');
