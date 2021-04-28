@@ -27,16 +27,6 @@ defineFeature(feature, test => {
 
     when('The user registers in the application', async () => {
 
-      // Cambiamos el idioma a español 
-      await expect(page).toClick('button', { text: 'Idioma' || 'Language' });
-      await expect(page).toClick('a', { text: 'Español' || 'Spanish' });
-      await page.goto('http://localhost:3000', { waitUntil: 'load', timeout: 0 });
-
-      // Accedemos a la ventana de inicio de sesión  
-      newPagePromise = new Promise(x => page.once('popup', x));
-      await expect(page).toClick('a', { text: 'Iniciar sesión' });
-      await expect(page).toClick('button', { text: 'Accede con tu POD' });
-      popup = await newPagePromise;
 
     });
 
