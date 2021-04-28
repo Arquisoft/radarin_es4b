@@ -8,6 +8,7 @@
 [plantuml,"iniciar sesión app móvil",png]
 ----
 actor Alice
+participant "Almacenamiento del dispositivo"
 participant "Aplicación móvil"
 participant "API REST"
 participant "Proveedor de identidad de Solid"
@@ -19,7 +20,9 @@ Alice -> "Aplicación móvil": Introduce sus credenciales de Solid
 "Proveedor de identidad de Solid" -> "API REST": Notificar que Alice ha sido autenticada
 "API REST" -> "Pod": Solicita la información personal de Alice
 "Pod" -> "API REST": Envía la información personal de Alice
-"API REST" -> "Aplicación móvil": Notifica que Alice ha sido autenticada y envía su información personal
+"API REST" -> "Aplicación móvil": Notifica que Alice ha sido autenticada y envía su información personal junto a un token
+"Aplicación móvil" -> "Aplicación móvil": Encripta el token
+"Aplicación móvil" -> "Almacenamiento del dispositivo": Almacena el token
 "Aplicación móvil" -> Alice: Muestra la pantalla de usuario autenticado
 ----
 
@@ -30,6 +33,7 @@ Alice -> "Aplicación móvil": Introduce sus credenciales de Solid
 [plantuml,"Subir posición",png]
 ----
 actor Alice
+participant "Almacenamiento del dispositivo"
 participant "Aplicación móvil"
 participant "Proveedor de localización"
 participant "API REST"
@@ -39,7 +43,11 @@ Alice -> "Aplicación móvil": Activa el envío de localizaciones
 Alice -> "Aplicación móvil": Da acceso a su localización
 "Aplicación móvil" -> "Proveedor de localización": Se suscribe a acutalizaciones de localización
 "Proveedor de localización" -> "Aplicación móvil": Notifica una nueva localización
-"Aplicación móvil" -> "API REST": Envia la localización
+"Aplicación móvil" -> "Almacenamiento del dispositivo": Solicita el token encriptado
+"Aplicación móvil" <- "Almacenamiento del dispositivo": Envía el token encriptado
+"Aplicación móvil" -> "Aplicación móvil": Desencripta el token
+"Aplicación móvil" -> "API REST": Envia la localización y el token
+"API REST" -> "API REST": Verifica el token
 "API REST" -> "Base de datos": Almacena la localización
 ----
 
@@ -51,6 +59,7 @@ El proveedor de localización es el propio del dispositivo móvil del usuario.
 [plantuml,"Ver localización de amigos cercanos",png]
 ----
 actor Alice
+participant "Almacenamiento del dispositivo"
 participant "Aplicación móvil"
 participant "Proveedor de localización"
 participant "API REST"
@@ -58,7 +67,11 @@ participant "Pod"
 participant "Base de datos"
 Alice -> "Aplicación móvil": Indica la distancia máxima para filtrar los amigos cercanos
 "Proveedor de localización" -> "Aplicación móvil": Notifica una nueva localización
-"Aplicación móvil" -> "API REST": Envia la localización
+"Aplicación móvil" -> "Almacenamiento del dispositivo": Solicita el token encriptado
+"Aplicación móvil" <- "Almacenamiento del dispositivo": Envía el token encriptado
+"Aplicación móvil" -> "Aplicación móvil": Desencripta el token
+"Aplicación móvil" -> "API REST": Envia la localización y el token
+"API REST" -> "API REST": Verifica el token
 "API REST" -> "Pod": Solicita la lista de amigos
 "Pod" -> "API REST": Devuelve la lista de amigos
 "API REST" -> "Base de datos": Consulta las localizaciones de los amigos cercanos

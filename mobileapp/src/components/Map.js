@@ -84,7 +84,12 @@ const Map = forwardRef(
                   />
                 )}
                 {friend.foto && (
-                  <Avatar rounded size={'small'} source={{uri: friend.photo}} />
+                  <Avatar
+                    rounded
+                    size={'small'}
+                    title={friend.nombre.charAt(0)}
+                    source={{uri: friend.foto}}
+                  />
                 )}
               </Marker>
             ))}

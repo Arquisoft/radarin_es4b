@@ -4,9 +4,17 @@ import {Avatar} from 'react-native-elements';
 import CustomButton from './CustomButton';
 import getText from '../i18n.js';
 import {unsubscribe} from '../location.js';
-import { stopFriendUpdates } from '../friends';
+import {stopFriendUpdates} from '../friends';
+import * as CurrentUser from '../user.js';
 
 const UserInfo = ({user, changeUser}) => {
+  const logOut = () => {
+    unsubscribe();
+    stopFriendUpdates();
+    CurrentUser.clear();
+    changeUser(null);
+  };
+
   return (
     <View style={styles.container}>
       <Avatar
@@ -21,11 +29,7 @@ const UserInfo = ({user, changeUser}) => {
       />
       <Text style={styles.text}>{user.name}</Text>
       <CustomButton
-        action={() => {
-          unsubscribe();
-          stopFriendUpdates();
-          changeUser(null);
-        }}
+        action={logOut}
         text={getText('logOut')}
         customContentStyles={styles.button}
       />

@@ -49,3 +49,12 @@ export function setLastUserLocation(location) {
 export function setToken(newToken) {
     token = newToken;
 }
+
+/**
+ * Borra la información del usuario actual
+ */
+export function clear() {
+    setWebId(null);
+    setLastUserLocation(null);
+    setToken(null);
+}

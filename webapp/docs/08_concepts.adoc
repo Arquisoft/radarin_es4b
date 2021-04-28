@@ -15,3 +15,4 @@ En cuanto a las pruebas, usaremos Jest en el caso de la API Rest y el script de 
 
 .Seguridad e información
 La información de nuestros usuarios está descentralizada gracias a los PODs. De esta manera garantizamos su independencia y seguridad.
+Para autenticar los accesos a la API Rest desde la aplicación móvil usaremos un token que será enviado al usuario cuando inicie sesión y se almacenará encriptado en su dispositivo. Cada vez que se haga una petición a la API que requiera autenticación, tendrá que enviarse el token para su verificación. 
