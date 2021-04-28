@@ -13,7 +13,7 @@ defineFeature(feature, test => {
     await global.page.goto('http://localhost:3000/LogIn')
   })
 
-  test('he user is not registered in the site and wants to see his friends list', ({ given, when, then }) => {
+  test('The user is not registered in the site and wants to see his friends list', ({ given, when, then }) => {
 
     let webID;
     let username;
