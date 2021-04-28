@@ -40,6 +40,7 @@ defineFeature(feature, test => {
       await expect(popup).toFill('input[name="password"]', password);
       await expect(popup).toClick('[id="login"]');
       await wait(6000);
+      await expect(page).toMatch('testpodasw');
 
     });
 
