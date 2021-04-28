@@ -1,27 +1,35 @@
 [[section-anexos]]
-== Pruebas
+== Anexos
+
+:numbered!:
+
+=== Pruebas
 
 Se realizaron varios tipos de pruebas, tanto de la aplicación web, como de la aplicación movil: 
 
-* Aplicación web
+==== Apliación web
 
-** Pruebas unitarias 
+===== Pruebas unitarias 
 
-*** Prueba unitaria 1: 
+====== Prueba unitaria 1: 
 
-** Pruebas de aceptación 
+===== Pruebas de aceptación 
 
-** Pruebas de carga
-
-*** Prueba de carga 1: Visualización de la lista de amigos. 
+====== Prueba de aceptación 1: Visualización de la lista de amigos. 
 
 Esecenario 1: El usuario no está registrado en la aplicación web y quiere ver una lista con sus amigos.
-Dado: Un usuario no registrado. 
+Dado: Un usuario no registrado.
+
 Cuando: El usuario se registra en la aplicación. 
+
 Después: El usuario accede a la lista de amigos y visualiza todos sus amigos. 
 
-* Aplicacion movil
+===== Pruebas de carga 
 
-** Pruebas unitarias
+
+
+==== Aplicación movil
+
+===== Pruebas unitarias 
 
 
