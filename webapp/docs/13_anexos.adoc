@@ -1,8 +1,6 @@
 [[section-anexos]]
 == Anexos
 
-:numbered!:
-
 === Pruebas
 
 Se realizaron varios tipos de pruebas, tanto de la aplicación web, como de la aplicación movil: 
