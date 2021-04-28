@@ -39,8 +39,7 @@ defineFeature(feature, test => {
       await expect(popup).toFill('input[name="username"]', username);
       await expect(popup).toFill('input[name="password"]', password);
       await expect(popup).toClick('[id="login"]');
-      await wait(6000);
-      await expect(page).toMatch('testpodasw');
+      await wait(8000);
 
     });
 
@@ -49,7 +48,7 @@ defineFeature(feature, test => {
       // Accedemos a la sección de amigos
       await page.goto('http://localhost:3000/amigos')
 
-      await wait(6000);
+      await wait(8000);
       await expect(page).toMatch('Alberto');
       await expect(page).toMatch('David Álvarez');
       await expect(page).toMatch('Jonathan');
