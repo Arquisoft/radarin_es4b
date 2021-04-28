@@ -55,4 +55,17 @@ Aprobada.
 ==== Consecuencias
 Tendremos que adaptar el esquema de las localizaciones de los usuarios en la base de datos para que tengan un formato compatible con las consultas geoespaciales de MongoDB. Esto implica adaptar el código en todos los lugares donde se usen resultados de consultas a la base de datos, así como modificar los datos de prueba que usamos. Para que estás consultas funcionen, también hay que crear un índice de tipo 2dsphere en la base de datos con los campos en los que se almacenan las coordenadas.
 
+=== ADR 5: Usar un JSON Web Token para autenticar los accesos a la API Rest desde la aplicación móvil
+==== Contexto
+Como la solución que encontramos para hacer el inicio de sesión en Solid solo autentica al usuario en el momento del inicio de sesión, tenemos que encontrar una manera de verificar que el usuario está autorizado cuando acceda a la API Rest. Podemos usar un token para identificar al usuario, podemos generar un par de claves pública y privada para cada usuario o podemos implementar un sistema más complejo usando un servidor de autorización.
+
+==== Decisión
+Hemos decidido usar un JSON Web Token para identificar al usuario. Cuando el usuario inicie sesión, recibirá un token que se guardará cifrado en el almacenamiento de su dispositivo. Cada vez que se haga una petición a la API, se descifrará el token y se enviará junto con los demás datos. Hemos tomado esta decisión porque es el mismo sistema que usamos en la asignatura SDI, es la solución más simple y aporta un nivel de seguridad suficiente para nuestra aplicación.
+
+==== Estado
+Aprobada.
+
+==== Consecuencias
+Tendremos modificar la API Rest para que genere un token al iniciar sesión y verifique el token enviado en las peticiones que requieran autenticación. También tendremos que modificar la aplicación móvil para que gestione el almacenamiento cifrado de los tokens y su envío en cada petición.
+
 :numbered:
