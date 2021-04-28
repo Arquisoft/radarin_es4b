@@ -5,11 +5,6 @@ import { getText } from '../translations/i18n'
 
 class UsersMapList extends React.Component {
 
-    constructor(props) {
-        super(props); 
-        this.props.fetchUsers();  
-    }
-
     render() {
         return (
             <div className="table-responsive">
@@ -29,9 +24,9 @@ class UsersMapList extends React.Component {
                         <td id={"nombre" + i}>
                             <Button onClick={() => this.props.onUserClick(user)} variant="link">{user.nombre}</Button>
                         </td>
-                        <td id={"latitud" + i}>{user.latitud}</td>
-                        <td id={"longitud" + i}>{user.longitud}</td>
-                        <td id={"altitud" + i}>{user.altitud}</td>
+                        <td id={"latitud" + i}>{user.latitud.toFixed(2)}</td>
+                        <td id={"longitud" + i}>{user.longitud.toFixed(2)}</td>
+                        <td id={"altitud" + i}>{user.altitud.toFixed(2)}</td>
                         </tr>)
                     }.bind(this))}
 				</tbody>

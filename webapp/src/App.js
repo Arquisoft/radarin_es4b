@@ -22,25 +22,35 @@ class App extends React.Component {
 
   constructor() {
     super();
-    this.loadWebId();
     this.state = {
       users: [],
       lat: null,
       lon: null,
       marks: [],
-      webId: "",
-      logged: false,
-      zoom: 8
+      mapOptions: {zoom: 8},
     };
-    const self = this;
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) { //watchPosition()
-        if (position) {
-          self.state.lat = position.coords.latitude
-          self.state.lon = position.coords.longitude
-        }
-      });
+  }
 
+  componentDidMount() {
+    this.loadWebId();
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.updateUserPosition.bind(this));
+    }
+    this.fetchUsers();
+  }
+
+  updateUserPosition(position) {
+    if (position) {
+      this.setState((prevState) => ({
+        ...prevState,
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+        mapOptions: {
+          ...prevState.mapOptions,
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        },
+      }));
     }
   }
 
@@ -58,8 +68,11 @@ class App extends React.Component {
     const URL = (await solidauth.currentSession()).webId;
     try {
       let listOfFriends = await getFriends(URL);
-
-      this.setState((prevState) => ({ ...prevState, users: listOfFriends }));
+      this.setState((prevState) => ({ 
+        ...prevState, 
+        users: listOfFriends, 
+        marks: this.getMarks(listOfFriends) 
+      }));
       console.log(listOfFriends);
     } catch (error) {
       console.log("Error fetching user list from restapi. Is it on?");
@@ -85,27 +98,24 @@ class App extends React.Component {
       mapOptions: {
         lat: user.latitud,
         lon: user.longitud,
-        zoom: 10,
+        zoom: 12,
       },
     }));
-    console.log(this.state);
   }
 
-  setMarks() {
-    this.state.marks.forEach(() => {
-      this.state.marks.shift()
-    })
+  getMarks(users) {
+    let newMarks = [];
 
     if (this.state.lat || this.state.lon) {
-      this.state.marks.push({
+      newMarks.push({
         nombre: 'YOU',
         lat: this.state.lat,
         lng: this.state.lon,
       })
     }
 
-    this.state.users.forEach(user => {
-      this.state.marks.push({
+    users.forEach(user => {
+      newMarks.push({
         nombre: user.nombre,
         lat: user.latitud,
         lng: user.longitud,
@@ -114,11 +124,10 @@ class App extends React.Component {
       });
     });
 
-    return this.state.marks;
+    return newMarks;
   }
 
   render() {
-    this.setMarks()
     return (
       <div className="App">
         <Router >
@@ -142,17 +151,15 @@ class App extends React.Component {
                 <WhiteContainer className="Friends">
                   <div className="UsersList">
                     <UsersMapList
-                      fetchUsers={this.fetchUsers.bind(this)}
                       users={this.state.users}
                       onUserClick={this.zoomInUser.bind(this)}
                     />
                   </div>
 
                   <SimpleMap
-                    fetchUsers={this.fetchUsers.bind(this)}
+                    mapOptions={this.state.mapOptions}
                     lat={this.state.lat}
                     lon={this.state.lon}
-                    zoom={this.state.zoom}
                     marks={this.state.marks}
                   />
                 </WhiteContainer>

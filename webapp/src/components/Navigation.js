@@ -30,7 +30,7 @@ class Navigation extends React.Component {
 
                     </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul className ="nav navbar-nav navbar-right">
 
                         <li className="nav-item">
                             <Dropdown className="nav-link">

@@ -9,11 +9,16 @@ const mapStyles = {
 
 export class MapContainer extends Component {
 
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selected: {},
-  };
+  constructor(props) {
+    super(props)
+    this.state = {
+      showingInfoWindow: false,
+      activeMarker: {},
+      selected: {},
+    };
+  }
+
+  
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -27,7 +32,7 @@ export class MapContainer extends Component {
       this.setState({
         showingInfoWindow: false,
         activeMarker: null
-      })
+      });
     }
   };
 
@@ -35,16 +40,26 @@ export class MapContainer extends Component {
   showMarkers = () => {
 
     return this.props.marks.map((store, index) => {
-      return <Marker key={index} id={index} name={store.nombre} fecha={store.fecha?.substr(0, 10)} hora={store.fecha?.substr(11, 11).substr(0, 5)} icon={{
-        url: store.foto,
-        scaledSize: new this.props.google.maps.Size(42, 42)
-      }}
+      let optionalProps = store.foto? {
+        icon: {
+          url: store.foto, 
+          scaledSize: new this.props.google.maps.Size(42, 42)
+        },
+      } : {};
+
+      return <Marker 
+        key={index} 
+        id={index} 
+        name={store.nombre} 
+        fecha={store.fecha?.substr(0, 10)} 
+        hora={store.fecha?.substr(11, 11).substr(0, 5)} 
         position={{
           lat: store.lat,
           lng: store.lng
         }}
         title={store.nombre}
         onClick={this.onMarkerClick}
+        {...optionalProps}
       />
 
     })
@@ -52,19 +67,24 @@ export class MapContainer extends Component {
 
 
   render() {
+    let optionalMapProps = 
+      (this.props.mapOptions.lat && this.props.mapOptions.lon)? {
+        initialCenter: {
+          lat: this.props.mapOptions.lat,
+          lng: this.props.mapOptions.lon,
+        },
+        center: {
+          lat: this.props.mapOptions.lat,
+          lng: this.props.mapOptions.lon,
+        },
+      } : {};
+
     return (
       <Map onClick={this.onMapClicked}
         google={this.props.google}
-        zoom={this.props.zoom}
+        zoom={this.props.mapOptions.zoom}
         style={mapStyles}
-        initialCenter={{
-          lat: this.props.lat,
-          lng: this.props.lon,
-        }}
-        center={{
-          lat: this.props.lat,
-          lng: this.props.lon
-        }}>
+        {...optionalMapProps}>
 
         {this.showMarkers()}
 
