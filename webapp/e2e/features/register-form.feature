@@ -1,6 +1,11 @@
-Feature: See the friends list
+Feature: Registering a new user
 
-Scenario: The user is not registered in the site and wants to see his friends list
+Scenario: The user is not registered in the site
   Given An unregistered user
-  When The user registers in the application
-  Then The user will access to his friends list
+  When I fill the data in the form and press submit
+  Then A welcome message should be shown in the screen
+
+Scenario: The user is already registered in the site
+  Given An already registered user
+  When I fill the data in the form and press submit
+  Then An error message should be shown in the screen
