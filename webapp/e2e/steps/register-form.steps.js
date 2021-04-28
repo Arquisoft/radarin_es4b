@@ -1,10 +1,21 @@
 const {defineFeature, loadFeature}=require('jest-cucumber');
 const feature = loadFeature('./features/register-form.feature');
+const puppeteer = require("puppeteer");
+
+jest.setTimeout(100000);
+let page = null;
 
 defineFeature(feature, test => {
   
   beforeEach(async () => {
-    await global.page.goto('http://localhost:3000')
+    const browser = await puppeteer.launch({
+      headless: false,
+      defaultViewport: null,
+    });
+
+    await delay(30000);
+    page = await browser.newPage();
+    await page.goto("http://localhost:3000");
   })
 
   test('The user is not registered in the site and wants to see his friends list', ({given,when,then}) => {
