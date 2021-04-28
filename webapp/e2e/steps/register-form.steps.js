@@ -29,7 +29,7 @@ defineFeature(feature, test => {
 
       // Accedemos a la ventana de inicio de sesión  
       newPagePromise = new Promise(x => page.once('popup', x));
-      await expect(page).toClick('button', { text: 'Accede con tu POD' });
+      await expect(page).toClick('button', { text: 'Access with your POD' });
       popup = await newPagePromise;
 
       // Introducimos los datos de incio de sesión 
