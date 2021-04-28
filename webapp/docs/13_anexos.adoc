@@ -1,0 +1,25 @@
+[[section-introduction-and-goals]]
+== Pruebas
+
+Se realizaron varios tipos de pruebas, tanto de la aplicación web, como de la aplicación movil: 
+
+* Aplicación web
+
+** Pruebas unitarias 
+
+** Pruebas de aceptación 
+
+** Pruebas de carga
+
+*** Prueba de carga 1
+
+Esecenario 1: Se realizó una prueba de carga.
+Dado: 
+Cuando: 
+Después: 
+
+* Aplicacion movil
+
+** Pruebas unitarias
+
+
