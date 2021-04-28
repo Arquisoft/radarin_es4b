@@ -9,18 +9,17 @@ Se realizaron varios tipos de pruebas, tanto de la aplicación web, como de la a
 
 ===== Pruebas unitarias 
 
-====== Prueba unitaria 1: 
-
 ===== Pruebas de aceptación 
 
 ====== Prueba de aceptación 1: Visualización de la lista de amigos. 
 
-Esecenario 1: El usuario no está registrado en la aplicación web y quiere ver una lista con sus amigos.
-Dado: Un usuario no registrado.
+* Esecenario: El usuario no está registrado en la aplicación web y quiere ver una lista con sus amigos.
 
-Cuando: El usuario se registra en la aplicación. 
+* Dado: Un usuario no registrado.
 
-Después: El usuario accede a la lista de amigos y visualiza todos sus amigos. 
+* Cuando: El usuario se registra en la aplicación. 
+
+* Después: El usuario accede a la lista de amigos y visualiza todos sus amigos. 
 
 ===== Pruebas de carga 
 
