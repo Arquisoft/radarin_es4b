@@ -9,12 +9,14 @@ defineFeature(feature, test => {
 
   test('The user is not registered in the site', ({given,when,then}) => {
     
-    //let email;
-    //let username;
+    let webID;
+    let username;
+    let password;
 
     given('An unregistered user', () => {
-      //email = "newuser@test.com"
-      //username = "newuser"
+      webID = "https://testpodasw.solidcommunity.net/profile/card#me";
+      username = "testpodasw";
+      password = "TestTest1?";
     });
 
     when('I fill the data in the form and press submit', async () => {
