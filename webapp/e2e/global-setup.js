@@ -18,6 +18,5 @@ module.exports = async () => {
         launchTimeout: 60000,
         debug: true,
         port: 3000
-    }
-])
+    }])
 }

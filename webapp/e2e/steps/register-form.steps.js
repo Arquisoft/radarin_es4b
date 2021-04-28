@@ -8,15 +8,23 @@ defineFeature(feature, test => {
   })
 
   test('The user is not registered in the site', ({given,when,then}) => {
-
+    
+    //let email;
+    //let username;
 
     given('An unregistered user', () => {
-
+      //email = "newuser@test.com"
+      //username = "newuser"
     });
 
     when('I fill the data in the form and press submit', async () => {
-
-      
+      //await expect(page).toMatch('Hi, ASW students')
+      //await expect(page).toFillForm('form[name="register"]', {
+      //  username: username,
+      //  email: email,
+      //})
+      //await expect(page).toClick('button', { text: 'Submit' })
+      //await expect(page).toMatch('Welcome to ASW')
     });
 
     then('A welcome message should be shown in the screen', async () => {
