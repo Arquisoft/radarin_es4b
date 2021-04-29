@@ -72,6 +72,16 @@ test('notifications show correctly', done => {
     done();
   });
 
-  fetch.mockResponseOnce(JSON.stringify(friendsCloseUpdated), {status: 200});
   showNotifications(friendsCloseUpdated);
+});
+
+test('banned user cant list friends', done => {
+  setForegroundFriendsHandler(friends => {
+    done.fail("shouldnt reach here")
+  });
+
+  CurrentUser.setOnForegroundBanHandler(done);
+
+  fetch.mockResponseOnce("Banned", {status: 403});
+  getCurrentFriendsClose();
 });

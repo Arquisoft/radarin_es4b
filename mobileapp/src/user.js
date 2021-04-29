@@ -1,6 +1,11 @@
+import {unsubscribe} from './location.js';
+import {stopFriendUpdates} from './friends';
+import {AppState} from 'react-native';
+
 let webId = null;
 let lastLocation = null;
 let token = null;
+let handleBanOnForeground = () => {};
 
 /**
  * @returns {string} webid del usuario actual
@@ -57,4 +62,24 @@ export function clear() {
     setWebId(null);
     setLastUserLocation(null);
     setToken(null);
+}
+
+/**
+ * Expulsa al usuario de la aplicación
+ */
+export function ban() {
+    unsubscribe();
+    stopFriendUpdates();
+    if (AppState.currentState == 'active') {
+        handleBanOnForeground();
+    }
+}
+
+/**
+ * Establece el callback al que se llamará cuando se notifique de que se
+ * ha baneado al usuario acutal y la aplicación esté en primer plano
+ * @param {() => void} callback función callback
+ */
+ export function setOnForegroundBanHandler(callback) {
+    handleBanOnForeground = callback;
 }

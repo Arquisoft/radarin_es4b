@@ -37,7 +37,7 @@ function handleLocation(location) {
   let token = CurrentUser.getToken();
   console.log(location);
   if (token && webId) {
-    sendLocation(token, location);
+    sendLocation(token, location).catch(() => CurrentUser.ban());
     storeObject(`${webId}-lastLocation`, location);
     if (AppState.currentState === 'active') {
       handleLocationOnForeground(location);

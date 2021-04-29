@@ -104,8 +104,16 @@ router.post("/user/friends/near", async (req, res) => {
     process.env.TOKEN_SECRET || "contraseñapruebas",
     async (err, infoToken) => {
       if (err || !infoToken.webId) {
-        res.status(403);
+        res.status(401);
         res.send("Invalid or missing token");
+        return;
+      }
+
+      let user = await User.findOne({ URL: infoToken.webId }).exec();
+
+      if(user && user.banned === "SI") {
+        res.status(403);
+        res.send("Forbbiden");
         return;
       }
 
@@ -168,12 +176,19 @@ router.post("/user/add", async (req, res) => {
     process.env.TOKEN_SECRET || "contraseñapruebas",
     async (err, infoToken) => {
       if (err || !infoToken.webId) {
-        res.status(403);
+        res.status(401);
         res.send("Invalid or missing token");
         return;
       }
 
       let user = await User.findOne({ URL: infoToken.webId }).exec();
+
+      if(user && user.banned === "SI") {
+        res.status(403);
+        res.send("Forbbiden");
+        return;
+      }
+
       // Si ya está el usuario, se actializa su ubicación
       if (user) {
         user.location.coordinates = [req.body.longitud, req.body.latitud];
@@ -230,12 +245,21 @@ router.get("/user/sample", async (req, res) => {
 // https://solid-node-client as a trusted app on his pod
 router.post("/user/login", async (req, res) => {
   try {
+
     // Iniciamos sesión con las credenciales enviadas
     let session = await client.login({
       idp: req.body.idp,
       username: req.body.username,
       password: req.body.password,
     });
+
+    let user = await User.findOne({ URL: session.webId }).exec();
+
+    if(user && user.banned === "SI") {
+      res.status(403);
+      res.send("Forbbiden");
+      return;
+    }
 
     // Inicialización de variables para consultas en pods
     const store = $rdf.graph();
@@ -262,8 +286,7 @@ router.post("/user/login", async (req, res) => {
       photo: photo ? photo.value : null,
     });
   } catch (err) {
-    res.status(403);
-    console.log(err);
+    res.status(401);
     res.send(err);
   }
 });

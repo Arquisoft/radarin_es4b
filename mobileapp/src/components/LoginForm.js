@@ -21,7 +21,7 @@ const LoginForm = ({changeUser}) => {
       CurrentUser.setToken(token);
       changeUser(user);
     } catch (err) {
-      Toast.show(getText('toastLogIn'));
+      Toast.show(err.message);
     }
   };
 

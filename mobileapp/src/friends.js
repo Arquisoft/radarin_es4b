@@ -36,7 +36,7 @@ export function getCurrentFriendsClose() {
         }
         lastFriends = results;
       })
-      .catch(err => console.log(err));
+      .catch(() => CurrentUser.ban());
   }
 }
 

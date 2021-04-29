@@ -11,6 +11,19 @@ jest.mock('expo-secure-store', () => ({
   getItemAsync: mockAsyncStorage.getItem,
 }));
 
+jest.mock('expo-location', () => ({
+  getCurrentPositionAsync: jest.fn(async () => ({
+    lat: 43,
+    lng: -5,
+    timestamp: 100,
+  })),
+  Accuracy: {
+    Highest: 10,
+  },
+  hasStartedLocationUpdatesAsync: jest.fn(async () => true),
+  stopLocationUpdatesAsync: jest.fn(async () => true),
+}));
+
 jest.mock('react-native-permissions', () => {
   return mock;
 });

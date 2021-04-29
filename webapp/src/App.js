@@ -64,7 +64,7 @@ class App extends React.Component {
       sessionStorage.setItem("webId", "");
     }
     let a = isBanUser(session.webId);
-    if(a=="SI") {
+    if(a === "SI") {
       this.logOut();
     }
   }
@@ -94,7 +94,7 @@ class App extends React.Component {
     sessionStorage.setItem("webId", session.webId);
     window.location.replace("/");
     let a = isBanUser(session.webId);
-    if(a=="SI") {
+    if(a === "SI") {
       this.logOut();
     }
   }

@@ -62,6 +62,35 @@
   });
   
   test('user with invalid credentials cant log in', async () => {
+    fetch.mockResponseOnce('Error', {status: 401});
+  
+    await storeObject('user', null);
+  
+    const {getByPlaceholderText, getByText} = render(
+      <AppContent />,
+    );
+    fireEvent.changeText(
+      getByPlaceholderText(getText('providerPlaceholder')),
+      'https://provider.com',
+    );
+    fireEvent.changeText(
+      getByPlaceholderText(getText('usernamePlaceholder')),
+      'Pepito',
+    );
+    fireEvent.changeText(
+      getByPlaceholderText(getText('passwordPlaceholder')),
+      '7777',
+    );
+  
+    fireEvent.press(getByText(getText('enviar')));
+  
+    // Comprueba que no ha pasado ha la vista de usuario logeado
+    await waitFor(() => {
+      getByText(getText('enviar'));
+    });
+  });
+
+  test('banned user cant log in', async () => {
     fetch.mockResponseOnce('Error', {status: 403});
   
     await storeObject('user', null);

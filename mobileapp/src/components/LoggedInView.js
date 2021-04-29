@@ -4,6 +4,7 @@ import {Divider} from 'react-native-elements';
 import LocationSwitch from './LocationSwitch.js';
 import UserInfo from './UserInfo.js';
 import DistanceSlider from './DistanceSlider.js';
+import Toast from 'react-native-simple-toast';
 import Map from './Map.js';
 import {getObject, storeObject, getValue, storeValue} from '../storage.js';
 import {
@@ -15,6 +16,7 @@ import {
 } from '../friends.js';
 import * as CurrentUser from '../user.js';
 import {setForegroundLocationHandler} from '../location.js';
+import getText from '../i18n.js';
 
 const LoggedInView = ({user, changeUser}) => {
   const [mapRegion, setMapRegion] = useState({
@@ -31,16 +33,21 @@ const LoggedInView = ({user, changeUser}) => {
 
   useEffect(() => {
     let mounted = true;
-    
+
     setForegroundLocationHandler(location => {
-      if (mounted) {
+      if (mounted && location) {
         setLastlocation(location);
         getCurrentFriendsClose();
       }
     });
 
     setForegroundFriendsHandler(friends => {
-      if (mounted) setFriends(friends);
+      if (mounted && friends) setFriends(friends);
+    });
+
+    CurrentUser.setOnForegroundBanHandler(() => {
+      changeUser(null);
+      Toast.show(getText('toastBanned'));
     });
 
     setOnFriendNotificationCallback(friend => {
