@@ -17,6 +17,7 @@ import Navigation from "./components/Navigation";
 import LogIn from "./components/LogIn";
 import LogOut from "./components/LogOut";
 import Home from "./components/Home";
+import Admin from "./components/Admin";
 
 class App extends React.Component {
 
