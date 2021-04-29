@@ -8,7 +8,7 @@ Términos más importantes del ambito de nuestro sistema:
 | https://en.wikipedia.org/wiki/Solid_(web_decentralization_project)[SOLID]    
 | Proyecto de descentralización de datos cuyo objetivo es que el sea usuario quien decide dónde almacenar sus datos.
 | Sistema     | Conjunto total de elementos que se desarrollaran bajo el nombre de Radarin. 
-| Lista de amigos     | Conjunto de ususarios que facilitan su ubicación a un usario en concreto. 
+| Lista de amigos     | Conjunto de usuarios que facilitan su ubicación a un usario en concreto. 
 | https://solidproject.org/users/get-a-pod[POD]     | Almacenamiento personal de datos alojado en un servidor elegido por el usuario.
 | WebID | URL del Pod de un usuario que lo identifica unequívocamente.
 | Proveedor de identidad de Solid | Entidad que se encarga de mantener y validar la identidad de un usuario de Solid.
