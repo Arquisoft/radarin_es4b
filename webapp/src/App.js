@@ -173,6 +173,7 @@ class App extends React.Component {
                 <WhiteContainer className="Friends">
                   <div className="UsersList">
                     <UsersMapList
+                      fetchUsers={this.fetchUsers.bind(this)}
                       users={this.state.users}
                       onUserClick={this.zoomInUser.bind(this)}
                     />
