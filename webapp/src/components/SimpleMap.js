@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Circle, Marker, InfoWindow } from 'google-maps-react';
 
 const mapStyles = {
   width: '70%',
@@ -36,6 +36,7 @@ export class MapContainer extends Component {
     }
   };
 
+ 
 
   showMarkers = () => {
 
@@ -97,7 +98,9 @@ export class MapContainer extends Component {
             {this.state.selected.hora && <p>{this.state.selected.hora}</p>}
           </div>
         </InfoWindow>
-
+        <input className="slider" type="range" min="1000" max="100000" step="500" value={this.props.mapOptions.radius} onChange={this.props.handRangeChange.bind(this)} />
+        <Circle data-testid="circle" center={{ lat: this.props.mapOptions.lat, lng: this.props.mapOptions.lon }} radius={parseFloat(this.props.mapOptions.radius
+        )} />
       </Map>
     );
   }

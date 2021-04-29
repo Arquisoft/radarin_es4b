@@ -27,7 +27,8 @@ class App extends React.Component {
       lat: null,
       lon: null,
       marks: [],
-      mapOptions: {zoom: 8},
+      mapOptions: {zoom: 8
+        ,radius: 10000}
     };
   }
 
@@ -102,6 +103,12 @@ class App extends React.Component {
       },
     }));
   }
+  distanceTo(lat2, lng2) {
+    const distance = window.google.maps.geometry.spherical.computeDistanceBetween(
+        new window.google.maps.LatLng({ lat: this.state.lat, lng: this.state.lon }),
+        new window.google.maps.LatLng({ lat: lat2, lng: lng2 }));
+    return distance;
+  }
 
   getMarks(users) {
     let newMarks = [];
@@ -115,6 +122,7 @@ class App extends React.Component {
     }
 
     users.forEach(user => {
+      if (this.distanceTo(user.latitud,user.longitud) < this.state.mapOptions.radius)
       newMarks.push({
         nombre: user.nombre,
         lat: user.latitud,
@@ -123,8 +131,19 @@ class App extends React.Component {
         fecha: user.fecha
       });
     });
-
+    console.log(this.state.mapOptions.radius);
     return newMarks;
+  }
+  handRangeChange(event) {
+    this.setState((prevState) => ({
+      ...prevState,
+      mapOptions: {
+        lat:this.state.mapOptions.lat,
+        lon:this.state.mapOptions.lon,
+        zoom: this.state.mapOptions.zoom,
+        radius: event.target.value },
+    }));
+    this.setState({marks: this.getMarks(this.state.users)}) ;
   }
 
   render() {
@@ -157,6 +176,8 @@ class App extends React.Component {
                   </div>
 
                   <SimpleMap
+                    radius = {this.state.radius}
+                    handRangeChange = {(event) => this.handRangeChange(event)}
                     mapOptions={this.state.mapOptions}
                     lat={this.state.lat}
                     lon={this.state.lon}
