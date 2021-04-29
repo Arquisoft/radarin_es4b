@@ -16,21 +16,11 @@ class Admin extends React.Component {
 
 
 
-    displayUsers() {
-        let users = this.state.users;
-        console.log(users);
-    }
 
     async updateUsers() {
         let allUsers = await getUsers();
         this.setState({ users: allUsers, nUsers: allUsers.length });
         console.log(this.state.users);
-
-
-        this.state.users.map(user => { console.log(user.URL) })
-
-
-
     }
 
 

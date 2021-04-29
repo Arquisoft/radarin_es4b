@@ -17,8 +17,7 @@ import Navigation from "./components/Navigation";
 import LogIn from "./components/LogIn";
 import LogOut from "./components/LogOut";
 import Home from "./components/Home";
-import Banned from "./components/Banned";
-import Admin from "./components/Admin"
+import Admin from "./components/Admin";
 
 class App extends React.Component {
 
@@ -175,7 +174,7 @@ class App extends React.Component {
                 </Route>
 
                 {
-                  sessionStorage.getItem("webId") == "https://radarinadmin.solidcommunity.net/profile/card#me" &&
+                  sessionStorage.getItem("webId") === "https://radarinadmin.solidcommunity.net/profile/card#me" &&
                   <Route path="/admin"><Admin /></Route>
 
                 }
