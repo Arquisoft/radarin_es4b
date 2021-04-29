@@ -66,7 +66,7 @@ class App extends React.Component {
   }
 
   async fetchUsers() {
-    solidauth.trackSession(session => {
+    solidauth.trackSession(async session => {
       if(session) {
         try {
           let listOfFriends = await getFriends(session.webId);
