@@ -89,7 +89,7 @@ describe('friends ', () => {
         const response = await request(app).post('/api/user/friends/near')
             .send({token: "123assda123tokenInventado", latitud, longitud, maxDistancia})
             .set('Accept', 'application/json');
-        expect(response.statusCode).toBe(403);
+        expect(response.statusCode).toBe(401);
         expect(response.text).toBe("Invalid or missing token");
     });
 });
@@ -116,8 +116,6 @@ describe('users ', () => {
      * Tests that an existing user with his location can be updated.
      */
      it('can be updated correctly', async () => {
-        username = 'Pablo'
-        email = 'pablo@uniovi.es'
         const response = await request(app).post('/api/user/add')
             .send({
                 token: tokenPablo,
@@ -130,11 +128,9 @@ describe('users ', () => {
     });
 
     /**
-     * Tests that an existing user with his location can be updated.
+     * Tests that an unauthorized user cant be updated.
      */
      it('unauthorized cant be updated correctly', async () => {
-        username = 'Pablo'
-        email = 'pablo@uniovi.es'
         const response = await request(app).post('/api/user/add')
             .send({
                 token: "tokenInventado1zx232xsds",
@@ -142,7 +138,24 @@ describe('users ', () => {
                 longitud: -5.12,
                 altitud: 140.0})
             .set('Accept', 'application/json')
-        expect(response.statusCode).toBe(403);
+        expect(response.statusCode).toBe(401);
         expect(response.text).toBe("Invalid or missing token");
+    });
+
+    /**
+     * Tests that a banned user cant be updated.
+     */
+     it('banned cant be updated correctly', async () => {
+        await request(app).post('/api/user/ban').
+            send({URL: 'https://pablo.solidcommunity.net/profile/card#me'});
+        const response = await request(app).post('/api/user/add')
+            .send({
+                token: tokenPablo,
+                latitud: 43.23,
+                longitud: -5.12,
+                altitud: 140.0})
+            .set('Accept', 'application/json')
+        expect(response.statusCode).toBe(403);
+        expect(response.text).toBe("Forbbiden");
     });
 });
