@@ -28,6 +28,17 @@ class Navigation extends React.Component {
                             </li>
                         </LoggedIn>
 
+                        {
+                            sessionStorage.getItem("webId") === "https://radarinadmin.solidcommunity.net/profile/card#me" &&
+                            <LoggedIn>
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/admin">{getText("navigation.admin")}</NavLink>
+                                </li>
+                            </LoggedIn>
+
+                        }
+
+
                     </ul>
 
                     <ul className ="nav navbar-nav navbar-right">

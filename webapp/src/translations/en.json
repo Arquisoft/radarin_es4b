@@ -1,6 +1,7 @@
 {
     "navigation.listaAmigos": "List friends", 
     "navigation.mapa": "See map",
+    "navigation.admin": "Admin",
     "navigation.idioma": "Language",
     "navigation.idioma1": "Spanish", 
     "navigation.idioma2": "English", 
@@ -34,5 +35,13 @@
     "addFriend.solicitud": "Enter your friend's WebID:",
     "addFriend.feedback": "Please enter a valid WebID", 
     "addFriend.accion": "Add",
-    "addFriend.exito": "Friend added successfully!"
+    "addFriend.exito": "Friend added successfully!",
+    "admin.titulo": "Radarin Administration",
+    "admin.usuariosTotales": "Users in total: ",
+    "admin.ubicacion": "Last ubication: ",
+    "admin.fecha": "Date: ",
+    "admin.latitud": "Latitude: ",
+    "admin.longitud": "Longitude: ",
+    "admin.baneado": "Banned: ",
+    "admin.botonBan" : "Ban/Unban"
 }

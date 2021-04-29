@@ -1,0 +1,32 @@
+[[section-anexos]]
+== Anexos
+
+=== Pruebas
+
+Se realizaron varios tipos de pruebas, tanto de la aplicación web, como de la aplicación movil: 
+
+==== Apliación web
+
+===== Pruebas unitarias 
+
+===== Pruebas de aceptación 
+
+====== Visualización de la lista de amigos. 
+
+* Esecenario: El usuario no está registrado en la aplicación web y quiere ver una lista con sus amigos.
+
+* Dado: Un usuario no registrado.
+
+* Cuando: El usuario se registra en la aplicación. 
+
+* Después: El usuario accede a la lista de amigos y visualiza todos sus amigos. 
+
+===== Pruebas de carga 
+
+
+
+==== Aplicación movil
+
+===== Pruebas unitarias 
+
+

@@ -8,7 +8,8 @@
         ]
     },
     "altitud": 100.0,
-    "fecha": 1000
+    "fecha": 1000,
+    "banned": "NO"
 }, 
 {
     "URL": "https://moises.solidcommunity.net/profile/card#me",
@@ -20,7 +21,8 @@
         ]
     },
     "altitud": 50.0,
-    "fecha": 1000
+    "fecha": 1000,
+    "banned": "NO"
 },
 {
     "URL": "https://davidaf.solidcommunity.net/profile/card#me",
@@ -32,5 +34,6 @@
         ]
     },
     "altitud": 70.0,
-    "fecha": 1000
+    "fecha": 1000,
+    "banned": "NO"
 }]

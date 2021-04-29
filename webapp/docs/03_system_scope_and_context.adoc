@@ -3,7 +3,7 @@
 
 El objetivo principal de este proyecto es crear un sistema para facilitar encuentros entre amigos.  
 Este sistema estará descentralizado y basado en SOLID, lo que significa que cada usuario tendrá su propio pod. 
-El pod es el  espacio de almacenamiento propio donde cada ususario almacenará toda su información. 
+El pod es el  espacio de almacenamiento propio donde cada usuario almacenará toda su información. 
 Los principales socios de comunicación del sistema serán los propios usuarios. Radarin será el intermediario entre Solid y el usuario.
 
 === Contexto empresarial
@@ -44,7 +44,7 @@ Interfaces técnicas:
 | Objeto | Descripción 
 
 | Aplicación web y movil
-| Canal de comunicación entre los ususarios y el sistema. 
+| Canal de comunicación entre los usuarios y el sistema. 
 
 | Https
 | Comunicación a través del protocolo Https entre el usuario y la aplicación web.También permite la comunicación entre el pod y el sistema. 

@@ -1,7 +1,67 @@
 [[section-runtime-view]]
 == Vista en tiempo de ejecucuión
 
-=== Iniciar sesión en la aplicación móvil
+=== Aplicación web 
+
+==== Iniciar sesión
+* Iniciar sesión en la aplicación web.
+
+[plantuml,"Iniciar sesión app web",png]
+actor Alice
+participant "Aplicación web"
+participant "Proveedor de identidad SOLID"
+participant "POD"
+Alice -> "Aplicación web": Introduce su webID
+"Aplicación web" -> "Proveedor de identidad SOLID": Muestra
+"Proveedor de identidad SOLID" -> "Alice": Pregunta las credenciales para el webID introducido
+"Alice" -> "Proveedor de identidad SOLID": Introduce sus credenciales
+"Proveedor de identidad SOLID" -> "Proveedor de identidad SOLID": Comprueba que las credenciales son correctas
+"Proveedor de identidad SOLID" -> "Aplicación web": Notifia del inicio de sesión
+"Aplicación web" -> "POD": Solicita información del POD del usuario (Alice) 
+"POD" -> "Aplicación web": Envia información del usuario (Alice) 
+"Aplicación web" -> "Aplicación web": Muestra la página de bienvenida para Alice
+
+
+==== Añadir y visualizar amigos
+* Añadir amigos de Solid desde la aplicación web.
+
+[plantuml,"Añadir y visualizar amigos",png]
+----
+actor Alice
+participant "Aplicación web"
+participant "Pod"
+Alice -> "Aplicación web": Introduce la WebID de su amigo
+"Aplicación web" -> "Pod": Recibe la orden a través de solid-ldflex
+"Pod" -> "Pod": Añade la WebID a la lista de amigos de Alice
+"Aplicación web" -> "Pod": Solicita la lista de amigos de Alice
+"Pod" -> "Aplicación web": Envía la lista de amigos actualizada
+"Aplicación web" -> "Alice": Muestra la lista actualizada
+----
+
+==== Ver amigos en el mapa
+* Se mostrará un mapa en el que se podrán visualizar los amigos del usuario. 
+
+[plantuml,"Ver amigos en el mapa",png]
+----
+actor Alice
+participant  "Aplicación web"
+participant "API REST"
+participant "Pod"
+participant "Base de datos"
+"Alice" -> "Aplicación web": solicita ver el mapa
+"Aplicación web" -> "API REST": solicita las localizaciones de los amigos
+"API REST" -> "Pod": solicita la lista de amigos
+"Pod" -> "API REST": devuelve la lista de amigos
+"API REST" -> "Base de datos": pide las localizaciones
+"Base de datos" -> "API REST": devuelve las localizaciones
+"API REST" -> "Aplicación web": envía la lista de localizaciones de amigos
+"Aplicación web" -> "Alice": muestra el mapa con las localizaciones
+----
+
+
+=== Aplicación movil
+
+==== Iniciar sesión 
 
 * Iniciar sesión en Solid desde la aplicación móvil 
 
@@ -26,7 +86,7 @@ Alice -> "Aplicación móvil": Introduce sus credenciales de Solid
 "Aplicación móvil" -> Alice: Muestra la pantalla de usuario autenticado
 ----
 
-=== Subir posición
+==== Subir posición
 
 * Permitir a la aplicacion saber tu posicion
 
@@ -53,7 +113,9 @@ Alice -> "Aplicación móvil": Da acceso a su localización
 
 El proveedor de localización es el propio del dispositivo móvil del usuario.
 
-=== Ver localización de amigos cercanos
+
+
+==== Ver localización de amigos cercanos
 * Se recibirán notificaciones de los amigos cercanos cada cierto tiempo.
 
 [plantuml,"Ver localización de amigos cercanos",png]
@@ -81,39 +143,3 @@ Alice -> "Aplicación móvil": Indica la distancia máxima para filtrar los amig
 ----
 
 Al igual que en el caso anterior, el proveedor de localización es el propio del dispositivo móvil del usuario.
-
-=== Añadir y visualizar amigos
-* Añadir amigos de Solid desde la aplicación web.
-
-[plantuml,"Añadir y visualizar amigos",png]
-----
-actor Alice
-participant "Aplicación web"
-participant "Pod"
-Alice -> "Aplicación web": Introduce la WebID de su amigo
-"Aplicación web" -> "Pod": Recibe la orden a través de solid-ldflex
-"Pod" -> "Pod": Añade la WebID a la lista de amigos de Alice
-"Aplicación web" -> "Pod": Solicita la lista de amigos de Alice
-"Pod" -> "Aplicación web": Envía la lista de amigos actualizada
-"Aplicación web" -> "Alice": Muestra la lista actualizada
-----
-
-=== Ver amigos en el mapa
-* Se mostrará un mapa en el que se podrán visualizar los amigos del usuario. 
-
-[plantuml,"Ver amigos en el mapa",png]
-----
-actor Alice
-participant  "Aplicación web"
-participant "API REST"
-participant "Pod"
-participant "Base de datos"
-"Alice" -> "Aplicación web": solicita ver el mapa
-"Aplicación web" -> "API REST": solicita las localizaciones de los amigos
-"API REST" -> "Pod": solicita la lista de amigos
-"Pod" -> "API REST": devuelve la lista de amigos
-"API REST" -> "Base de datos": pide las localizaciones
-"Base de datos" -> "API REST": devuelve las localizaciones
-"API REST" -> "Aplicación web": envía la lista de localizaciones de amigos
-"Aplicación web" -> "Alice": muestra el mapa con las localizaciones
-----

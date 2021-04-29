@@ -5,7 +5,7 @@ Vamos a desarrollar Radarin, un sistema para facilitar encuentros entre amigos. 
 
 * Aplicacion movil: enviará una notificación a los usuarios cuando un amigo suyo este cerca y también permitirá compartir su ubicación. Incluirá un sistema de monitorización. 
 
-* Aplicación web: permitirá a los ususarios visualizar y gestionar sus localizaciones. También incluirá opciones de administración de usuarios y monitorización del estado del servidor. Esta aplicación estará alojada en un servidor que almacenará las locaclizaciones de los usuarios. 
+* Aplicación web: permitirá a los usuarios visualizar y gestionar sus localizaciones. También incluirá opciones de administración de usuarios y monitorización del estado del servidor. Esta aplicación estará alojada en un servidor que almacenará las locaclizaciones de los usuarios. 
 
 
 === Vista de requisitos
@@ -29,7 +29,7 @@ Vamos a desarrollar Radarin, un sistema para facilitar encuentros entre amigos. 
 
 **  Toda información que no sea una localización será almacenada en el pod de SOLID del usuario.
 
-**  Se toman los datos de geolocalización provenientes del dispositivo movil de los ususarios.
+**  Se toman los datos de geolocalización provenientes del dispositivo movil de los usuarios.
 
 **  El sistema se desplegará desde contenedores docker y utlizará el servicio en la nube heroku.
 
@@ -40,8 +40,8 @@ Los objetivos de calidad ordenados de mayor a menor prioridad, son los siguiente
 [options="header",cols=2*]
 |===
 |Objetivo|Descripción
-| 1.Privacidad | Se almacenará la información mínima necesaria para cada ususario de la aplicación.
-| 2.Usabilidad | La aplicación debe de ser fácil de usar e intuitiva para todo tipo de ususarios. 
+| 1.Privacidad | Se almacenará la información mínima necesaria para cada usuario de la aplicación.
+| 2.Usabilidad | La aplicación debe de ser fácil de usar e intuitiva para todo tipo de usuarios. 
 | 3.Mantenibilidad | Debemos poder mantener y extender nuestro software facilmente en todo momento. 
 | 4.Testeabilidad | Esto nos permitirá comprobar facilmente el correcto funcionamiento del sistema.
 | 5.Rendimiento | La aplicación debe mantener una capacidad de respuesta lo más rápida posible en todo momento.
