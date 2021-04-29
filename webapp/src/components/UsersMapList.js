@@ -5,10 +5,6 @@ import { getText } from '../translations/i18n'
 
 class UsersMapList extends React.Component {
 
-    componentDidMount() {
-        this.props.fetchUsers();
-    }
-
     render() {
         return (
             <div className="table-responsive">

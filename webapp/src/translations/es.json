@@ -1,7 +1,6 @@
 {
     "navigation.listaAmigos": "Listar amigos", 
     "navigation.mapa": "Ver mapa",
-    "navigation.admin": "Administrador",
     "navigation.idioma": "Idioma",
     "navigation.idioma1": "Español", 
     "navigation.idioma2": "Inglés", 
@@ -35,14 +34,6 @@
     "addFriend.solicitud": "Introduce el WebID de tu amigo:",
     "addFriend.feedback": "Escriba un WebID válido", 
     "addFriend.accion": "Añadir",
-    "addFriend.exito": "¡Amigo añadido con éxito!",
-    "admin.titulo": "Administración de Radarin",
-    "admin.usuariosTotales": "Usuarios totales: ",
-    "admin.ubicacion": "Última ubicación: ",
-    "admin.fecha": "Fecha: ",
-    "admin.latitud": "Latitud: ",
-    "admin.longitud": "Longitud: ",
-    "admin.baneado": "Baneado: ",
-    "admin.botonBan" : "Banear/Desbanear"
+    "addFriend.exito": "¡Amigo añadido con éxito!"
 
 }
