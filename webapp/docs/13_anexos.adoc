@@ -11,7 +11,7 @@ Se realizaron varios tipos de pruebas, tanto de la aplicación web, como de la a
 
 ===== Pruebas de aceptación 
 
-====== Prueba de aceptación 1: Visualización de la lista de amigos. 
+====== Visualización de la lista de amigos. 
 
 * Esecenario: El usuario no está registrado en la aplicación web y quiere ver una lista con sus amigos.
 
