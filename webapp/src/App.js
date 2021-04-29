@@ -59,13 +59,13 @@ class App extends React.Component {
     let session = await solidauth.currentSession();
     if (session) {
       sessionStorage.setItem("webId", session.webId);
+      let a = isBanUser(session.webId);
+      if(a === "SI") {
+        this.logOut();
+      }
     }
     else {
       sessionStorage.setItem("webId", "");
-    }
-    let a = isBanUser(session.webId);
-    if(a === "SI") {
-      this.logOut();
     }
   }
 
