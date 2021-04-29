@@ -158,7 +158,7 @@ class App extends React.Component {
               <Route path="/"><Welcome /></Route>
             </Switch>
           </LoggedOut>
-
+          
           <LoggedIn>
             <Switch>
 
@@ -187,7 +187,11 @@ class App extends React.Component {
               </Route>
 
               <Route path="/logOut"><LogOut logOut={this.logOut.bind(this)} /></Route>
+              {
+                  sessionStorage.getItem("webId") === "https://radarinadmin.solidcommunity.net/profile/card#me" &&
+                  <Route path="/admin"><Admin /></Route>
 
+                }
 
               <Route path="/"><Home /></Route>
 
