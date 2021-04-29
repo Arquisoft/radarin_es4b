@@ -17,6 +17,8 @@ import Navigation from "./components/Navigation";
 import LogIn from "./components/LogIn";
 import LogOut from "./components/LogOut";
 import Home from "./components/Home";
+import Banned from "./components/Banned";
+import Admin from "./components/Admin"
 
 class App extends React.Component {
 
@@ -143,37 +145,48 @@ class App extends React.Component {
           </LoggedOut>
 
           <LoggedIn>
-            <Switch>
-
-              <Route path="/amigos"><UserFriendsList /></Route>
-
-              <Route path="/mapa">
 
 
-                <WhiteContainer className="Friends">
-                  <div className="UsersList">
-                    <UsersMapList
-                      fetchUsers={this.fetchUsers.bind(this)}
-                      users={this.state.users}
-                      onUserClick={this.zoomInUser.bind(this)}
+              <Switch>
+
+
+
+                <Route path="/amigos"><UserFriendsList /></Route>
+
+                <Route path="/mapa">
+
+
+                  <WhiteContainer className="Friends">
+                    <div className="UsersList">
+                      <UsersMapList
+                        fetchUsers={this.fetchUsers.bind(this)}
+                        users={this.state.users}
+                        onUserClick={this.zoomInUser.bind(this)}
+                      />
+                    </div>
+
+                    <SimpleMap
+                      mapOptions={this.state.mapOptions}
+                      lat={this.state.lat}
+                      lon={this.state.lon}
+                      marks={this.state.marks}
                     />
-                  </div>
+                  </WhiteContainer>
+                </Route>
 
-                  <SimpleMap
-                    mapOptions={this.state.mapOptions}
-                    lat={this.state.lat}
-                    lon={this.state.lon}
-                    marks={this.state.marks}
-                  />
-                </WhiteContainer>
-              </Route>
+                {
+                  sessionStorage.getItem("webId") == "https://radarinadmin.solidcommunity.net/profile/card#me" &&
+                  <Route path="/admin"><Admin /></Route>
 
-              <Route path="/logOut"><LogOut logOut={this.logOut.bind(this)} /></Route>
+                }
+
+                <Route path="/logOut"><LogOut logOut={this.logOut.bind(this)} /></Route>
 
 
-              <Route path="/"><Home /></Route>
+                <Route path="/"><Home /></Route>
 
-            </Switch>
+              </Switch>
+              
           </LoggedIn>
 
         </Router>

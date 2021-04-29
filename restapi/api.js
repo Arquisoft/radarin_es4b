@@ -190,6 +190,7 @@ router.post("/user/add", async (req, res) => {
           },
           altitud: req.body.altitud,
           fecha: req.body.fecha,
+          banned: "NO"
         });
       }
       await user.save();
@@ -266,5 +267,58 @@ router.post("/user/login", async (req, res) => {
     res.send(err);
   }
 });
+
+
+
+//Obtiene todos los usuarios de la bd
+router.get("/users", async (req, res) => {
+
+
+  let users = await User.find({});
+  res.send(users);
+
+});
+
+
+/**
+router.post("/user/banned", async (req, res) => {
+
+  if(req.body.URL=="0") {
+    res.send("NO");
+  }
+  else {
+    user = await User.findOne({ URL: req.body.URL }).exec();
+    if(user.banned!=null) {
+      res.send(user.banned);
+    } else {
+      res.send("NO");
+    }
+  }
+
+
+});
+ */
+
+//Banea a un usuario
+router.post("/user/ban", async (req, res) => {
+
+
+  user = await User.findOne({ URL: req.body.URL }).exec();
+
+  if (user.banned == "SI") {
+    user.banned = "NO";
+  } else {
+    user.banned = "SI";
+  }
+
+  await user.save();
+
+  res.send(user);
+});
+
+
+
+
+
 
 module.exports = router;

@@ -24,7 +24,8 @@ const schema = mongoose.Schema({
     altitud: Number,
     longitud: Number,
     latitud: Number,
-    fecha: Date
+    fecha: Date,
+    banned: String
 });
 
 module.exports = mongoose.model("User", schema);
