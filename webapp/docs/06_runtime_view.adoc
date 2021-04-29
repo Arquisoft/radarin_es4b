@@ -41,7 +41,7 @@ participant "Base de datos"
 Alice -> "Aplicación móvil": Activa el envío de localizaciones
 "Aplicación móvil" -> Alice: Pide permiso para usar su localizacion
 Alice -> "Aplicación móvil": Da acceso a su localización
-"Aplicación móvil" -> "Proveedor de localización": Se suscribe a acutalizaciones de localización
+"Aplicación móvil" -> "Proveedor de localización": Se suscribe a actualizaciones de localización
 "Proveedor de localización" -> "Aplicación móvil": Notifica una nueva localización
 "Aplicación móvil" -> "Almacenamiento del dispositivo": Solicita el token encriptado
 "Aplicación móvil" <- "Almacenamiento del dispositivo": Envía el token encriptado
