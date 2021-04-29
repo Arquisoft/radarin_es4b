@@ -6,6 +6,7 @@
     "navigation.idioma2": "Inglés", 
     "navigation.login": "Iniciar sesión", 
     "navigation.logout": "Cerrar sesión", 
+    "navigation.admin": "Administrador",
 
     "welcome.bienvenida": "¡ Bienvenido a Radarin !",
     "welcome.descripcion": "Radarin es un sistema para facilitar encuentros entre amigos utilizando nuevas tecnologías.",
@@ -34,6 +35,15 @@
     "addFriend.solicitud": "Introduce el WebID de tu amigo:",
     "addFriend.feedback": "Escriba un WebID válido", 
     "addFriend.accion": "Añadir",
-    "addFriend.exito": "¡Amigo añadido con éxito!"
+    "addFriend.exito": "¡Amigo añadido con éxito!",
+
+    "admin.titulo": "Administración de Radarin",
+    "admin.usuariosTotales": "Usuarios totales: ",
+    "admin.ubicacion": "Última ubicación: ",
+    "admin.fecha": "Fecha: ",
+    "admin.latitud": "Latitud: ",
+    "admin.longitud": "Longitud: ",
+    "admin.baneado": "Baneado: ",
+    "admin.botonBan" : "Banear/Desbanear"
 
 }
