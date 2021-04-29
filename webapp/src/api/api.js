@@ -46,7 +46,7 @@ export async function getUsers(){
   return await response.json()
 }
 
-/*
+
 export async function isBanUser(URL="0"){
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   console.log(apiEndPoint);
@@ -59,7 +59,7 @@ export async function isBanUser(URL="0"){
     console.log(URL);
     console.log(response);
   return await response.json()
-}*/
+}
 
 export async function banUser(URL){
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'

@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getFriends } from "./api/api";
+import { getFriends, isBanUser } from "./api/api";
 import solidauth from "solid-auth-client";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { LoggedIn, LoggedOut } from '@solid/react';
@@ -63,6 +63,10 @@ class App extends React.Component {
     else {
       sessionStorage.setItem("webId", "");
     }
+    let a = isBanUser(session.webId);
+    if(a=="SI") {
+      this.logOut();
+    }
   }
 
   async fetchUsers() {
@@ -89,6 +93,10 @@ class App extends React.Component {
     if (!session) session = await solidauth.popupLogin({ popupUri}); //Muestra el pop up si no has iniciado sesión
     sessionStorage.setItem("webId", session.webId);
     window.location.replace("/");
+    let a = isBanUser(session.webId);
+    if(a=="SI") {
+      this.logOut();
+    }
   }
 
   logOut() {
