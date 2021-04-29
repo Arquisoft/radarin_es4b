@@ -59,6 +59,26 @@ participant "Base de datos"
 ----
 
 
+==== Banear un usuario
+* Un administrador podrá banear a un usuario de nuestro sistema
+
+[plantuml,"Banear un usuario",png]
+----
+actor Admin
+participant  "Aplicación web"
+participant "API REST"
+participant "Base de datos"
+"Admin" -> "Aplicación web": entra en la página de administración
+"Aplicación web" -> "API REST": solicita los usuarios de Radarin
+"API REST" -> "Base de datos": solicita los usuarios
+"Base de datos" -> "API REST": devuelve los usuarios
+"API REST" -> "Aplicación web": muestra los usuarios y sus datos
+"Admin" -> "Aplicación web": banea un usuario
+"Aplicación web" -> "API REST": envía la petición de baneo
+"API REST" -> "Base de datos": actualiza el estado del usuario
+----
+
+
 === Aplicación movil
 
 ==== Iniciar sesión 
