@@ -1,8 +1,6 @@
 import { render, cleanup, screen  } from '@testing-library/react';
 import App from '../App';
 
-test.afterEach(cleanup)
-
 test('app renders without crashing', () => {
   const { container } = render(<App />);
   expect(container).toBeTruthy();
