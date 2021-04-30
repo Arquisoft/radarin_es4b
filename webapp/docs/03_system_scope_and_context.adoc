@@ -62,7 +62,7 @@ package "Radarin" {
     }
 }
 Usuario -right- Aplicación_movil
-Servidor_web -down- Pod: HTTPS
+Servidor_web -down- Pod: HTTPS / RDF
 Usuario -up- Aplicación_web: HTTPS
 @enduml
 ----

@@ -16,11 +16,11 @@ package Radarin {
 }
 agent "Pod"
 database BD
-Usuario <-right-> Servidor_web
+Usuario <-right-> Servidor_web: HTTPS
 Usuario <-right-> Aplicación_movil
-Aplicación_movil <-right->  Servidor_web
-Pod <-down-> Servidor_web
-BD<-left-> Servidor_web
+Aplicación_movil <-right->  Servidor_web: HTTPS
+Pod <-down-> Servidor_web: HTTPS / RDF
+BD<-left-> Servidor_web: MongoDB Wire
 @enduml
 ----
 
@@ -47,13 +47,13 @@ package Servidor_web {
 }
 database BD
 agent "Pod"
-Usuario <-right-> Aplicación_web
+Usuario <-right-> Aplicación_web: HTTPS
 Usuario <-right-> Aplicación_movil
-Aplicación_movil <-right->  API_REST
-Pod <-down-> API_REST
-Aplicación_web <-down-> API_REST
-Aplicación_web <-right-> Pod
-API_REST <-down-> BD
+Aplicación_movil <-right->  API_REST: HTTPS / REST
+Pod <-down-> API_REST: HTTPS / RDF
+Aplicación_web <-down-> API_REST: HTTPS / REST
+Aplicación_web <-right-> Pod: HTTPS / RDF
+API_REST <-down-> BD: MongoDB Wire
 @enduml
 ----
 
