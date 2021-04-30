@@ -28,17 +28,17 @@ Hemos realizado dos pruebas de carga para comprobar como responde el servidor de
 
 En la primera simulamos 60 usuarios accediendo a la página durante un minuto. Los resultados generales fueron los siguientes:
 
-image:images/pruebacarga1.png[]
+image:pruebacarga1.png[]
 
 Los resultados de esta prueba fueron bastante buenos, ya que la mayoría de peticiones tardaron menos de 800 ms.
 
 En la segunda prueba simulamos 2 usuarios accediendo a la página cada segundo, durante 30 segundos. Los resultaods obtenidos fueron estos:
 
-image:images/pruebacarga2.png[]
+image:pruebacarga2.png[]
 
 En este caso los resultados no fueron los deseados, pero pudimos comprobar que el cuello de botella se encuentra en la descarga de este archivo JavaScript de 2 MB que contiene el código de las librerías externas utilizadas:
 
-image:images/pruebacarga2b.png[]
+image:pruebacarga2b.png[]
 
 Sin embargo, no fuimos capaces de reducir este archivo, ya que la mayor parte de su tamaño estaba ocupado por las librerías para acceder a Solid, y estas son indispensables para cumplir los requisitos de la arquitectura.
 
