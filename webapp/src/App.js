@@ -59,8 +59,8 @@ class App extends React.Component {
     let session = await solidauth.currentSession();
     if (session) {
       sessionStorage.setItem("webId", session.webId);
-      let a = isBanUser(session.webId);
-      if(a === "SI") {
+      let a = await isBanUser(session.webId);
+      if(a) {
         this.logOut();
       }
     }
@@ -93,8 +93,8 @@ class App extends React.Component {
     if (!session) session = await solidauth.popupLogin({ popupUri}); //Muestra el pop up si no has iniciado sesión
     sessionStorage.setItem("webId", session.webId);
     window.location.replace("/");
-    let a = isBanUser(session.webId);
-    if(a === "SI") {
+    let a = await isBanUser(session.webId);
+    if(a) {
       this.logOut();
     }
   }

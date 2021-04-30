@@ -306,14 +306,14 @@ router.get("/users", async (req, res) => {
 router.get("/user/banned", async (req, res) => {
 
   if(req.body.URL==="") {
-    res.send("NO");
+    res.send(false);
   }
   else {
     user = await User.findOne({ URL: req.body.URL }).exec();
     if(user.banned !== null) {
-      res.send(user.banned? "YES" : "NO");
+      res.send(user.banned? true : false);
     } else {
-      res.send("NO");
+      res.send(false);
     }
   }
 
