@@ -25,7 +25,7 @@ defineFeature(feature, test => {
       password = "TestTest1?";
     });
 
-    when('The user registers in the application', async () => {
+    when('The user registers in the application and accesses his list of friends', async () => {
 
       // Accedemos a la ventana de inicio de sesión  
       newPagePromise = new Promise(x => page.once('popup', x));
@@ -41,13 +41,13 @@ defineFeature(feature, test => {
       await expect(popup).toClick('[id="login"]');
       await wait(8000);
 
-    });
-
-    then('The user will access to his friends list', async () => {
-
       // Accedemos a la sección de amigos
       await page.goto('http://localhost:3000/amigos')
 
+    });
+
+    then('The user sees all his friends', async () => {
+      // Comprobamos que aparecen todos los amigos del POD
       await wait(8000);
       await expect(page).toMatch('Alberto');
       await expect(page).toMatch('David Álvarez');
@@ -55,5 +55,5 @@ defineFeature(feature, test => {
       await expect(page).toMatch('moises');
     });
   });
-  
+
 });
