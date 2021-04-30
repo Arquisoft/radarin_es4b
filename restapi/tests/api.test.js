@@ -162,7 +162,7 @@ describe('users ', () => {
     it('can be banned correctly', async () => {
         await request(app).post('/api/user/ban').
             send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
-        const response = await request(app).post('/api/user/banned').
+        const response = await request(app).get('/api/user/banned').
             send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
         expect(response.text).toBe('YES');
     });
@@ -170,7 +170,7 @@ describe('users ', () => {
     it('can be unbanned correctly', async () => {
         await request(app).post('/api/user/ban').
             send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
-        const response = await request(app).post('/api/user/banned').
+        const response = await request(app).get('/api/user/banned').
             send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
         expect(response.text).toBe('NO');
     });
