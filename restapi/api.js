@@ -303,9 +303,9 @@ router.get("/users", async (req, res) => {
 });
 
 
-router.post("/user/banned", async (req, res) => {
+router.get("/user/banned", async (req, res) => {
 
-  if(req.body.URL=="0") {
+  if(req.body.URL==="") {
     res.send("NO");
   }
   else {
