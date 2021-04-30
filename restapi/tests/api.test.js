@@ -164,7 +164,7 @@ describe('users ', () => {
             send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
         const response = await request(app).get('/api/user/banned').
             send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
-        expect(response.text).toBe('YES');
+        expect(JSON.parse(response.text)).toBe(true);
     });
 
     it('can be unbanned correctly', async () => {
@@ -172,7 +172,7 @@ describe('users ', () => {
             send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
         const response = await request(app).get('/api/user/banned').
             send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
-        expect(response.text).toBe('NO');
+        expect(JSON.parse(response.text)).toBe(false);
     });
 
     it('can log in into solid correctly', async () => {
