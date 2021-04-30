@@ -13,6 +13,7 @@ test('applies the expected language', () => {
     expect(linkElement).toBeInTheDocument();
   }
   else {
+    render(<App />);
     const linkElement = screen.getByText("Welcome to Radarin !");
     expect(linkElement).toBeInTheDocument();
   }
