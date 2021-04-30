@@ -1,4 +1,4 @@
-import { render,screen  } from '@testing-library/react';
+import { render,screen, act  } from '@testing-library/react';
 import Friend from '../../components/Friends/Friend';
 
 test('app renders without crashing', () => {
