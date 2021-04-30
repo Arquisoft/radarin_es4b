@@ -23,6 +23,11 @@ const friends = [
     },
 ];
 
+test('user map list component renders without crashing', () => {
+    const { container } = render(<UsersMapList users={friends} fetchUsers={() => true}  />);
+    expect(container).toBeTruthy();
+});
+
 test('check that the data are displayed correctly in the friends list (map)', async () => {
     render(<UsersMapList users={friends} fetchUsers={() => true} />);
 
