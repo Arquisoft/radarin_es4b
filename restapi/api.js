@@ -303,7 +303,6 @@ router.get("/users", async (req, res) => {
 });
 
 
-/**
 router.post("/user/banned", async (req, res) => {
 
   if(req.body.URL=="0") {
@@ -320,7 +319,6 @@ router.post("/user/banned", async (req, res) => {
 
 
 });
- */
 
 //Banea a un usuario
 router.post("/user/ban", async (req, res) => {
