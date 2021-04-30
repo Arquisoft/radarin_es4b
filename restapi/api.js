@@ -111,7 +111,7 @@ router.post("/user/friends/near", async (req, res) => {
 
       let user = await User.findOne({ URL: infoToken.webId }).exec();
 
-      if(user && user.banned === "SI") {
+      if(user && user.banned) {
         res.status(403);
         res.send("Forbbiden");
         return;
@@ -183,7 +183,7 @@ router.post("/user/add", async (req, res) => {
 
       let user = await User.findOne({ URL: infoToken.webId }).exec();
 
-      if(user && user.banned === "SI") {
+      if(user && user.banned) {
         res.status(403);
         res.send("Forbbiden");
         return;
@@ -205,7 +205,7 @@ router.post("/user/add", async (req, res) => {
           },
           altitud: req.body.altitud,
           fecha: req.body.fecha,
-          banned: "NO"
+          banned: false,
         });
       }
       await user.save();
@@ -255,7 +255,7 @@ router.post("/user/login", async (req, res) => {
 
     let user = await User.findOne({ URL: session.webId }).exec();
 
-    if(user && user.banned === "SI") {
+    if(user && user.banned) {
       res.status(403);
       res.send("Forbbiden");
       return;
@@ -310,8 +310,8 @@ router.post("/user/banned", async (req, res) => {
   }
   else {
     user = await User.findOne({ URL: req.body.URL }).exec();
-    if(user.banned!=null) {
-      res.send(user.banned);
+    if(user.banned !== null) {
+      res.send(user.banned? "YES" : "NO");
     } else {
       res.send("NO");
     }
@@ -326,10 +326,10 @@ router.post("/user/ban", async (req, res) => {
 
   user = await User.findOne({ URL: req.body.URL }).exec();
 
-  if (user.banned == "SI") {
-    user.banned = "NO";
+  if (!user.banned) {
+    user.banned = true;
   } else {
-    user.banned = "SI";
+    user.banned = false;
   }
 
   await user.save();

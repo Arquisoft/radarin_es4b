@@ -4,7 +4,8 @@
   "description": "Node.js rest api using Express and MongoDB",
   "main": "index.js",
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testTimeout": 10000
   },
   "scripts": {
     "test": "jest --ci --coverage",

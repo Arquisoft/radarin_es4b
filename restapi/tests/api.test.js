@@ -154,8 +154,42 @@ describe('users ', () => {
                 latitud: 43.23,
                 longitud: -5.12,
                 altitud: 140.0})
-            .set('Accept', 'application/json')
+            .set('Accept', 'application/json');
         expect(response.statusCode).toBe(403);
-        expect(response.text).toBe("Forbbiden");
+        expect(response.text).toBe('Forbbiden');
+    });
+
+    it('can be banned correctly', async () => {
+        await request(app).post('/api/user/ban').
+            send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
+        const response = await request(app).post('/api/user/banned').
+            send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
+        expect(response.text).toBe('YES');
+    });
+
+    it('can be unbanned correctly', async () => {
+        await request(app).post('/api/user/ban').
+            send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
+        const response = await request(app).post('/api/user/banned').
+            send({URL: 'https://davidaf.solidcommunity.net/profile/card#me'});
+        expect(response.text).toBe('NO');
+    });
+
+    it('can log in into solid correctly', async () => {
+        const response = await request(app).post('/api/user/login').
+            send({
+                idp: 'https://solidcommunity.net',
+                username: 'testpodasw',
+                password: 'TestTest1?',
+            })
+            .set('Accept', 'application/json');
+        expect(response.body.name).toBe('testpodasw');
+        expect(response.body.photo).toBeNull();
+        jwt.verify(
+            response.body.token,
+            process.env.TOKEN_SECRET || "contraseñapruebas",
+            (err, infoToken) => 
+                expect(infoToken.webId).
+                    toBe('https://testpodasw.solidcommunity.net/profile/card#me'));
     });
 });
