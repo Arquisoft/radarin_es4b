@@ -86,11 +86,16 @@ Hemos hecho las siguientes pruebas sobre los usuarios y los amigos:
     - Se pueden actualizar.
     - No se pueden actualizar desde fuentes no autorizadas.
     - No se pueden actualizar si han sido vetados.
+    - Puede iniciar sesión en Solid.
+    - Se puede vetar a un usuario.
+    - Se puede quitar el veto de un usuario.
 * Amigos:
     - Se pueden listar.
     - Se pueden listar los cercanos a una ubicación.
     - No se pueden listar los cercanos a una ubicación desde una fuente no autorizada.
 
-Con estas pruebas comprobamos que la API Rest accediese correctamente a la base da datos y a los PODs, y que combinase los resultados adecuadamente para enviárselos al usuario. También comprobamos la seguridad de la API Rest, evitando accesos de usuario no autorizados (véase ADR 5) y de usuarios vetados.
+Con estas pruebas comprobamos que la API Rest accediese correctamente a la base da datos y a los PODs, y que combinase los resultados adecuadamente para enviárselos al usuario. Además probamos el funcionamiento del sistema que implementamos para iniciar sesión en Solid a través de la API Rest (véase ADR 3). 
+
+También comprobamos la seguridad de la API Rest, evitando accesos de usuario no autorizados (véase ADR 5) y de usuarios vetados.
 
 :numbered:
