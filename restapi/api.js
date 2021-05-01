@@ -341,7 +341,6 @@ router.get("/user/banned", async (req, res) => {
     } else {
       res.send(false);
     }
-    res.send(false);
   }
 
 
