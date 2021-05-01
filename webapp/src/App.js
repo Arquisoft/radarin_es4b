@@ -106,9 +106,8 @@ class App extends React.Component {
         } else {
           window.location.replace("/");
         }
-        window.location.replace("/");
       }
-    
+      window.location.replace("/");
   }
 
   logOut() {
