@@ -22,6 +22,7 @@ En el desarrollo del proyecto se usarán las siguientes tecnologías:
 | react-router-dom | Librería para React que permite realizar la navegación en aplicaciones Web. | Es la librería más usada en este ámbito y mejor documentada.
 | @solid/react | Librería para React que permite trabajar con SOLID fácilmente. Fue usada para complementar la autenticación del usuario y para poder extraer los datos de los distintos PODS. | Es la librería mejor documentada y más fácil de usar que nos permite trabajar con SOLID en React.
 | @material-ui/core | Librería para React que facilita una serie de componentes que permiten mejorar la interfaz de usuario. | Esta bien documentada y permite un desarrollo de interfaces de usuario ágiles y agradables para el usuario.
+| i18n | Librería para aplicaciones Node.js que permite la internacionalización. | Es la más utilizada en este ámbito y la mejor documentada.
 |===
 
 === ¿ Cómo llegaremos a los objetivos de calidad ?
