@@ -17,7 +17,8 @@
     "login.botonInicio": "Accede con tu POD",
     "login.info1": "¿No tienes un POD? ",
     "login.info2": "Hazte uno",
-    "login.info3": "Es necesario añadir Radarin en aplicaciones de confianza",
+    "login.info3": "Es necesario añadir Radarin en ",
+    "login.info4": "aplicaciones de confianza",
 
     "home.bienvenida": "¡ Bienvenido a Radarin !",
     "profile.pod": "URL POD",
@@ -44,6 +45,8 @@
     "admin.latitud": "Latitud: ",
     "admin.longitud": "Longitud: ",
     "admin.baneado": "Baneado: ",
-    "admin.botonBan" : "Banear/Desbanear"
+    "admin.botonBan" : "Banear/Desbanear",
+    "admin.si" : "Si",
+    "admin.no" : "No"
 
 }
