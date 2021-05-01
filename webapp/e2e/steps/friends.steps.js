@@ -10,7 +10,7 @@ defineFeature(feature, test => {
   }
 
   beforeAll(async () => {
-    await global.page.goto('http://localhost:3000/LogIn')
+    await global.page.goto('http://localhost:3000/logIn')
   })
 
   test('The user is not registered in the site and wants to see his friends list', ({ given, when, then }) => {
