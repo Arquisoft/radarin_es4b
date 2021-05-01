@@ -32,6 +32,14 @@ class Admin extends React.Component {
 
     }
 
+    textForBanned(bool) {
+        if(bool){
+            return getText("admin.si");
+        } else {
+            return getText("admin.no");
+        }
+    }
+
 
 
     render() {
@@ -57,7 +65,7 @@ class Admin extends React.Component {
                                 <p>{getText("admin.fecha")}{user.fecha}</p>
                                 <p>{getText("admin.latitud")}{user.location.coordinates[1]}</p>
                                 <p>{getText("admin.longitud")}{user.location.coordinates[0]}</p>
-                                <p>{getText("admin.baneado")}{user.banned}</p>
+                                <p>{getText("admin.baneado")}{this.textForBanned(user.banned)}</p>
                                 <Button variant="danger" onClick={() => this.banUser(user)}>{getText("admin.botonBan")}</Button>
                                 <p>---</p>
                             </FriendsCard>
