@@ -25,7 +25,7 @@ class LogIn extends React.Component {
                     <br />
                     <p>{ getText("login.info1") }<a href="https://solidproject.org/users/get-a-pod">{ getText("login.info2") }</a></p>
                 </LoginContainer>
-                <p className="alert"><a href="https://github.com/Arquisoft/radarin_es4b/wiki/Manual-de-usuario">{ getText("login.info3") }</a> </p>
+                <p className="alert">{ getText("login.info3") }<a href="https://github.com/Arquisoft/radarin_es4b/wiki/Manual-de-usuario">{ getText("login.info4") }</a> </p>
 
             </LoginWrapper>
         );

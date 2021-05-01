@@ -17,7 +17,8 @@
     "login.botonInicio": "Access with your POD",
     "login.info1": "Don't have a POD?",
     "login.info2": "Make yourself one",
-    "login.info3": "Radarin needs to be added in trusted applications",
+    "login.info3": "Radarin needs to be added in ",
+    "login.info4": "trusted applications",
 
     "home.bienvenida": "Welcome to Radarin !",
     "profile.pod": "POD URL",
@@ -43,5 +44,7 @@
     "admin.latitud": "Latitude: ",
     "admin.longitud": "Longitude: ",
     "admin.baneado": "Banned: ",
-    "admin.botonBan" : "Ban/Unban"
+    "admin.botonBan" : "Ban/Unban",
+    "admin.si" : "Yes",
+    "admin.no" : "No"
 }
