@@ -1,0 +1,633 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 2,
+  "links": [],
+  "panels": [
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 3,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Peticiones totales",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 7,
+        "x": 3,
+        "y": 0
+      },
+      "id": 4,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "values": []
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {}
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{status_code=\"200\"})",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "200",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{status_code=\"401\"})",
+          "format": "time_series",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "401",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{status_code=\"403\"})",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "403",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{status_code=\"404\"})",
+          "hide": false,
+          "instant": true,
+          "interval": "",
+          "legendFormat": "404",
+          "refId": "D"
+        }
+      ],
+      "title": "Peticiones totales por estado",
+      "type": "piechart"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 14,
+        "x": 10,
+        "y": 0
+      },
+      "id": 8,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(increase(http_request_duration_seconds_count[1m]))",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Peticiones por minuto",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Peticiones por minuto",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 10,
+        "x": 0,
+        "y": 7
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_sum) / sum(http_request_duration_seconds_count)",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "title": "Duración media peticiones (segundos)",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 14,
+        "x": 10,
+        "y": 7
+      },
+      "id": 10,
+      "options": {
+        "graph": {},
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(rate(http_request_duration_seconds_sum[5m])) / sum(rate(http_request_duration_seconds_count[5m]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Duración media peticiones en el tiempo (segundos)",
+          "refId": "A"
+        }
+      ],
+      "title": "Duración media peticiones en el tiempo (segundos)",
+      "type": "timeseries"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 10,
+        "x": 0,
+        "y": 15
+      },
+      "id": 12,
+      "options": {
+        "displayLabels": [],
+        "legend": {
+          "displayMode": "list",
+          "placement": "right",
+          "values": []
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {}
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/friends/near\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Amigos cercanos",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/add\"})",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Envío de localización",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/friends\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Todos los amigos",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/login\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Inicio de sesión",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/ban\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Banear/desbanear usuario",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(http_request_duration_seconds_count{method=\"GET\",path=\"/api/user/banned\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Consultar usuario baneado",
+          "refId": "F"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Peticiones por ruta",
+      "type": "piechart"
+    },
+    {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "graph": false,
+              "legend": false,
+              "tooltip": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 14,
+        "x": 10,
+        "y": 15
+      },
+      "id": 13,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltipOptions": {
+          "mode": "single"
+        }
+      },
+      "pluginVersion": "7.5.5",
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(increase(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/friends/near\"}[1m]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Amigos cercanos",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(increase(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/add\"}[1m]))",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Envío de localización",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(increase(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/friends\"}[1m]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Todos los amigos",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(increase(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/login\"}[1m]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Inicio de sesión",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(increase(http_request_duration_seconds_count{method=\"POST\",path=\"/api/user/ban\"}[1m]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Banear/desbanear usuario",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(increase(http_request_duration_seconds_count{method=\"GET\",path=\"/api/user/banned\"}[1m]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Consultar usuario baneado",
+          "refId": "F"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Peticiones por ruta y minuto",
+      "type": "timeseries"
+    }
+  ],
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Vista general",
+  "uid": "cI5fLErMz",
+  "version": 2
+}
