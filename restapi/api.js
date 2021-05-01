@@ -38,11 +38,11 @@ async function getFriends(URL) {
         .load(friend.doc())
         // Si no hay errores consulta el nombre, la foto y los devuelve
         .then(() => {
+          let photo = store.any(friend, VCARD("hasPhoto"));
           return {
             URL: friend.value,
             name: store.any(friend, FOAF("name")).value,
-            photo: store.any(friend, VCARD("hasPhoto")).value
-
+            photo: photo? photo.value : null,
           };
         })
         // Si se produce un error devuelve la URL del amigo en lugar del nombre
