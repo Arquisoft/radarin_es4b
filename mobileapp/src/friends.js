@@ -9,7 +9,7 @@ import {
   addOnNotificationCallback,
 } from './notifications.js';
 import getText from './i18n.js';
-import {hashCode} from './utils.js'
+import {hashCode} from './utils.js';
 
 const NOTIFICATION_CHANNEL_ID = 'friends-channel';
 
@@ -36,7 +36,9 @@ export function getCurrentFriendsClose() {
         }
         lastFriends = results;
       })
-      .catch(() => CurrentUser.ban());
+      .catch(err => {
+        if (err.message === 'banned') CurrentUser.ban();
+      });
   }
 }
 

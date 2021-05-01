@@ -21,7 +21,7 @@ export async function sendLocation(token, location) {
     }),
   })
     .then(response => {
-      if (response.status === 403) throw new Error(getText('toastBanned'));
+      if (response.status === 403) throw new Error('banned');
       console.log(`Send location: ${response.status}`);
     })
     .catch(error => console.log(error));
@@ -62,7 +62,7 @@ export async function getFriendsClose(token, location, maxDistance) {
     console.log(err);
     return;
   }
-  if (response.status === 403) throw new Error(getText('toastBanned'));
+  if (response.status === 403) throw new Error('banned');
   return await response.json();
 }
 
@@ -97,7 +97,8 @@ export async function authenticate(credentials) {
     return;
   }
   if (response.status === 403) throw new Error(getText('toastBanned'));
-  if (response.status !== 200) throw new Error(getText('toastLogIn'));
+  if (response.status === 401) throw new Error(getText('toastLogIn'));
+  if (response.status !== 200) throw new Error(getText('toastConnection'));
   let {token, webId, name, photo} = await response.json();
   return {
     token,
