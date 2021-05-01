@@ -11,7 +11,7 @@ function connect(){
         const app = express()
 
         //Monitoring middleware
-        const metricsMiddleware = promBundle({includeMethod: true});
+        const metricsMiddleware = promBundle({includeMethod: true, includePath: true});
         app.use(metricsMiddleware);
 
         app.use(cors());

@@ -1,6 +1,6 @@
 global:
   scrape_interval: 5s
 scrape_configs:
-  - job_name: "example-nodejs-app"
+  - job_name: "radarines4brestapi"
     static_configs:
-      - targets: ["restapi:5000"]
+      - targets: ["radarines4brestapi.herokuapp.com"]
