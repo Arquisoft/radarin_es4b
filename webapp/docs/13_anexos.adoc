@@ -10,17 +10,37 @@ Se realizaron varios tipos de pruebas, tanto de las aplicaciones web y móvil, c
 
 ===== Pruebas unitarias 
 
+Hemos hecho pruebas sobre los siguientes aspectos de la aplicación:
+
+* General:
+    - Se renderiza correctamente el componente principal de la aplicación.
+    - Se comprueba que las opciones mostradas en el menú de navegación (cuando el usuario no esta logueado en la aplicación) son las correctas. 
+* Gestión de amigos:
+    - Se renderiza correctamente el componente usado para mostrar la lista de amigos del usuario.
+    - Se renderiza correctamente el componente usado para mostrar la tabla que contiene los datos de las posiciones de los amigos del usuario.
+    - Se muestran los datos de forma correcta en la tabla que contiene las localizacion de los amigos del usuario.
+* Inicio de sesión:
+    - Se renderiza correctamente el componente usado para mostrar la página de inicio de sesión.
+    - Se comprueba que el botón de inicio de sesión esté disponible cuando el usuario aún no esta logueado en la aplicación. 
+
+
 ===== Pruebas de aceptación 
 
-====== Visualización de la lista de amigos. 
+Se realizo una prueba de carga para comprobar el correcto funcionamiento de la funcionalidad que permite visualizar la lista de amigos 
+del usuario que este logueado en la aplicación web. Se partira de un usuario que aún no esta logueado en la aplicación web.  
 
-* Esecenario: El usuario no está registrado en la aplicación web y quiere ver una lista con sus amigos.
+Los aspectos de esta prueba de aceptación son los siguientes: 
+
+* Esecenario: El usuario no está registrado en el sitio y quiere ver su lista de amigos.
 
 * Dado: Un usuario no registrado.
 
-* Cuando: El usuario se registra en la aplicación. 
+* Cuando: El usuario se registra en la aplicación y accede a su lista de amigos. 
 
-* Después: El usuario accede a la lista de amigos y visualiza todos sus amigos. 
+* Después: El usuario ve a todos sus amigos. 
+
+A la hora de realizar esta prueba se tuvieron muchos problemas para poder interactuar proveedor de identidad SOLID, ya que este se muestra en una 
+ventana aparte (popup) cuyo código no pertenece a la aplicación web. 
 
 ===== Pruebas de carga 
 

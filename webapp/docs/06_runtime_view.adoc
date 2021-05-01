@@ -7,6 +7,7 @@
 * Iniciar sesión en la aplicación web.
 
 [plantuml,"Iniciar sesión app web",png]
+----
 actor Alice
 participant "Aplicación web"
 participant "Proveedor de identidad SOLID"
@@ -20,7 +21,7 @@ Alice -> "Aplicación web": Introduce su webID
 "Aplicación web" -> "POD": Solicita información del POD del usuario (Alice) 
 "POD" -> "Aplicación web": Envia información del usuario (Alice) 
 "Aplicación web" -> "Aplicación web": Muestra la página de bienvenida para Alice
-
+----
 
 ==== Añadir y visualizar amigos
 * Añadir amigos de Solid desde la aplicación web.
