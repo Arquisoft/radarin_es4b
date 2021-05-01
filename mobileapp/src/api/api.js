@@ -9,22 +9,25 @@ const apiEndPoint = 'https://radarines4brestapi.herokuapp.com/api';
  */
 export async function sendLocation(token, location) {
   console.log(apiEndPoint);
-  fetch(apiEndPoint + '/user/add', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      token,
-      latitud: location.coords.latitude,
-      longitud: location.coords.longitude,
-      altitud: location.coords.altitude,
-      fecha: location.timestamp,
-    }),
-  })
-    .then(response => {
-      if (response.status === 403) throw new Error('banned');
-      console.log(`Send location: ${response.status}`);
-    })
-    .catch(error => console.log(error));
+  let response;
+  try {
+    response = await fetch(apiEndPoint + '/user/add', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        token,
+        latitud: location.coords.latitude,
+        longitud: location.coords.longitude,
+        altitud: location.coords.altitude,
+        fecha: location.timestamp,
+      }),
+    });
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+  if (response.status === 403) throw new Error('banned');
+  console.log(`Send location: ${response.status}`);
 }
 
 /**

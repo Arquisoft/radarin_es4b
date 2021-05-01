@@ -13,8 +13,7 @@ jest.mock('expo-secure-store', () => ({
 
 jest.mock('expo-location', () => ({
   getCurrentPositionAsync: jest.fn(async () => ({
-    lat: 43,
-    lng: -5,
+    coords: {latitude: 43, longitude: -5, altitude: 100},
     timestamp: 100,
   })),
   Accuracy: {
