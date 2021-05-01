@@ -47,18 +47,15 @@ export async function getUsers(){
 }
 
 
-export async function isBanUser(URL=""){
+export async function getUser(URL=""){
   const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
   console.log(apiEndPoint);
-  let response = await fetch(apiEndPoint+'/user/banned', {
-      method: 'GET',
+  let response = await fetch(apiEndPoint+'/user', {
+      method: 'POST',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({'URL':URL})
     })
-
-    console.log(URL);
-    console.log(response);
-  return await response.json()
+  return await response.json();
 }
 
 export async function banUser(URL){

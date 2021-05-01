@@ -303,6 +303,32 @@ router.get("/users", async (req, res) => {
 });
 
 
+
+
+router.post("/user", async (req, res) => {
+
+  if (req.body.URL === "") {
+    res.send(new User({
+      URL: "",
+      banned: false,
+    }));
+  }
+  else {
+    let user = await User.findOne({ URL: req.body.URL }).exec();
+    if (user != null) {
+      res.send(user);
+    } else {
+      res.send(new User({
+        URL: "",
+        banned: false,
+      }));
+    }
+  }
+
+
+});
+
+
 router.get("/user/banned", async (req, res) => {
 
   if(req.body.URL==="") {
@@ -315,6 +341,7 @@ router.get("/user/banned", async (req, res) => {
     } else {
       res.send(false);
     }
+    res.send(false);
   }
 
 
