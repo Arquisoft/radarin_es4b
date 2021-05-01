@@ -47,6 +47,8 @@
     "admin.baneado": "Baneado: ",
     "admin.botonBan" : "Banear/Desbanear",
     "admin.si" : "Si",
-    "admin.no" : "No"
+    "admin.no" : "No",
 
+    "ban.suspended" : "Su cuenta ha sido suspendida",
+    "ban.contact" : "Contacte con un administrador"
 }

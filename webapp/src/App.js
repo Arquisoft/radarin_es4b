@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getFriends, isBanUser } from "./api/api";
+import { getFriends, getUser } from "./api/api";
 import solidauth from "solid-auth-client";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { LoggedIn, LoggedOut } from '@solid/react';
@@ -18,6 +18,7 @@ import LogIn from "./components/LogIn";
 import LogOut from "./components/LogOut";
 import Home from "./components/Home";
 import Admin from "./components/Admin";
+import Banned from "./components/Banned";
 
 class App extends React.Component {
 
@@ -59,9 +60,13 @@ class App extends React.Component {
     let session = await solidauth.currentSession();
     if (session) {
       sessionStorage.setItem("webId", session.webId);
-      let a = await isBanUser(session.webId);
-      if(a) {
-        this.logOut();
+      let user = await getUser(session.webId);
+      console.log(user);
+      if(user!=null){
+        if(user.banned) {
+          this.logOut();
+          window.location.replace("/ban")
+        } 
       }
     }
     else {
@@ -92,11 +97,17 @@ class App extends React.Component {
     let popupUri = "https://solid.github.io/solid-auth-client/dist/popup.html";
     if (!session) session = await solidauth.popupLogin({ popupUri}); //Muestra el pop up si no has iniciado sesión
     sessionStorage.setItem("webId", session.webId);
-    window.location.replace("/");
-    let a = await isBanUser(session.webId);
-    if(a) {
-      this.logOut();
-    }
+      let user = await getUser(session.webId);
+      if(user!=null){
+        if(user.banned) {
+          this.logOut();
+          window.location.replace("/ban")
+          return;
+        } else {
+          window.location.replace("/");
+        }
+      }
+      window.location.replace("/");
   }
 
   logOut() {
@@ -166,6 +177,7 @@ class App extends React.Component {
           <LoggedOut>
             <Switch>
               <Route path="/logIn"><LogIn logIn={this.logIn.bind(this)} /></Route>
+              <Route path="/ban"><Banned /></Route>
               <Route path="/"><Welcome /></Route>
             </Switch>
           </LoggedOut>

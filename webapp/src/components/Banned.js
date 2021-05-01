@@ -1,13 +1,13 @@
 import React from 'react';
-
+import { getText } from '../translations/i18n';
 
 function Banned() {
 
     return (
         <div>
-            <h1 className="h1Card">Su cuenta ha sido suspendida</h1>
-            <p>---</p>
-            <p>Contacte con un administrador</p>
+            <h1 className="h1Card">{getText("ban.suspended")}</h1>
+            <p> </p>
+            <p className="alert">{getText("ban.contact")}</p>
         </div>
     );
 }

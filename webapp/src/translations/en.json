@@ -46,5 +46,8 @@
     "admin.baneado": "Banned: ",
     "admin.botonBan" : "Ban/Unban",
     "admin.si" : "Yes",
-    "admin.no" : "No"
+    "admin.no" : "No",
+
+    "ban.suspended" : "Your account has been suspended",
+    "ban.contact" : "Contact an administrator"
 }
