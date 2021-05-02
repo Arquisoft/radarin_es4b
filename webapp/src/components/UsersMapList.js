@@ -5,8 +5,13 @@ import { getText } from '../translations/i18n'
 
 class UsersMapList extends React.Component {
 
-    componentDidMount() {     
-        this.props.fetchUsers();
+    componentDidMount() {    
+        
+        this.props.fetchUsers();   
+        setInterval(() => {
+           
+            this.props.fetchUsers();  
+        }, 30000); 
     }
 
     render() {
