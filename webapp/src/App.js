@@ -47,6 +47,8 @@ class App extends React.Component {
         ...prevState,
         lat: position.coords.latitude,
         lon: position.coords.longitude,
+        mylat: position.coords.latitude,
+        mylon: position.coords.longitude,
         mapOptions: {
           ...prevState.mapOptions,
           lat: position.coords.latitude,
@@ -153,19 +155,19 @@ class App extends React.Component {
         fecha: user.fecha
       });
     });
-    console.log(this.state.mapOptions.radius);
+    
     return newMarks;
   }
   handRangeChange(event) {
     this.setState((prevState) => ({
       ...prevState,
+      marks: this.getMarks(this.state.users),
       mapOptions: {
-        lat:this.state.mapOptions.lat,
-        lon:this.state.mapOptions.lon,
+        lat:this.state.lat,
+        lon:this.state.lon,
         zoom: this.state.mapOptions.zoom,
         radius: event.target.value },
     }));
-    this.setState({marks: this.getMarks(this.state.users)}) ;
   }
 
   render() {
@@ -200,11 +202,12 @@ class App extends React.Component {
                   </div>
 
                   <SimpleMap
+                  
                     radius = {this.state.radius}
                     handRangeChange = {(event) => this.handRangeChange(event)}
                     mapOptions={this.state.mapOptions}
-                    lat={this.state.lat}
-                    lon={this.state.lon}
+                    lat={this.state.mylat}
+                    lon={this.state.mylon}
                     marks={this.state.marks}
                   />
                 </WhiteContainer>
