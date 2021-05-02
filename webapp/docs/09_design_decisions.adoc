@@ -68,4 +68,17 @@ Aprobada.
 ==== Consecuencias
 Tendremos modificar la API Rest para que genere un token al iniciar sesión y verifique el token enviado en las peticiones que requieran autenticación. También tendremos que modificar la aplicación móvil para que gestione el almacenamiento cifrado de los tokens y su envío en cada petición.
 
+=== ADR 6: Utilizar Pods para acceder a las funcionalidades de administración.
+==== Contexto
+Queremos tener usuarios con funcionalidades adicionales de gestión o administración. Necesitamos incorporar una nueva forma de acceder al sistema en la que podamos comprobar si un usuario esta habilitado para realizar estas funciones. 
+
+==== Decisión
+Hemos decido crear el Pod "RadarinAdmin". Los datos de este Pod (usuario y contraseña) son conocidos por los desarrolladores del sistema. Al acceder al sistema se comprobará si el usuario es "RadarinAdmin". Solo "RadarinAdmin" podrá acceder a las funcionalidades de administración.
+
+==== Estado
+Aprobada.
+
+==== Consecuencias
+Todos los usuarios del sistema accederán al mismo a través del mismo logeo. Una vez logeado, la aplicación web deberá comprobar el webID del usuario para verificar que se trata de un administrador.
+
 :numbered:

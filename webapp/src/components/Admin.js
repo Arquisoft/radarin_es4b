@@ -49,12 +49,13 @@ class Admin extends React.Component {
                 <h1 className="h1Card">{getText("admin.titulo")}</h1>
 
 
-
+                <FriendsWrapper>
                 <LoginWrapper>
                     <FriendsCard>
                         <h4>{getText("admin.usuariosTotales")}{this.state.nUsers}</h4>
                     </FriendsCard>
                 </LoginWrapper>
+                </FriendsWrapper>
 
                 {this.state.users.map(user => {
                     return (
