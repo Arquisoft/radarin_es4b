@@ -20,7 +20,7 @@ Alice -> "Proveedor de identidad SOLID": Introduce su webID
 "Proveedor de identidad SOLID" -> "Proveedor de identidad SOLID": Comprueba que las credenciales son correctas
 "Proveedor de identidad SOLID" -> "Aplicación web": Notifia del inicio de sesión
 "Aplicación web" -> "POD": Solicita información del POD de Alice
-"POD" -> "Aplicación web": Envia información del usuario (Alice) 
+"POD" -> "Aplicación web": Envia información de Alice 
 "Aplicación web" -> "Aplicación web": Muestra la página de bienvenida para Alice
 ----
 
