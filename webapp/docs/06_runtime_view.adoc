@@ -12,13 +12,14 @@ actor Alice
 participant "Aplicación web"
 participant "Proveedor de identidad SOLID"
 participant "POD"
-Alice -> "Aplicación web": Introduce su webID
+Alice -> "Aplicación web": Click en el botón de inicio de sesión
 "Aplicación web" -> "Proveedor de identidad SOLID": Muestra
+Alice -> "Proveedor de identidad SOLID": Introduce su webID
 "Proveedor de identidad SOLID" -> "Alice": Pregunta las credenciales para el webID introducido
 "Alice" -> "Proveedor de identidad SOLID": Introduce sus credenciales
 "Proveedor de identidad SOLID" -> "Proveedor de identidad SOLID": Comprueba que las credenciales son correctas
 "Proveedor de identidad SOLID" -> "Aplicación web": Notifia del inicio de sesión
-"Aplicación web" -> "POD": Solicita información del POD del usuario (Alice) 
+"Aplicación web" -> "POD": Solicita información del POD de Alice
 "POD" -> "Aplicación web": Envia información del usuario (Alice) 
 "Aplicación web" -> "Aplicación web": Muestra la página de bienvenida para Alice
 ----
