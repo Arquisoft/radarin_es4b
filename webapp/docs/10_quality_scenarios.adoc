@@ -42,6 +42,6 @@ right side
 | Mantenibilidad | Cuando se localice un error, será fácil arreglarlo. | Alta | Alta
 | Mantenibilidad | Cuando se necesite extender la funcionalidad, será fácil hacerlo. | Media | Alta
 | Testeabilidad | Cuando se neceite probar nuestro software, será fácil y rápido implementar otras pruebas. | Baja | Media
-| Rendimiento | Cuando un usuario soloicite que se le muestren las localizaciones de sus amigos, el sistema responderá en un tiempo razonable. | Baja | Media
+| Rendimiento | Cuando un usuario solicite que se le muestren las localizaciones de sus amigos, el sistema responderá en un tiempo razonable. | Baja | Media
 |===
 

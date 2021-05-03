@@ -6,3 +6,7 @@ Lista de riesgos (ordenados de mayor a menor importancia):
 * Falta de experiencia con los framework React y React Native. Deberíamos documentarnos correctamente antes de empezar a usarlo.
 * Escasa madurez de Solid, será más difícil encontrar soluciones a los problemas que se nos planteen.
 * Poca experiencia trabajando con JavaScript y ninguna trabajando con Node.js. También deberíamos documentarnos antes de empezar.
+
+Deuda técnica:
+
+* Una de las consecuencias de la decisión de usar React Native para desarrollar la aplicación móvil es que las librerías de Solid no funcionarán en este sistema. Por lo tanto, tendremos que buscar soluciones alternativas para comunicar la aplicación móvil con Solid (ADR 3, por ejemplo) que nos llevarán más tiempo de desarrollo.

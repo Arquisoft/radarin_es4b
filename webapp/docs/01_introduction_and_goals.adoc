@@ -3,7 +3,7 @@
 
 Vamos a desarrollar Radarin, un sistema para facilitar encuentros entre amigos. Estará compuesta de: 
 
-* Aplicacion movil: enviará una notificación a los usuarios cuando un amigo suyo este cerca y también permitirá compartir su ubicación. Incluirá un sistema de monitorización. 
+* Aplicacion movil: enviará una notificación a los usuarios cuando un amigo suyo este cerca y también permitirá compartir su ubicación.
 
 * Aplicación web: permitirá a los usuarios visualizar y gestionar sus localizaciones. También incluirá opciones de administración de usuarios y monitorización del estado del servidor. Esta aplicación estará alojada en un servidor que almacenará las locaclizaciones de los usuarios. 
 
@@ -31,7 +31,7 @@ Vamos a desarrollar Radarin, un sistema para facilitar encuentros entre amigos. 
 
 **  Se toman los datos de geolocalización provenientes del dispositivo movil de los usuarios.
 
-**  El sistema se desplegará desde contenedores docker y utlizará el servicio en la nube heroku.
+**  El sistema se desplegará desde contenedores docker en un servicio en la nube.
 
 === Objetivos de calidad
 

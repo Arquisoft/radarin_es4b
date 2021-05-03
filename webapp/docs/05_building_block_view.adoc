@@ -29,7 +29,7 @@ El sistema (Radarin) se descompone en una aplicación movil y un servidor web. E
 [options="header",cols="1,2"]
 |===
 |Caja negra|Descripción
-| Servidor web | almacena las ubicaciones de los usuarios, aloja una aplicación web y se comunica con los pods. 
+| Servidor web | Almacena las ubicaciones de los usuarios, aloja una aplicación web y se comunica con los pods. 
 |===
 
 === Nivel 2 

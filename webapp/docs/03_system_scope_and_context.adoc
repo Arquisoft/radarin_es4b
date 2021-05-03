@@ -47,7 +47,10 @@ Interfaces técnicas:
 | Canal de comunicación entre los usuarios y el sistema. 
 
 | Https
-| Comunicación a través del protocolo Https entre el usuario y la aplicación web.También permite la comunicación entre el pod y el sistema. 
+| Comunicación a través del protocolo Https entre el usuario y la aplicación web. También permite la comunicación entre el pod y el sistema. 
+
+| RDF
+| Marco de Descripción de Recursos (del inglés Resource Description Framework, RDF) es una familia de especificaciones del W3C que establece cómo se guarda la información en los PODs de Solid.
 |===
 
 [plantuml,"Diagrama contexto tecnico",png]

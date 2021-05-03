@@ -13,7 +13,7 @@ En el desarrollo del proyecto se usarán las siguientes tecnologías:
 |React Native | Es un framework de JavaScript para crear aplicaciones móviles que funcionen tanto en Android como en iOS. Se utilizará para el desarrollo de la aplicación móvil. | Nos permite desarrollar fácilmente aplicaciones que funcionen en todos los dispositivos móviles modernos y, al estar usando React para la aplicación web, será más sencillo aprender a usarlo.
 | Node.js | Entorno en tiempo de ejecución de código abierto, para la capa del servidor basado en JavaScript con una arquitectura orientada a eventos. | Es muy usado y será usada usada en otras asignaturas, por lo que podemos aprovechar conocimientos. 
 | Solid-auth-client | Libreria para autenticar al usuario del pod. | Única librería disponible para JavaScript. 
-| rdflib | Libreria para leer y escribir en los pods. | Permite leer y escribir en pods fácilmente. Hay otras librerías más sencillas pero esta es la que hemos encontrado más flexible. 
+| rdflib y LDFlex| Librerias para leer y escribir en los pods. | Permite leer y escribir en pods fácilmente. Hay otras librerías pero estas son las que hemos encontrado más flexible. 
 | Google Maps API | API para ver las localizaciones en el mapa | Se tiene expriencia de otras asignaturas. 
 | MongoDB | Base de datos NoSQL para almacenar las localizaciones de los usuarios. | Tiene buen rendimiento en el ámbito actual y contamos con ejemplos.
 | mongoose | Librería JavaScript que permite crear esquemas para trabajar con MongoDB. | Facilita el trabajo con MongoDB ya que el uso de esquemas evita realizar conversiones y validaciones. 
@@ -33,7 +33,7 @@ Para alcanzar nuestros objetivos de calidad:
 |===
 |Objetivo de calidad|Forma de obtenerlo
 |Mantenibilidad | Se usarán una serie de patrones de diseño.
-|Privacidad | Solo almacenaremos la ubicación de los usuarios y si necesitaos información adicional, se solicitará explicitamente acceso al pod de este.
+|Privacidad | Solo almacenaremos la ubicación de los usuarios y si necesitmaos información adicional, se solicitará explicitamente acceso al pod del usuario.
 |Usabilidad | Se desarrollarán interfaces de usuario fáciles de usar, fluidas y que no añadan complicaciones al uso de la aplicación.   
 | Testeabilidad | Realizaremos pruebas tanto manuales como automáticas. 
 | Rendimiento | Se usaran tecnologías que favorezcan al rendimiento, como por ejemplo, la combinación de Node.js y MongoDB. 

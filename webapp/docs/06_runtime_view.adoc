@@ -61,7 +61,7 @@ participant "Base de datos"
 
 
 ==== Banear un usuario
-* Un administrador podrá banear a un usuario de nuestro sistema
+* Un administrador podrá banear a un usuario de nuestro sistema.
 
 [plantuml,"Banear un usuario",png]
 ----
@@ -84,7 +84,7 @@ participant "Base de datos"
 
 ==== Iniciar sesión 
 
-* Iniciar sesión en Solid desde la aplicación móvil 
+* Iniciar sesión en Solid desde la aplicación móvil (ver ADR 3).
 
 [plantuml,"iniciar sesión app móvil",png]
 ----
@@ -109,7 +109,7 @@ Alice -> "Aplicación móvil": Introduce sus credenciales de Solid
 
 ==== Subir posición
 
-* Permitir a la aplicacion saber tu posicion
+* Permitir a la aplicacion saber tu posicion.
 
 [plantuml,"Subir posición",png]
 ----

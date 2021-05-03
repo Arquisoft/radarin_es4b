@@ -14,4 +14,5 @@ Términos más importantes del ambito de nuestro sistema:
 | Proveedor de identidad de Solid | Entidad que se encarga de mantener y validar la identidad de un usuario de Solid.
 | Proveedor de localización | Servicio del sistema operativo que notifica a las aplicaciones de cambios en la localización detectados por el hardware del dispositivo.
 | Consulta geoespacial | Consultas especiales que permiten filtrar información geográfica. 
+| ADR | Los ADR (Architectural Decision Record, registro de decisión arquitectónica) sirven para mantener una lista de todas las decisiones arquitectónicas suficientemente significativas que se han ido tomando a lo largo del desarrollo del proyecto.
 |===
