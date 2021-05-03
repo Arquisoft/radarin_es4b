@@ -29,8 +29,10 @@ class App extends React.Component {
       lat: null,
       lon: null,
       marks: [],
-      mapOptions: {zoom: 8
-        ,radius: 10000}
+      mapOptions: {
+        zoom: 8,
+        radius: 10000,
+      }
     };
   }
 
@@ -121,6 +123,7 @@ class App extends React.Component {
     this.setState((prevState) => ({
       ...prevState,
       mapOptions: {
+        ...prevState.mapOptions,
         lat: user.latitud,
         lon: user.longitud,
         zoom: 12,
@@ -163,6 +166,7 @@ class App extends React.Component {
       ...prevState,
       marks: this.getMarks(this.state.users),
       mapOptions: {
+        ...prevState.mapOptions,
         lat:this.state.lat,
         lon:this.state.lon,
         zoom: this.state.mapOptions.zoom,

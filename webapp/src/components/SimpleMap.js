@@ -99,7 +99,7 @@ export class MapContainer extends Component {
           </div>
         </InfoWindow>
         <input className="slider" type="range" min="1000" max="100000" step="500" value={this.props.mapOptions.radius} onChange={this.props.handRangeChange.bind(this)} />
-        <Circle data-testid="circle" center={{ lat: this.props.mapOptions.lat, lng: this.props.mapOptions.lon }} radius={parseFloat(this.props.mapOptions.radius
+        <Circle data-testid="circle" center={{ lat: this.props.lat, lng: this.props.lon }} radius={parseFloat(this.props.mapOptions.radius
         )} />
       </Map>
     );
